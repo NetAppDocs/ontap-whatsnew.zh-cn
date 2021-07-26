@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: ontap98fo_storage_efficiencies.html 
+keywords: FabricPool, Compression, FlexClone, Snapshot, compaction, deduplication, 
+summary: 本页介绍 ONTAP 9.8 的存储效率，尤其是数据压缩以及与 NetApp FabricPool 技术相关的效率。 
+---
+= 存储效率
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+存储效率包括可减少存储系统中数据占用的物理容量的任何功能。在 ONTAP 中，这些功能包括：
+
+* 数据压缩
+* 数据缩减
+* 重复数据删除
+* NetApp FabricPool
+
+
+有时，这些定义可以延伸到包括：
+
+* NetApp FlexClone 技术
+* NetApp Snapshot 副本
+
+
+存储效率对于通过减少需要购买的物理硬件数量来保持低存储成本至关重要。ONTAP 可以在实时系统（ AFF 系统）或后处理系统（所有系统）上执行数据精简，而对系统性能的影响微乎其微。
+
+在 ONTAP 9.8 中，可以通过多种增强功能提高存储效率。
+
+
+
+== FabricPool
+
+FabricPool 是 NetApp 的数据分层技术，可将文件系统中标记为冷的块捆绑到 4 MB 对象中，并发运至云或 S3 存储分段。其理念是，冷数据最多可以使用存储系统中总容量的 80% ，因此，最好将其迁移到成本较低的存储解决方案，而不是将所有容量都保留在性能层上。
+
+所有这些操作都会通过您可以设置的分层策略在 ONTAP 中自动进行，您可以通过非活动数据报告了解您的存储系统中当前有多少冷数据。这样，您就可以评估 FabricPool 是否会真正为您节省资金。
+
+image:ontap98fo_image22.png["错误：缺少图形映像"]
+
+当客户端访问已分层到云的文件时，只会将请求的块（而不是整个文件）恢复到性能层以进行访问。
+
+有关 FabricPool 的详细信息，请参见 https://www.netapp.com/pdf.html?item=/media/17239-tr4598pdf.pdf["TR-4598 ： FabricPool 最佳实践"] 和。
+
+ONTAP 9.8 支持以下 FabricPool 功能：
+
+* * 从 HDD 聚合分层。 * 在 ONTAP 9.8 之前， FabricPool 只能在 SSD 聚合上从 ONTAP 分层到云。现在，您可以使用 ONTAP 9.8 对 HDD 聚合中的 FabricPool 进行分层。
+* * 分层到 ONTAP S3. * 由于 ONTAP S3 现在已普遍可用，因此现在可以使用 FabricPool 从 ONTAP 系统分层到 ONTAP S3 分段。通过这种方式，可以将老化容量存储用作 FabricPool 层，从而重新利用该存储。此外，通过分层到同一集群，您可以比遍历云网络连接更快地进行检索。
+* * 冷却期延长。 * 在 ONTAP 9.8 之前，数据在冷却期过后会标记为冷数据，最长为 63 天。使用 ONTAP 9.8 ，您可以将此最大值配置为最多 183 天。这对于偶尔访问的数据非常有用，例如按季度访问的数据，例如财务报告。
+* * 对象标记。 * 当您分层到提供信息生命周期策略并根据对象标记管理数据的 S3 提供程序时， ONTAP 9.8 可以标记使用 FabricPool 分层的对象，以便将其纳入这些策略中。
+* * 云检索。 * 在某些情况下，您可能需要从云中提取所有分层数据。现在，您可以在 ONTAP 9.8 中运行从云中检索数据的作业，而无需访问所有数据。
+
+
+
+
+== 压缩
+
+ONTAP 9.8 引入了一些数据压缩更改，有助于提高性能，并提高可压缩数据集的数据精简率。
+
+数据压缩的主要变化是将数据分为冷分类和热分类。冷数据是指长时间未访问的数据，热数据是指经常访问的数据。这意味着我们希望减少对热数据的压缩，并更积极地压缩冷数据。
+
+在 ONTAP 9.8 中，热数据会使用 8 K 压缩组进行实时压缩。此外，数据重复数据删除会在数据压缩之前进行，以提高数据集的效率。
+
+然后，使用更具竞争力的 32 K 压缩组在后台再次压缩冷数据。这些变化意味着热数据的性能更高，所有数据的数据精简率更高。
+
+link:ontap98fo_data_protection.html["下一步：数据保护"]

@@ -1,0 +1,134 @@
+---
+sidebar: sidebar 
+permalink: ontap98fo_data_protection.html 
+keywords: TR-4872, Data Protection, Security, Secure Purge, IPSec, NetApp Volume Encryption, NVE, SnapMirror Cloud, SnapMirror Business Continuity (SM-BC) 
+summary: 本页介绍了 ONTAP 9.8 的最新数据保护增强功能，包括异地复制数据的概念，以及保护传输中和空闲数据的安全。 
+---
+= 数据保护
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+在本文档中，数据保护既指异地复制数据的概念，也指确保数据在传输中和空闲时的安全。本节介绍 ONTAP 9.8 的最新数据保护增强功能。
+
+
+
+== 安全性
+
+每个 ONTAP 版本都采用新的安全功能和增强功能， ONTAP 9.8 在这方面没有什么不同。有关 ONTAP 安全功能的详细信息，请参见 https://www.netapp.com/pdf.html?item=/media/10674-tr4569pdf.pdf["TR-4569 ：《 ONTAP 9 安全加固指南》"^]。
+
+
+
+=== 安全清除
+
+在包含机密或敏感数据的环境中，如果将文件错误地写入不应访问该文件的人员可以访问的卷，则会导致所谓的数据溢出。这样就会出现一种情况，即必须删除整个卷并擦除磁盘以清理溢出。
+
+NetApp 卷加密和安全清除通过删除与文件关联的安全加密密钥，以加密方式粉碎各个文件，从而缓解这些潜在灾难。该密钥消失后，该数据将无法再从磁盘恢复。此过程已通过数据恢复公司使用 NIST SP 800-88 介质清理准则进行外部验证。
+
+但是，即使安全清除也有其限制；例如，如果必须清除文件，则需要执行卷移动，这需要系统中的可用空间。如果已安装 SnapMirror ，则需要在执行安全清除操作后重新建立基线。
+
+ONTAP 9.8 中的安全清除通过以下方式消除了这些限制：
+
+* 为加密文件提供一个简单的原位操作步骤。
+* 允许您将现有 SnapMirror 镜像保留在原位，而无需重新建立基线。
+
+
+
+
+=== IPsec
+
+IPsec 是一种标准机制，用于通过线缆执行与应用程序无关的加密。使用 IPsec ，您可以对网络流量进行加密，而不管使用的协议是什么。这为简化提供了机会，尤其是 NFS ，因为在 NFS 中很难设置和使用 Kerberos 加密，同时也提供了通过线缆加密 iSCSI 流量的唯一方法。
+
+现在， ONTAP 9.8 增加了对 IPsec 的支持。ONTAP 实施的 利用与连接客户端共享的预共享密钥（ PSk ）。这些客户端包括任何采用采用具有 psk 的 IKEv2 的最新操作系统。请注意， Windows 操作系统不支持使用 PSk 的 IKEv2 。
+
+
+
+=== 可信平台模块
+
+使用 ONTAP 9.8 中的新可信平台模块（ TPM ），板载密钥管理器（ OKM ）的加密密钥不再存储在启动设备中，而是存储在配有此类设备的系统的物理 TPM 中，从而提供更强的安全性和保护。迁移到 TPM 是一个无中断过程。
+
+
+
+=== NetApp 卷加密
+
+NetApp 卷加密（ NetApp Volume Encryption ， NVE ）是一种软件解决方案，可对任何已启用数据卷的驱动器类型上的任何数据卷进行加密，并为每个卷提供一个唯一的密钥。自 ONTAP 9.1 以来，此功能已可用。
+
+ONTAP 9.8 为节点根卷提供了 NVE 支持，其中包含日志文件，集群配置备份，核心文件以及其他系统相关信息，您可能需要使用符合 FIPS-140-2 的加密来保护这些信息。
+
+
+
+== SnapMirror 云
+
+SnapMirror 是 ONTAP 中行业领先的复制技术，可让存储管理员通过 WAN 连接为数据集创建精确副本，并仅复制已更改的块以降低网络利用率。
+
+在过去的几个 ONTAP 版本中， SnapMirror 支持已扩展到包括非 ONTAP 系统，例如 https://blog.netapp.com/introducing-snapmirror-for-solidfire-element-os-enabling-data-replication-across-the-data-fabric/["SolidFire Element 操作系统"^]。现在， ONTAP 9.8 提供了一种利用 SnapMirror 复制到云或内部 S3 对象分段的方法。
+
+image:ontap98fo_image23.png["错误：缺少图形映像"]
+
+利用全新的 https://blog.netapp.com/new-backup-architecture-snapdiff-v3["SnapDiff 3.0 引擎"^]， SnapMirror 可以安全高效地将数据从 ONTAP NAS 卷复制到对象存储分段。这样可以在整个 ONTAP Data Fabric 中实现混合云移动性。
+
+* 节省空间的快照备份到云对象存储可保持存储效率。
+* 支持全卷和单文件还原
+
+
+在 ONTAP 9.8 中， SnapMirror 云需要通过以下两种方法之一进行编排。System Manager 不支持此功能，也不能直接通过 API 或 CLI 进行此操作。
+
+* 通过获得许可的 ISV 合作伙伴应用程序创建和管理备份和还原工作流。需要 SnapMirror Cloud 许可证。
+* 通过 Cloud Backup Service 。不需要 SnapMirror Cloud 许可证。
+
+
+有关 SnapDiff 和 SnapMirror Cloud 的详细信息，请参见以下资源：
+
+* https://soundcloud.com/techontap_podcast/episode-264-netapp-ontap-snapdiff["Tech OnTap 播客第 264 集： NetApp ONTAP SnapDiff"^]
+* https://soundcloud.com/techontap_podcast/episode-265-netapp-snapmirror-cloud-featuring-prolion["Tech OnTap 播客第 265 集：采用 ProLion 的 NetApp SnapMirror 云"^]
+* https://blog.netapp.com/new-backup-architecture-snapdiff-v3["NetApp 博客：采用 SnapDiff 或 SnapMirror Cloud-v3 的新备份架构"^]
+
+
+
+
+== SnapMirror 业务连续性（ SM-BC ）
+
+https://blog.netapp.com/snapmirror-synchronous-ontap-9-6/["SnapMirror 同步"^] （ SM-S ）是在 ONTAP 9.5 中推出的，可提供卷粒度和存储效率较高的同步数据复制，企业可以依靠它来实现备份，灾难恢复和数据移动性。SM-S 可在位于数据中心或城域的完全冗余 ONTAP 存储系统之间复制 NetApp FlexVol 卷上的数据，并且往返时间（ RTT ）小于 10 毫秒，以实现零恢复点目标和接近零的恢复时间目标。
+
+ONTAP 9.8 采用了 SAN 环境中的 SnapMirror 同步概念，并为一致性组中的应用程序提供了自动故障转移功能，使用 System Manager 进行配置，并使用 ONTAP 调解器在发生中断时管理和保持业务连续性。由于关系是同步的，因此应用程序在故障转移时不会错过任何信号。最初版本的 SnapMirror 业务连续性仅支持 SAN （ iSCSI 和 FCP ）工作负载。
+
+有关 SnapMirror 业务连续性的详细信息，请参见 https://soundcloud.com/techontap_podcast/episode-267-snapmirror-business-continuity-sm-bc-for-ontap-98["Tech OnTap 播客第 267 集： SnapMirror 业务连续性"^]。
+
+
+
+== MetroCluster
+
+NetApp MetroCluster （ MC ）软件是一款解决方案，它将基于阵列的集群与同步复制相结合，以最低的成本实现持续可用性和零数据丢失。由于消除了通常与基于主机的集群相关的依赖关系和复杂性，因此管理基于阵列的集群变得更加简单。
+
+image:ontap98fo_image24.png["错误：缺少图形映像"]
+
+MetroCluster 会立即逐个事务复制所有任务关键型数据，从而可以无中断地访问应用程序和数据。与标准数据复制解决方案不同， MetroCluster 可与主机环境无缝协作，提供持续的数据可用性，同时无需创建和维护复杂的故障转移脚本。
+
+使用 MetroCluster ，您可以执行以下任务：
+
+* 通过透明切换防止出现硬件，网络或站点故障
+* 消除计划内和计划外停机和变更管理
+* 升级硬件和软件，而不会中断操作
+* 部署时无需依赖复杂的脚本，应用程序或操作系统
+* 实现 VMware ， Microsoft ， Oracle ， SAP 或任何关键应用程序的持续可用性
+
+
+ONTAP 9.8 为 MetroCluster 提供了以下增强功能。
+
+* * 新的入门级和中端平台支持。 * NetApp AFF A250 ， FAS500f ， FAS8300 ， FAS 8700 混合和 A400 。对于 A220 ， FAS2750 和 FAS500f 的新安装，现在可以将 VLAN 指定为大于 100 且小于 4096 。
+* * 从 MC-FC 无中断过渡到 MC-IP 。 * 仅限四节点集群；双节点 MCC 需要停机。在即将到来的技术更新中轻松迁移到 MC IP 。
+* * 现在 MC IP 支持未镜像聚合。 * 仅将所需聚合复制到故障转移站点，以提高应用程序粒度。
+* 支持在 BES-53248 交换机上使用 Cisco 9336C-x2 交换机以及 A400 ， FAS 8300 和 FAS 8700 ，并提供额外的 100G 端口许可证。
+
+
+有关 MetroCluster 的详细信息，请参见以下资源：
+
+* https://www.netapp.com/us/media/tr-4375.pdf["TR-4375 ：适用于 ONTAP 9.7 的 MetroCluster FC"^]
+* https://www.netapp.com/us/media/tr-4689.pdf["TR-4689 ：《 MetroCluster IP 解决方案架构和设计》"^]
+* https://www.netapp.com/pdf.html?item=/media/13480-tr4705pdf.pdf["TR-4705 ：《 NetApp MetroCluster 解决方案架构和设计》"^]
+
+
+link:ontap98fo_vmware_virtualization.html["接下来： VMware 虚拟化"]

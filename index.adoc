@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: index.html 
+keywords: TR-4894, Introduction, NAS, SAN, S3, Snapshot, SnapMirror, SnapVault, HA 
+summary: NetApp ONTAP 是行业领先的旗舰级数据管理软件，无论数据位于内部，边缘还是云端，均可帮助您无缝管理和保护数据。 
+---
+= TR-4894 ：《 NetApp ONTAP 9.9.1 功能概述》
+
+
+NetApp 公司 Justin Parisi
+
+NetApp ONTAP 是行业领先的旗舰级数据管理软件，无论数据位于内部，边缘还是云端，均可帮助您无缝管理和保护数据。
+
+NetApp ONTAP 在同一平台上支持以下功能：
+
+* NAS 协议（ NFS 和 SMB ）
+* SAN 协议（ iSCSI ， FCP 和 NVMe ）
+* S3 数据访问
+* 数据保护（ NetApp Snapshot 副本， NetApp SnapMirror 和 SnapVault 技术）
+* 存储效率（重复数据删除，数据缩减和数据压缩）
+* 高可用性（ HA ）故障转移（包括采用全 SAN 阵列的第 1 层 SAN 的快速故障转移）
+* 支持全闪存，旋转驱动器和混合磁盘配置
+* 安全功能（多因素身份验证， NetApp 卷加密和安全清除）
+
+
+这不是一个全面的列表；如果我们包括 ONTAP 提供的所有功能，本文档将长达数百页！
+
+有关 NetApp ONTAP 的更多详细信息，请参见 https://www.netapp.com/pdf.html?item=/media/7413-ds-3231.pdf["ONTAP 9 数据管理软件产品规格"^] 和产品文档。

@@ -1,0 +1,189 @@
+---
+sidebar: sidebar 
+permalink: ontap98fo_data_protocols.html 
+keywords: NAS Protocol, NFS, SMB/CIFS, FlexCache Volume, FlexGroup, Async Delete, SAN, Persistent Ports, NVMe/FC, S3 
+summary: 此页面介绍了允许客户端和最终用户与 ONTAP 存储系统进行交互以访问数据的数据协议。 
+---
+= 数据协议
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+数据协议是指客户端和最终用户与 NetApp ONTAP 存储系统进行交互以访问数据的方法。NetApp ONTAP 为同一存储平台中的数据访问提供了多个官方支持的接口，其中包括：
+
+* NAS
+* SAN
+* S3
+
+
+ONTAP 9.8 为 ONTAP 数据协议提供了一系列增强功能。
+
+
+
+== NAS 协议增强功能
+
+网络连接存储（ NAS ）协议是指基于文件的传输方法，例如 NFS 和 SMB/CIFS 。ONTAP 9.8 增加了以下增强功能，以支持 NAS 协议，以及专门适用于 NAS 的功能，例如 NetApp FlexGroup 和 FlexCache 卷。
+
+
+
+=== NFS 增强功能
+
+ONTAP 9.8 提供了以下 NFS 增强功能：
+
+* * NFSv4.2* 提供基本的 NFSv4.2 协议支持，不包括标签等 NFSv4.2 功能。如果启用了 NFSv4.1 ，则会启用 NFSv4.2 。
+* * qtree 服务质量（ QoS ）。 * 为存储管理员提供了一种在 ONTAP 中对 qtree 应用 QoS 最大值和最小值的方法。此功能目前仅适用于 REST API 和命令行，不包括自适应 QoS 支持，并且仅适用于 NFS 。
+
+
+
+
+=== SMB/CIFS 增强功能
+
+ONTAP 9.8 提供了以下 SMB/CIFS 增强功能：
+
+* * SMB3 加密的 DC 连接。 * SMB DC 连接的线缆加密。
+* * 将 SID 映射到集所有者上的 UID （ -map- sid-to - uid-on-set-owner ）。 * 此选项用于控制 ONTAP 在设置文件和文件夹所有权时是否将 Windows SID 映射到 UNIX UID 。添加此选项是为了改善 Active Directory 服务器负载增加的客户的数据迁移体验。默认值为 `true` 。（错误修复 https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1153207["1153207."^]）
+* 继承 NFSv4_ACL 时设置移动项（ -is-here-modeITS-with -nfsv4acl-enabled ） * 。如果在 NFSv4 ACL 已删除默认值 `owner@` ， `Group@` 和 `everyone@` ACL 或这些 ACL 未设置继承标志的目录中创建 SMB 文件，则支持多协议 NAS 交互。默认值为 `false` 。（修复 https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/820848["错误 820848"^]）
+
+
+
+
+=== FlexCache 卷增强功能
+
+NetApp FlexCache 卷是由 NetApp FlexGroup 卷组成的稀疏虚拟缓存。这些缓存可指向原始卷，并应客户端的请求将数据填充到缓存中，以便在运行 ONTAP 的任何位置提供快速的本地化访问―无论是在云端，边缘还是在数据中心―中，均可提供真正的全局命名空间。
+
+image:ontap98fo_image19.png["错误：缺少图形映像"]
+
+有关 FlexCache 卷的详细信息，请参见 https://www.netapp.com/pdf.html?item=/media/7336-tr4743pdf.pdf["TR-4743 ： FlexCache in ONTAP"^]。
+
+ONTAP 9.8 提供了以下 FlexCache 卷增强功能：
+
+* * 支持 SMB/CIFS 。 * NetApp FlexCache 现在支持对 NFSv3 和 SMB 客户端的缓存访问以及多协议 NAS 数据访问。FlexCache 可用于对读取量大的工作负载进行多站点分布式本地化文件锁定。
+* * 提高了 FlexCache 扇出比率。 * ONTAP 9.8 提供了 100 ： 1 的扇出比率。以前，该比率为 10 ： 1 。
+* * 具有 SnapMirror 二级源的 FlexCache 卷。 * FlexCache 卷现在可以连接到 SnapMirror 二级卷，从而可以从主存储系统中卸载读取操作，并提供一个地理位置更本地化的初始卷。
+* * 块级缓存失效。 * 现在，只会逐出已更改的块，而不是在从缓存中逐出已更改的数据时使整个文件失效。这样可以节省容量和 WAN 流量负载。
+* * 预填充缓存。 * 如果您知道某个卷中的某个目录将经常访问，则现在可以使用该目录的内容预先填充缓存，以消除初始客户端访问的延迟。
+
+
+
+
+=== FlexGroup 卷增强功能
+
+FlexGroup 卷是 NetApp ONTAP 横向扩展 NAS 解决方案，可在一个命名空间中提供高达 20 PB 和 4 ， 000 亿个文件，同时可对载入量最高的工作负载进行自动负载平衡并行处理，实现容量，性能和精简性的完美结合。
+
+image:ontap98fo_image20.png["错误：缺少图形映像"]
+
+有关 FlexGroup 卷的详细信息，请参见 https://www.netapp.com/us/media/tr-4571.pdf["TR-4571 ：《 NetApp FlexGroup 卷最佳实践》"^]。
+
+ONTAP 9.8 提供了以下 FlexGroup 卷增强功能：
+
+* * 支持 1 ， 023 个 Snapshot 。 * 现在， NetApp FlexGroup 卷的每个卷最多可包含 1 ， 023 个 Snapshot 副本。通过增加 Snapshot 副本， FlexGroup 卷可以作为归档目标变得更加可行，可以频繁保留更多快照，并且现在可以支持 FlexVol 转换，而 Snapshot 副本 ID 大于 255 。
+* * NDMP 增强功能。 * ONTAP 9.7 增加了对 FlexGroup 卷的 NDMP 支持，但缺少以下功能选项：
++
+** ONTAP 9.8 增加了对 NDMP 的支持
+** 排除
+** 可重新启动的备份扩展（ RBE ）
+** 多子树名称
+** 性能增强
++
+有关 FlexGroup 卷和 NDMP 的详细信息，请参见 https://www.netapp.com/us/media/tr-4678.pdf["TR-4678 ：数据保护和备份— FlexGroup 卷"^]。
+
+
+
+* * 支持 FlexGroup 转换 7MTT 卷。 * 在 ONTAP 9.8 之前，无法将已从 7- 模式过渡到 FlexGroup 卷的 FlexVol 转换为 卷。ONTAP 9.8 取消了此限制。
+* * 主动式调整大小。 * 主动式调整大小是一项容量管理功能，可在 FlexGroup 成员卷中保持可用空间缓冲区，以确保性能和容量分布一致。
+* * 文件克隆。 * 现在，您可以通过 VAAI 副本卸载支持使用 VMware vSphere 克隆 FlexGroup 卷中的文件。但是，目前不支持使用 REST API 或 CLI 进行文件克隆。
+* * 支持 VMware 数据存储库。 * ONTAP 9.8 现在正式支持将 FlexGroup 卷作为可扩展的 VMware 数据存储库。这意味着：
++
+** 经验证的性能和放置
+** 互操作性资格认定
+** Virtual Storage Console 支持
+** NetApp SnapCenter 备份支持
+
+
+
+
+
+
+=== 异步删除
+
+通过异步删除，存储管理员可以通过从 CLI 中删除目录来绕过网络延迟。
+
+如果您曾经尝试过通过 NFS 或 SMB 删除包含许多文件的目录，您就会知道这可能是多么痛苦。每个操作都必须通过您正在使用的 NAS 协议通过网络传输，然后 ONTAP 必须处理这些请求并做出响应。根据可用网络带宽，客户端规格或存储系统，此过程可能需要很长时间。异步删除可节省大量时间，并使客户端能够更快地恢复工作。
+
+有关异步删除的详细信息，请参见 https://www.netapp.com/us/media/tr-4571.pdf["TR-Windows ：《 NetApp FlexGroup 卷最佳实践》"^]。
+
+
+
+== SAN 增强功能
+
+存储区域网络（ SAN ）协议是指基于块的数据传输方法，例如光纤通道上的 FCP ， iSCSI 和 NVMe 。为支持 SAN 协议， ONTAP 9.8 增加了以下增强功能。
+
+
+
+=== 全 SAN 阵列（ ASA ）
+
+ONTAP 9.7 引入了一个新的专用 SAN 平台，称为 https://www.netapp.com/data-storage/san-storage-area-network/documentation/["ASA"^]，旨在通过主动 / 主动 SAN 连接方式简化第 1 层 SAN 部署，同时显著缩短 SAN 环境中的故障转移时间。
+
+有关 ASA 的详细信息，请参见 https://www.netapp.com/data-storage/san-storage-area-network/documentation/["全 SAN 阵列文档资源"^]。
+
+ONTAP 9.8 为 ASA 提供了一些增强功能，包括以下功能：
+
+* * 更大的 LUN 和 FlexVol 卷大小。 * ASA 上的 LUN 现在可以配置为 128 TB ； FlexVol 卷可以配置为 300 TB 。
+* * 基于 IP 的 MetroCluster 支持。 * ASA 现在可用于通过 IP 网络进行站点故障转移。
+* * 支持 SnapMirror 业务连续性（ SM-BC ）。 * ASA 可与 SnapMirror 业务连续性结合使用。参考
+* * 主机生态系统扩展。 * 支持 HP-UX ， Solaris 和 AIX 。请参见 https://mysupport.netapp.com/matrix/["互操作性表"^] 了解详细信息。
+* * 支持 A800 和 A250 平台。 *
+* * 在 System Manager 中简化配置。 *
+
+
+
+
+=== 永久性端口
+
+ASA 增加了一项称为永久性端口的增强功能，用于缩短故障转移时间。ONTAP 中的永久性端口可为连接到 ASA 的 SAN 主机提供更强的故障恢复能力和持续的数据访问。ASA 上的每个节点都维护影子光纤通道 LIF 。此功能对于 ONTAP 9.8 如何更好地减少 ASA 的 SAN 故障转移时间至关重要。这些 LIF 保持配对 LIF 的相同 ID ，但它们仍处于备用模式。如果发生故障转移，并且必须将 FC LIF 迁移到配对节点，则卷影 LIF 将成为新路径，而不是更改 ID （这可能会增加故障转移时间，而主机协商更改）。主机在同一路径，同一 ID 上继续 I/O ，而不会发出链路关闭通知，也不需要进行任何其他配置。
+
+下图提供了永久性端口的故障转移示例。
+
+image:ontap98fo_image21.png["错误：缺少图形映像"]
+
+
+
+=== NVMe/FC
+
+NVMe 是一种新的 SAN 协议，与传统 FCP 和 iSCSI 相比，它有助于提高块工作负载的延迟和性能。
+
+本博客很好地介绍了这一点： https://blog.netapp.com/nvme-over-fabric/["在实施基于网络结构的 NVMe 时，网络结构确实至关重要"^]。
+
+NetApp 在 ONTAP 9.4 中引入了对基于光纤通道的 NVMe 的支持，并在每个版本中添加了增强功能。ONTAP 9.8 增加了以下内容：
+
+* * 使用 FCP 和 iSCSI 在同一 SVM 上运行 NVMe/FC 。 * 现在，您可以在与其他 SAN 协议相同的 SVM 上使用 NVMe/FC ，从而简化 SAN 环境的管理。
+* * 第 7 代 SAN 交换机网络结构支持。 * 此功能增加了对较新的第 7 代 SAN 交换机的支持。
+
+
+
+
+== S3 增强功能
+
+使用 S3 协议的对象存储是 ONTAP 协议系列的最新成员。S3 作为公有预览版在 ONTAP 9.7 中添加，现在是 ONTAP 9.8 中完全支持的协议。
+
+对 S3 的支持包括以下内容：
+
+* 基本的 PUT 或 GET 对象访问（不包括从同一个存储分段同时访问 S3 和 NAS ）
++
+** 不支持对象标记或 ILM ；对于功能丰富的全局分散 S3 ，请使用 https://www.netapp.com/data-storage/storagegrid/["NetApp StorageGRID"^]。
+
+
+* TLS 1.2 加密
+* 多部分上传
+* 可调整端口
+* 每个卷具有多个存储分段
+* 存储分段访问策略
+* S3 作为 NetApp FabricPool 目标有关详细信息，请参见以下资源：
+* https://soundcloud.com/techontap_podcast/episode-268-netapp-fabricpool-and-s3-in-ontap-98["Tech OnTap 播客：第 268 集— FabricPool 9.8 中的 NetApp ONTAP 和 S3"^]
+* https://www.netapp.com/us/media/tr-4814.pdf["ONTAP S3"^]
+
+
+link:ontap98fo_storage_efficiencies.html["接下来：存储效率"]

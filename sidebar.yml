@@ -1,0 +1,32 @@
+---
+entries:
+- title: NetApp ONTAP 9.9.1 功能概述
+  url: "/index.html"
+  type: solution
+  entries:
+  - title: System Manager 增强功能
+    url: "/ontap991fo_system_manager_enhancements.html"
+  - title: SAN 增强功能
+    url: "/ontap991fo_san_enhancements.html"
+  - title: 数据保护增强功能
+    url: "/ontap991fo_data_protection_enhancements.html"
+  - title: 其他主要新增功能
+    url: "/ontap991fo_other_major_additions.html"
+  - title: 技术资源
+    url: "/ontap991fo_technical_resources.html"
+- title: NetApp ONTAP 9.8 功能概述
+  url: "/ontap98fo_netapp_ontap.html"
+  type: solution
+  entries:
+  - title: 简化增强功能
+    url: "/ontap98fo_simplicity_enhancements.html"
+  - title: 数据协议
+    url: "/ontap98fo_data_protocols.html"
+  - title: 存储效率
+    url: "/ontap98fo_storage_efficiencies.html"
+  - title: 数据保护
+    url: "/ontap98fo_data_protection.html"
+  - title: VMware 虚拟化
+    url: "/ontap98fo_vmware_virtualization.html"
+  - title: 技术资源
+    url: "/ontap98fo_technical_resources.html"

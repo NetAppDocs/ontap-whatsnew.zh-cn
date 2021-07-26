@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: ontap991fo_san_enhancements.html 
+keywords: SAN array, ASA, Scale out, NVMe/FC, NVMe over Fibre Channel 
+summary: ONTAP 9.9.1 提供了一些与 SAN 相关的重要增强功能。本节将介绍这些功能，并提供指向文档的链接，这些文档将详细介绍这些功能。 
+---
+= SAN 增强功能
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+ONTAP 9.9.1 提供了一些与 SAN 相关的重要增强功能。本节将介绍这些功能，并提供指向文档的链接，这些文档将详细介绍这些功能。
+
+
+
+== 所有 SAN 阵列增强功能
+
+ONTAP 9.8 推出了 https://www.netapp.com/pdf.html?item=/media/10379-tr4515pdf.pdf["全 SAN 阵列"^] （ ASA ）到 NetApp 产品组合。在 ONTAP 9.1.1 中， ASA 会获得一些非常令人垂涎的添加项。
+
+
+
+=== 从两个节点横向扩展到 12 个节点
+
+在 ONTAP 9.1.1 之前的版本中， ASA 只能是双节点集群。但是， ONTAP 中的 SAN 集群最多可以扩展到 12 个节点，从而在企业级 SAN 环境中实现性能和容量的额外横向扩展。现在，只要集群中的所有节点都具有 ASA 特性， ASA 就可以在一个集群中最多扩展到 12 个节点。ASA 型号可以在同一集群中混用（例如，双节点 A400 HA 对与双节点 A800 HA 对）。
+
+
+
+=== NVMe/FC 支持
+
+ASA 现在可以在 ONTAP 9.1.1 中利用超低延迟的基于光纤通道的 NVMe 。只需为 NVMe/FC 和 32 Gb FC 目标适配器提供许可证即可。
+
+
+
+=== 从 AFF SAN 原位转换为 ASA
+
+借助脚本和 NetApp TME 或专业服务资源，您可以将现有 AFF SAN 集群转换为 ASA 个性化设置，而无需迁移数据。唯一的前提条件是，如果集群正在提供任何 NAS 或 S3 数据，则应在转换之前删除这些协议和数据集。
+
+
+
+== 单个 LUN 的性能
+
+ASA 平台和 AFF SAN 集群都可以从 ONTAP 9.9.1 中的更改中受益，这些更改通过将 SCSI 堆栈并行化到 LUN 来显著提高工作负载高峰时的单 LUN 性能。
+
+下表对 A800 平台和 A300 平台进行了测试，比较了单个 LUN 工作负载的性能， ONTAP 9.9.1 中的 AFF A800 与 ONTAP 9.8 中的相同工作负载的读取性能分别提高了近 4 倍和 75% 。
+
+|===
+| 平台 | 随机读取峰值 IOPS | 随机写入峰值 IOPS 
+
+
+| A800 | +393% | +75% 
+
+
+| A300 | +245% | +3.5% 
+|===
+
+NOTE: 这些改进不会影响多 LUN 应用程序（如逻辑卷管理器）。
+
+
+
+== 基于光纤通道的 NVMe 增强功能
+
+在 ONTAP 9.1.1 中，基于光纤通道的 NVMe 命名空间现在可以通过非活动远程路径进行故障转移，从而提高 NVMe/FC 应用程序的整体故障恢复能力。
+
+image:ontap991fo_image10.png["错误：缺少图形映像"]
+
+此外， ONTAP 9.9.1 还通过 vCenter 提供 VVol 支持和命名空间配置，引入了对采用 VMware 虚拟化工作负载的 NVMe/FC 的支持。

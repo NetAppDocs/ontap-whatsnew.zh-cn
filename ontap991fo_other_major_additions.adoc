@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: ontap991fo_other_major_additions.html 
+keywords: FlexGroup, S3, NFSv4.2, MAC, 
+summary: 除了 System Manager 增强功能， SAN 增强功能和数据保护增强功能之外， ONTAP 9.1.1 还新增了一些重要功能。 
+---
+= 其他主要新增功能
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+除了 System Manager 增强功能， SAN 增强功能和数据保护增强功能之外， ONTAP 9.1.1 还新增了一些重要功能。
+
+
+
+== 逻辑空间核算 / 强制实施— FlexGroup 卷
+
+ONTAP 9.4 中为 FlexVol 卷引入了逻辑空间核算。它使存储管理员能够屏蔽存储效率节省的空间，以避免最终用户过度分配其指定的存储配额。
+
+例如，如果用户向 10 TB 卷写入 6 TB ，而存储效率节省 2 TB ，则逻辑空间核算可以控制用户是看到 6 TB 还是 4 TB 。
+
+image:ontap991fo_image17.png["错误：缺少图形映像"]
+
+ONTAP 9.5 增强了此功能，并增加了对 FlexVol 的配额强制实施支持，通过防止根据设置的逻辑空间阈值写入新数据，可以更好地控制存储管理员。但是，在 ONTAP 9.1.1 之前， FlexGroup 卷缺少此功能。
+
+
+
+== ONTAP S3 用户定义的元数据标记
+
+ONTAP 9.8 为基本对象存储功能引入了对 S3 协议的支持。
+
+ONTAP 9.8 支持 S3 ：
+
+* 基本的 PUT 或 GET 对象访问（不包括从同一个存储分段同时访问 S3 和 NAS ）
++
+** 不支持对象标记或 ILM ；对于功能丰富的全局分散 S3 ，请使用 https://www.netapp.com/data-storage/storagegrid/["NetApp StorageGRID"^]。
+
+
+* TLS 1.2 加密
+* 多部分上传
+* 可调整端口
+* 每个卷具有多个存储分段
+* 存储分段访问策略
+* S3 作为 NetApp FabricPool 目标
+
+
+ONTAP 9.9.1 及更高版本支持在使用 ObjectCreate 和 MultiPartUpload 调用时对对象进行元数据标记。对对象执行 head 或 get 时，用户定义的元数据和标记数将作为响应中 HTTP 标头的一部分返回。通过这些标记，您可以更好地对 ONTAP 分段中的对象进行分类，以实现更强大的数据管理，并且与需要创建元数据和标记的应用程序兼容。
+
+有关详细信息，请参见以下资源：
+
+* https://soundcloud.com/techontap_podcast/episode-268-netapp-fabricpool-and-s3-in-ontap-98["Tech OnTap 播客：第 268 集— FabricPool 9.8 中的 NetApp ONTAP 和 S3"^]
+* https://www.netapp.com/us/media/tr-4814.pdf["ONTAP S3"^]
+
+
+
+
+== NFSv4.2 安全标签
+
+ONTAP 9.9.1 支持称为标记 NFS 的 NFSv4.2 功能，该功能可通过 SELinux 标签和强制访问控制（ MAC ）管理粒度文件和文件夹访问。这些 MAC 标签与文件和文件夹一起存储，并与 UNIX 权限和 NFSv4.x ACL 结合使用。支持带标签的 NFS 意味着 ONTAP 现在可以识别并了解 NFS 客户端的 SELinux 标签设置。中介绍了标记的 NFS https://tools.ietf.org/html/rfc7204["RFC-7204"^]。
+
+使用情形包括：
+
+* 虚拟机映像的 MAC 标记
+* 公有扇区的数据安全分类（机密，顶级机密等）
+* 安全合规性
+* 无磁盘 Linux
+
+
+在此版本中， ONTAP 支持以下强制实施模式：
+
+* https://tools.ietf.org/html/rfc7204["受限服务器模式"^]。ONTAP 无法强制实施标签，但可以存储和传输这些标签。
++
+** 更改 MAC 标签的功能也由客户端强制实施。
+
+
+* https://tools.ietf.org/html/rfc7204["子系统模式"^]。如果客户端未标记为 NFS 感知型（ v4.1 或更低版本），则不会传输 MAC 标签。
+
+
+ONTAP 当前不支持 https://tools.ietf.org/html/rfc7204["完整模式"^] （存储和强制实施 MAC 标签）。

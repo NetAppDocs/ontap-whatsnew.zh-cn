@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blocks>
+  <block id="f74d27ee3d0e9999cd6639962c93dfd1" category="summary">ONTAP 9.9.1 提供了一些与 SAN 相关的重要增强功能。本节将介绍这些功能，并提供指向文档的链接，这些文档将详细介绍这些功能。</block>
+  <block id="174d3f83f99e412b6e036c23d2fef40c" category="doc">SAN 增强功能</block>
+  <block id="b55156d9bfdda8c2d88b737f7dccfcef" category="section-title">所有 SAN 阵列增强功能</block>
+  <block id="e88f638da0e54494bdab42eb394b23b5" category="inline-link">全 SAN 阵列</block>
+  <block id="6172db10590a159eb5346cf0f2242162" category="paragraph">ONTAP 9.8 推出了<block ref="7b8e99970c64c585b4bee3630dd79d9f" category="inline-link-rx"></block> （ ASA ）到 NetApp 产品组合。在 ONTAP 9.1.1 中， ASA 会获得一些非常令人垂涎的添加项。</block>
+  <block id="0cad912fc95b1403210c4603c148e08d" category="section-title">从两个节点横向扩展到 12 个节点</block>
+  <block id="8063a1398050f30bcb26fc5b8bb475d5" category="paragraph">在 ONTAP 9.1.1 之前的版本中， ASA 只能是双节点集群。但是， ONTAP 中的 SAN 集群最多可以扩展到 12 个节点，从而在企业级 SAN 环境中实现性能和容量的额外横向扩展。现在，只要集群中的所有节点都具有 ASA 特性， ASA 就可以在一个集群中最多扩展到 12 个节点。ASA 型号可以在同一集群中混用（例如，双节点 A400 HA 对与双节点 A800 HA 对）。</block>
+  <block id="96f46a40e9e7fa202eecef870ee9b672" category="section-title">NVMe/FC 支持</block>
+  <block id="1c8498d02565a1bf16a697ba303f0481" category="paragraph">ASA 现在可以在 ONTAP 9.1.1 中利用超低延迟的基于光纤通道的 NVMe 。只需为 NVMe/FC 和 32 Gb FC 目标适配器提供许可证即可。</block>
+  <block id="24f52ba6e96cef079ea37901458489d8" category="section-title">从 AFF SAN 原位转换为 ASA</block>
+  <block id="1e64c920ec1ac502331000edd36b05b5" category="paragraph">借助脚本和 NetApp TME 或专业服务资源，您可以将现有 AFF SAN 集群转换为 ASA 个性化设置，而无需迁移数据。唯一的前提条件是，如果集群正在提供任何 NAS 或 S3 数据，则应在转换之前删除这些协议和数据集。</block>
+  <block id="89593adca0354a439f3e58673f058a02" category="section-title">单个 LUN 的性能</block>
+  <block id="233b3624a6f79f2ed9cfd9b96824a8d4" category="paragraph">ASA 平台和 AFF SAN 集群都可以从 ONTAP 9.9.1 中的更改中受益，这些更改通过将 SCSI 堆栈并行化到 LUN 来显著提高工作负载高峰时的单 LUN 性能。</block>
+  <block id="a7a62ef4404bcbb0d8bdad035432badf" category="paragraph">下表对 A800 平台和 A300 平台进行了测试，比较了单个 LUN 工作负载的性能， ONTAP 9.9.1 中的 AFF A800 与 ONTAP 9.8 中的相同工作负载的读取性能分别提高了近 4 倍和 75% 。</block>
+  <block id="419f3742e6de8e0ec4b22cce005e7630" category="cell">平台</block>
+  <block id="f5115e07bbcce8c8d2622746d6ca17cf" category="cell">随机读取峰值 IOPS</block>
+  <block id="c9d082b692122f927d250baaac0f45be" category="cell">随机写入峰值 IOPS</block>
+  <block id="e4044b704224bc11ad4a58e92f2131d7" category="cell">A800</block>
+  <block id="161e40ef88287a3f0607762be47d1965" category="cell">+393%</block>
+  <block id="adf442ad84461c2ccd1fb0cc2f8b6d64" category="cell">+75%</block>
+  <block id="fe392b3a6f83320865ecf16cc38ebef5" category="cell">A300</block>
+  <block id="b10f8af155addb7c89d6b655d2bcb5bd" category="cell">+245%</block>
+  <block id="f49d81a7b20173f967830208325e54f0" category="cell">+3.5%</block>
+  <block id="7e5aeec5c0a182e1fcbd3b3eb8def557" category="admonition">这些改进不会影响多 LUN 应用程序（如逻辑卷管理器）。</block>
+  <block id="244a5b9b9a395e326e1a8281be74d1f8" category="section-title">基于光纤通道的 NVMe 增强功能</block>
+  <block id="29da78da0c0bdb16e4342df88d658f8e" category="paragraph">在 ONTAP 9.1.1 中，基于光纤通道的 NVMe 命名空间现在可以通过非活动远程路径进行故障转移，从而提高 NVMe/FC 应用程序的整体故障恢复能力。</block>
+  <block id="341d84aa26cb4521474864e04ea2a63b" category="inline-image-macro">错误：缺少图形映像</block>
+  <block id="851e816fc084e28011b4a952beaebd85" category="paragraph"><block ref="851e816fc084e28011b4a952beaebd85" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ce28a913064a74e430ab7d184b8ca3c3" category="paragraph">此外， ONTAP 9.9.1 还通过 vCenter 提供 VVol 支持和命名空间配置，引入了对采用 VMware 虚拟化工作负载的 NVMe/FC 的支持。</block>
+  <block id="d451779b36b1939b974b8f0b9a3fc5ef" category="summary">本页介绍了 ONTAP 9.8 中为 VMware 虚拟化提供的新集成和支持，包括将 FlexGroup 卷配置为 VMware NFS 数据存储库，通过一个可扩展的数据存储库简化数据存储库管理，该数据存储库可提供完整的 ONTAP 集群功能。</block>
+  <block id="2e130352b486464834bcc7dda1ff2603" category="doc">VMware 虚拟化</block>
+  <block id="b1d46fa388a75bf4a6fdf6431fd0f88f" category="paragraph">ONTAP 9.8 中的 VMware 集成和支持得到了提升，包括 FlexGroup 数据存储库支持在内的许多新功能。通过 ONTAP 9.8 ，您可以将 FlexGroup 卷配置为 VMware NFS 数据存储库，从而通过一个可扩展的数据存储库来简化数据存储库管理，该数据存储库可提供完整的 ONTAP 集群功能。其中许多新功能都随适用于 VMware vSphere 9.8 的 ONTAP 工具提供。</block>
+  <block id="8d22b59ce6a3f5f55852f641fe32f634" category="paragraph">这意味着以下各项适用：</block>
+  <block id="edf6089078ece0618b0cbf28aadbd430" category="list-text">经验证的性能和放置</block>
+  <block id="14ac1770aa6a961d17a35b60c5b87280" category="list-text">互操作性资格认定</block>
+  <block id="3bad7ef0dfae0592627755796b25462b" category="list-text">增强了 VAAI 副本卸载功能，速度更快，可在后台完成</block>
+  <block id="19793deb9a49d2f5172b773dfc0118c5" category="list-text">虚拟存储控制台支持，包括 FlexGroup 配置，调整大小和删除，在各个 VM 上设置 QoS 以及显示 VM 的性能指标（延迟， IOPS 和吞吐量）</block>
+  <block id="662d7a9e954fd7ecea04797658a67fdf" category="list-text">NetApp SnapCenter 主存储备份和恢复支持</block>
+  <block id="cd6f7ff91fc5499199c6664de0434694" category="list-text">最多支持 64 TB VMFS LUN 。借助 NetApp 全 SAN 阵列支持 128 TB LUN/300 TB FlexVol 卷，您可以在适用于 VMware vSphere 9.8 的 ONTAP 工具中使用虚拟存储控制台配置最大 64 TB VMFS 数据存储库。</block>
+  <block id="92ff10610f02d69d0210f44405b7168f" category="inline-link">Site Recovery Manager （ SRM ）</block>
+  <block id="0ce4ec45a946257ae8143d2cc90fcaca" category="list-text">增加<block ref="c9af02025b1bf45281286240e0215380" category="inline-link-rx"></block> 扩展。适用于 VMware vSphere 的 ONTAP 工具 9.8 版中的存储复制适配器可将支持的数据存储库和保护组的扩展性提高到 512 。</block>
+  <block id="8e7ea82c671030c62dec6e5646ce0674" category="list-text">使用 REST API 的 VMware vSphere VVol 文件指标。ONTAP 9.8 增加了对 VVOL 文件指标的 REST API 支持，允许虚拟存储控制台在信息板和报告中显示 VVOL 的 ONTAP 存储性能指标。</block>
+  <block id="410414402089bdca884f44be14088a59" category="inline-link">Storage Replication Adapter （ SRA ）</block>
+  <block id="63b956da14094cef99ccee71599fdd6d" category="list-text"><block ref="7e358b6730372bc2e637b94492dbbbf6" category="inline-link-rx"></block> 支持 SnapMirror 同步</block>
+  <block id="6015fcf0a9cd608ed0e3aa71296f41d4" category="inline-link">VMware Tanzu</block>
+  <block id="8196dcbf9586cd0081ca8c94d6eec4ad" category="list-text">支持<block ref="d0daefdc677909f35162a0118f978227" category="inline-link-rx"></block> 存储</block>
+  <block id="ac66e55267029225d12d67c48e998acc" category="list-text">改进了对 VVOL 的支持，包括增强的 SAN VVOL 重新平衡命令以及存储功能配置文件的增强功能。有关最新 VMware 虚拟化支持的详细信息，请参见以下资源：</block>
+  <block id="da5bc71c64b621b3b18568cfd93032f4" category="inline-link">Tech OnTap 播客第 263 集：《 ONTAP 中的虚拟化— 2020 年秋季》</block>
+  <block id="e4c4075a8c06d40ae4b59e37bb084cef" category="list-text"><block ref="e4c4075a8c06d40ae4b59e37bb084cef" category="inline-link-rx"></block></block>
+  <block id="75f86438e5e6bca3e9341dd22299f5bb" category="inline-link">TR-4597 ：采用 ONTAP 的 VMware vSphere</block>
+  <block id="ef5bb91ba96e022044cd2c0d3c47544b" category="list-text"><block ref="ef5bb91ba96e022044cd2c0d3c47544b" category="inline-link-rx"></block></block>
+  <block id="6ed3add45740f0f671b6b3fc0e3397df" category="summary">本页介绍了 ONTAP 9.8 的最新数据保护增强功能，包括异地复制数据的概念，以及保护传输中和空闲数据的安全。</block>
+  <block id="21a1e68164f738b8be1dae11d5a694b3" category="doc">数据保护</block>
+  <block id="7efaeeb290018cf3aea10327b7bbfcc5" category="paragraph">在本文档中，数据保护既指异地复制数据的概念，也指确保数据在传输中和空闲时的安全。本节介绍 ONTAP 9.8 的最新数据保护增强功能。</block>
+  <block id="2fae32629d4ef4fc6341f1751b405e45" category="section-title">安全性</block>
+  <block id="96b109c3cfe8255526bad1d2505ad698" category="inline-link">TR-4569 ：《 ONTAP 9 安全加固指南》</block>
+  <block id="d0c17ef6c36f07ba900e5fbeec341ca4" category="paragraph">每个 ONTAP 版本都采用新的安全功能和增强功能， ONTAP 9.8 在这方面没有什么不同。有关 ONTAP 安全功能的详细信息，请参见<block ref="c8ff3428f4abddef45de49ab7a71320a" category="inline-link-rx"></block>。</block>
+  <block id="7b0d03c6198fcbf743d1f772d127a3ce" category="section-title">安全清除</block>
+  <block id="96fe04cadb482b0d3122f7955d53e9a7" category="paragraph">在包含机密或敏感数据的环境中，如果将文件错误地写入不应访问该文件的人员可以访问的卷，则会导致所谓的数据溢出。这样就会出现一种情况，即必须删除整个卷并擦除磁盘以清理溢出。</block>
+  <block id="8728c3a0813bebd635448d3171b745e8" category="paragraph">NetApp 卷加密和安全清除通过删除与文件关联的安全加密密钥，以加密方式粉碎各个文件，从而缓解这些潜在灾难。该密钥消失后，该数据将无法再从磁盘恢复。此过程已通过数据恢复公司使用 NIST SP 800-88 介质清理准则进行外部验证。</block>
+  <block id="27c9b2124cd335a22882c825547e210e" category="paragraph">但是，即使安全清除也有其限制；例如，如果必须清除文件，则需要执行卷移动，这需要系统中的可用空间。如果已安装 SnapMirror ，则需要在执行安全清除操作后重新建立基线。</block>
+  <block id="2558f7c0fc8f6d078545a76c00326816" category="paragraph">ONTAP 9.8 中的安全清除通过以下方式消除了这些限制：</block>
+  <block id="4ac9e72ca49c0514ce8c0aed6fa036d0" category="list-text">为加密文件提供一个简单的原位操作步骤。</block>
+  <block id="46f00c5508e4747b2df7e9786127837d" category="list-text">允许您将现有 SnapMirror 镜像保留在原位，而无需重新建立基线。</block>
+  <block id="99a98e067af6b09e64f3740767096c96" category="section-title">IPsec</block>
+  <block id="f1ae24804ec4b6b17a54394f58112978" category="paragraph">IPsec 是一种标准机制，用于通过线缆执行与应用程序无关的加密。使用 IPsec ，您可以对网络流量进行加密，而不管使用的协议是什么。这为简化提供了机会，尤其是 NFS ，因为在 NFS 中很难设置和使用 Kerberos 加密，同时也提供了通过线缆加密 iSCSI 流量的唯一方法。</block>
+  <block id="41c2ee2e9077f794590a4aad78346465" category="paragraph">现在， ONTAP 9.8 增加了对 IPsec 的支持。ONTAP 实施的 利用与连接客户端共享的预共享密钥（ PSk ）。这些客户端包括任何采用采用具有 psk 的 IKEv2 的最新操作系统。请注意， Windows 操作系统不支持使用 PSk 的 IKEv2 。</block>
+  <block id="b3573b14a0c32dbb523ce510bf7f69e4" category="section-title">可信平台模块</block>
+  <block id="13d770b48adc9f9695c92a47ba602630" category="paragraph">使用 ONTAP 9.8 中的新可信平台模块（ TPM ），板载密钥管理器（ OKM ）的加密密钥不再存储在启动设备中，而是存储在配有此类设备的系统的物理 TPM 中，从而提供更强的安全性和保护。迁移到 TPM 是一个无中断过程。</block>
+  <block id="c4b8c29f448328e82ce27062b5fd9c28" category="section-title">NetApp 卷加密</block>
+  <block id="7d89fb26b027943d7a25ccdf8e8d2344" category="paragraph">NetApp 卷加密（ NetApp Volume Encryption ， NVE ）是一种软件解决方案，可对任何已启用数据卷的驱动器类型上的任何数据卷进行加密，并为每个卷提供一个唯一的密钥。自 ONTAP 9.1 以来，此功能已可用。</block>
+  <block id="66c2012d589bdbfcf7800051ae23f432" category="paragraph">ONTAP 9.8 为节点根卷提供了 NVE 支持，其中包含日志文件，集群配置备份，核心文件以及其他系统相关信息，您可能需要使用符合 FIPS-140-2 的加密来保护这些信息。</block>
+  <block id="59d2373c92b27cf4e4b34c159a431286" category="section-title">SnapMirror 云</block>
+  <block id="52df576e06aa0ca94a54f29ff7e12a23" category="paragraph">SnapMirror 是 ONTAP 中行业领先的复制技术，可让存储管理员通过 WAN 连接为数据集创建精确副本，并仅复制已更改的块以降低网络利用率。</block>
+  <block id="d0d1a9cb3affe6d9507f250f258c5feb" category="inline-link">SolidFire Element 操作系统</block>
+  <block id="18cc7e36d7119e7d99d9319c73b52a21" category="paragraph">在过去的几个 ONTAP 版本中， SnapMirror 支持已扩展到包括非 ONTAP 系统，例如<block ref="271d4d6bce47112d2620ada68710c395" category="inline-link-rx"></block>。现在， ONTAP 9.8 提供了一种利用 SnapMirror 复制到云或内部 S3 对象分段的方法。</block>
+  <block id="47a854cc17afad3741d9ab31060a88cc" category="paragraph"><block ref="47a854cc17afad3741d9ab31060a88cc" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="91ae23305db13e462c92a7c674dbdcb7" category="inline-link">SnapDiff 3.0 引擎</block>
+  <block id="ad5650d9b4444510a56e2a3f19826c5b" category="paragraph">利用全新的<block ref="c8c9d1cf39249716153bbef47927ca2c" category="inline-link-rx"></block>， SnapMirror 可以安全高效地将数据从 ONTAP NAS 卷复制到对象存储分段。这样可以在整个 ONTAP Data Fabric 中实现混合云移动性。</block>
+  <block id="16007b406ace97200e7f693a2b5280bb" category="list-text">节省空间的快照备份到云对象存储可保持存储效率。</block>
+  <block id="0bae9fd60dfd82482117110d05ba3ff7" category="list-text">支持全卷和单文件还原</block>
+  <block id="7416a9392e4d1a5e35e7b0fb8030579f" category="paragraph">在 ONTAP 9.8 中， SnapMirror 云需要通过以下两种方法之一进行编排。System Manager 不支持此功能，也不能直接通过 API 或 CLI 进行此操作。</block>
+  <block id="0a8d6ac0156d1090d18f061e21de9897" category="list-text">通过获得许可的 ISV 合作伙伴应用程序创建和管理备份和还原工作流。需要 SnapMirror Cloud 许可证。</block>
+  <block id="d9a839be98373ea2f48fa7e83e8c90d8" category="list-text">通过 Cloud Backup Service 。不需要 SnapMirror Cloud 许可证。</block>
+  <block id="b6b2a1d0b8ba8fe76cf8feb2a3779ca3" category="paragraph">有关 SnapDiff 和 SnapMirror Cloud 的详细信息，请参见以下资源：</block>
+  <block id="549c3e5b334e67991a7e1b3ea870754d" category="inline-link">Tech OnTap 播客第 264 集： NetApp ONTAP SnapDiff</block>
+  <block id="32f29d9d5ff68c026e733ad57c7f6a57" category="list-text"><block ref="32f29d9d5ff68c026e733ad57c7f6a57" category="inline-link-rx"></block></block>
+  <block id="1f5b3f6ebe1090404b2ba3ee99e7808a" category="inline-link">Tech OnTap 播客第 265 集：采用 ProLion 的 NetApp SnapMirror 云</block>
+  <block id="e12bd88c41c364e0b9d2962bf25b88a7" category="list-text"><block ref="e12bd88c41c364e0b9d2962bf25b88a7" category="inline-link-rx"></block></block>
+  <block id="449390cc1a5961dd2b3d16cedf460e84" category="inline-link">NetApp 博客：采用 SnapDiff 或 SnapMirror Cloud-v3 的新备份架构</block>
+  <block id="d95f112589a3dd86147b0500915b49a6" category="list-text"><block ref="d95f112589a3dd86147b0500915b49a6" category="inline-link-rx"></block></block>
+  <block id="704de765250161b4c06ce64f26a08d82" category="section-title">SnapMirror 业务连续性（ SM-BC ）</block>
+  <block id="974658d7ac018cb945e78365b0a760fb" category="inline-link">SnapMirror 同步</block>
+  <block id="742b94346e9a91a2dd3f2eb45e2bba74" category="paragraph"><block ref="ae4f4cde8889ce2d6ed872450cfc8abc" category="inline-link-rx"></block> （ SM-S ）是在 ONTAP 9.5 中推出的，可提供卷粒度和存储效率较高的同步数据复制，企业可以依靠它来实现备份，灾难恢复和数据移动性。SM-S 可在位于数据中心或城域的完全冗余 ONTAP 存储系统之间复制 NetApp FlexVol 卷上的数据，并且往返时间（ RTT ）小于 10 毫秒，以实现零恢复点目标和接近零的恢复时间目标。</block>
+  <block id="31eb27b0a41bf308b672b9ff3e721925" category="paragraph">ONTAP 9.8 采用了 SAN 环境中的 SnapMirror 同步概念，并为一致性组中的应用程序提供了自动故障转移功能，使用 System Manager 进行配置，并使用 ONTAP 调解器在发生中断时管理和保持业务连续性。由于关系是同步的，因此应用程序在故障转移时不会错过任何信号。最初版本的 SnapMirror 业务连续性仅支持 SAN （ iSCSI 和 FCP ）工作负载。</block>
+  <block id="80242ddef2f2c83392b7749391a84ff1" category="inline-link">Tech OnTap 播客第 267 集： SnapMirror 业务连续性</block>
+  <block id="9af8e1832c13f01066f8fb9551d4f5c0" category="paragraph">有关 SnapMirror 业务连续性的详细信息，请参见<block ref="c9c1698c4351f962bdb21db9220085cf" category="inline-link-rx"></block>。</block>
+  <block id="1749d12df3df2319d3eee218a277ff83" category="section-title">MetroCluster</block>
+  <block id="321c9000417090cddae7990050d52cc8" category="paragraph">NetApp MetroCluster （ MC ）软件是一款解决方案，它将基于阵列的集群与同步复制相结合，以最低的成本实现持续可用性和零数据丢失。由于消除了通常与基于主机的集群相关的依赖关系和复杂性，因此管理基于阵列的集群变得更加简单。</block>
+  <block id="452a541cc7e0c4541856789b0099e212" category="paragraph"><block ref="452a541cc7e0c4541856789b0099e212" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6945cb53b52207c83b268d0d578ce4af" category="paragraph">MetroCluster 会立即逐个事务复制所有任务关键型数据，从而可以无中断地访问应用程序和数据。与标准数据复制解决方案不同， MetroCluster 可与主机环境无缝协作，提供持续的数据可用性，同时无需创建和维护复杂的故障转移脚本。</block>
+  <block id="55370266ab6e1d86846f8cedda70d3cd" category="paragraph">使用 MetroCluster ，您可以执行以下任务：</block>
+  <block id="4bbba3f351a64005580e3c7c271e55ee" category="list-text">通过透明切换防止出现硬件，网络或站点故障</block>
+  <block id="da89a3df908715c9568dbba92893ccee" category="list-text">消除计划内和计划外停机和变更管理</block>
+  <block id="85dcd24e924bcffea339d14fdfed5319" category="list-text">升级硬件和软件，而不会中断操作</block>
+  <block id="af5cbf0e542a306cac58a4fcce9f8ded" category="list-text">部署时无需依赖复杂的脚本，应用程序或操作系统</block>
+  <block id="779e0f4a60a1492972391ba3fb0b6184" category="list-text">实现 VMware ， Microsoft ， Oracle ， SAP 或任何关键应用程序的持续可用性</block>
+  <block id="1f257512335e46f638ab63d60a7cdf98" category="paragraph">ONTAP 9.8 为 MetroCluster 提供了以下增强功能。</block>
+  <block id="3140d6259747a780f705a8fe089ddce8" category="list-text">* 新的入门级和中端平台支持。 * NetApp AFF A250 ， FAS500f ， FAS8300 ， FAS 8700 混合和 A400 。对于 A220 ， FAS2750 和 FAS500f 的新安装，现在可以将 VLAN 指定为大于 100 且小于 4096 。</block>
+  <block id="33af7566299346d615493e051f52d0de" category="list-text">* 从 MC-FC 无中断过渡到 MC-IP 。 * 仅限四节点集群；双节点 MCC 需要停机。在即将到来的技术更新中轻松迁移到 MC IP 。</block>
+  <block id="a3bd89a8c71675c809a072d31d6302d9" category="list-text">* 现在 MC IP 支持未镜像聚合。 * 仅将所需聚合复制到故障转移站点，以提高应用程序粒度。</block>
+  <block id="6b9468f9d78c8c90a655c1ec054cd138" category="list-text">支持在 BES-53248 交换机上使用 Cisco 9336C-x2 交换机以及 A400 ， FAS 8300 和 FAS 8700 ，并提供额外的 100G 端口许可证。</block>
+  <block id="b3d347a96e31f263c7992aa8cf48dfba" category="paragraph">有关 MetroCluster 的详细信息，请参见以下资源：</block>
+  <block id="041d27b17d36340260b6229deae957d6" category="inline-link">TR-4375 ：适用于 ONTAP 9.7 的 MetroCluster FC</block>
+  <block id="a8b40d526c650b15e6116e5649ba89a0" category="list-text"><block ref="a8b40d526c650b15e6116e5649ba89a0" category="inline-link-rx"></block></block>
+  <block id="dac8000b8c5d9ab9a106f367845396b2" category="inline-link">TR-4689 ：《 MetroCluster IP 解决方案架构和设计》</block>
+  <block id="fd76c24b42a60814801aea7af2ab316f" category="list-text"><block ref="fd76c24b42a60814801aea7af2ab316f" category="inline-link-rx"></block></block>
+  <block id="d6fc4dfec8b122b67eabad2dfef121be" category="inline-link">TR-4705 ：《 NetApp MetroCluster 解决方案架构和设计》</block>
+  <block id="c1febbd27614347356426b013d6de3ad" category="list-text"><block ref="c1febbd27614347356426b013d6de3ad" category="inline-link-rx"></block></block>
+  <block id="ec222ea421451d6837b25e66b225a354" category="inline-link-macro">接下来： VMware 虚拟化</block>
+  <block id="fa171a758ea782b574d4536f3930057d" category="paragraph"><block ref="fa171a758ea782b574d4536f3930057d" category="inline-link-macro-rx"></block></block>
+  <block id="d41d8cd98f00b204e9800998ecf8427e" category="summary"></block>
+  <block id="cbf7022dfa4cdd99c195139de5b27a80" category="summary">在 ONTAP 9.1.1 中，我们收集了客户反馈，解决了有关 GUI 的一些问题，并重新添加了一些缺少的功能，同时添加了一些新增功能和改进的功能。</block>
+  <block id="18176bd419035939e3cb75a02ba71cd1" category="doc">System Manager 增强功能</block>
+  <block id="e1ce63bdacc7d3e2c7e4d519a166aff5" category="inline-link">System Manager 文档</block>
+  <block id="b9827a7987237070daf022b7a56098b9" category="paragraph">随着 ONTAP 9.8 对 ONTAP 的 GUI 体验进行了改进，您可能已经注意到某些功能发生了移动或不再可用。在 ONTAP 9.1.1 中，我们收集了客户反馈，解决了有关 GUI 的一些问题，并重新添加了一些缺少的功能，同时添加了一些新增功能和改进的功能。下一节将介绍其中一些更改以及新增功能。您还可以在中找到有关 System Manager 的信息<block ref="fe9591320b453d2315edb0f781b9fdbb" category="inline-link-rx"></block>。</block>
+  <block id="11c45aa57715db3758d969638cf2dbe4" category="section-title">已还原功能 / 可用性增强功能</block>
+  <block id="00e56cc977d4a4841d3b2973404269a6" category="paragraph">您提出要求，我们会认真倾听。在 ONTAP 9.1.1 中， ONTAP 9.8 System Manager 中不再提供的某些功能已重新添加到该产品中。此外，还提供了新的可用性增强功能。</block>
+  <block id="261dfd4a80410dfaedcad88627539df0" category="section-title">在卷配置期间手动选择本地层 / 聚合</block>
+  <block id="4ea96178861a8766ca3f38c503876b2c" category="paragraph">System Manager 9.9.1 允许您在配置新卷时手动选择要使用的物理存储层，包括在创建 FlexGroup 卷期间指定聚合的功能。您也可以选择允许 ONTAP 和 System Manager 根据平衡放置逻辑进行选择。</block>
+  <block id="ab447c8b900b649e7ef48ded87386c79" category="section-title">容量显示增强功能</block>
+  <block id="d6e2b5169fbb50ca6b6d578c5773f46e" category="paragraph">现在，您可以在 ONTAP 中按 Snapshot 副本查看已用逻辑空间，以及查看使用和不使用 Snapshot 副本时的存储效率比率。</block>
+  <block id="dd92fbc44b4d0c86d962e78c44b8cd80" category="paragraph">下图显示了 ONTAP System Manager 9.9.1 容量视图。</block>
+  <block id="d21f2c76aee857bfb0d9648722e1429d" category="paragraph"><block ref="d21f2c76aee857bfb0d9648722e1429d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d0aff7c3f0d340285a006127b95c34c4" category="section-title">基于光纤通道的 NVMe —创建 LIF</block>
+  <block id="3cc3158e8541f70d993feae31cd6b690" category="paragraph">现在，借助 System Manager ，您可以创建和查看通过光纤通道命名空间使用 NVMe 的 LIF ，包括端口状态，非对称端口选择以及查看每个端口创建的 LIF 数量，以帮助避免物理网络接口过载。</block>
+  <block id="2e3e4c9c49f595d3dd80686f34cccb6e" category="section-title">EMS 事件查看器—信息板</block>
+  <block id="275c18c61ba352042ee3136da204733c" category="paragraph">为了更快速地查看 ONTAP 集群中可能存在的问题， System Manager 9.9.1 会在您首次登录时在信息板上添加 EMS 事件。这包括过去 24 小时发生的错误，例如磁盘损坏，网络链路断开，许可证问题以及磁盘架或节点错误。</block>
+  <block id="74a11174b882a39359cec44b4dd961ba" category="paragraph">此外，您还会收到过去 24 小时的警告，包括发生故障的卷移动和运行状况监控器警报。</block>
+  <block id="a814dd6e7e57412cccd3cb0be7503eb2" category="section-title">Snapshot 大小和 SnapMirror 标签</block>
+  <block id="c30570deb4d832da5bb0e772e007e415" category="paragraph">在 System Manager 的快照视图中，您可以在 SnapMirror 快照副本上查看快照大小和标签（例如每日，每周等）。</block>
+  <block id="851e3e04590ca774a61672a7fd276fc8" category="paragraph"><block ref="851e3e04590ca774a61672a7fd276fc8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="00d4eb1d131bacfe1a081aa38cebae6b" category="section-title">将数据 LIF 重新归位</block>
+  <block id="f27b731a216d8015b4a3070564ea0eb7" category="paragraph">在故障转移期间或网络中断得到解决后，数据 LIF 通常会保留在故障转移端口上，这可能会引起性能和故障恢复能力方面的潜在问题。如果您需要一种简单的方法将这些数据 LIF 发送回家， System Manager 9.9.1 现在提供了一种单击式方法，可以将所有数据 LIF 发送回其预期的主端口。</block>
+  <block id="d3da3849486a78549d01a395e2db22e2" category="section-title">要显示 / 隐藏的新卷字段</block>
+  <block id="e52a468dfd2d40f3203b4c2dab378b97" category="paragraph">您可以通过显示 / 隐藏按钮在 System Manager 9.9.1 中查看卷信息，其中包括本地层和可用 / 已用信息。</block>
+  <block id="76094b40ea6076c073c78ea09acabeef" category="paragraph">下图显示了 ONTAP System Manager 9.9 中的新卷视图。1.</block>
+  <block id="b2dc0bc95fdbe743df86fda38387b134" category="paragraph"><block ref="b2dc0bc95fdbe743df86fda38387b134" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ed5e362bcdc4e0c0e70a24adfdeb54de" category="section-title">批量操作</block>
+  <block id="1bf4ea491f436f559e865773dacaad70" category="paragraph">如果您需要执行多个卷移动或删除，将多个 LUN 映射到一个启动程序组或将多个卷添加到云层，则现在可以选择多个对象并执行任务。卷删除还可以在一个窗口中卸载，脱机并确认删除。</block>
+  <block id="47bc7d282551a819c5212270fbfe2b79" category="paragraph">下图展示了 ONTAP System Manager 9.1.1 中简化的卷删除操作。</block>
+  <block id="e6667c0ce19b51b73d509508accc2355" category="paragraph"><block ref="e6667c0ce19b51b73d509508accc2355" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a3bdbdf5267319efd6818d74796a44a2" category="section-title">Active IQ 集成</block>
+  <block id="8ff1dbea046a55a0f79a4f62e415ddbe" category="paragraph">为了使 ONTAP 用户可以通过一个访问点访问多个信息源， System Manager 9.9.1 可与 NetApp Active IQ 解决方案集成。这样可以提供固件建议以及直接从 NetApp 支持站点下载映像的方法，并可轻松访问支持案例视图，以便在您希望查看集群发生的情况时查看。只需导航到左侧菜单中 "Cluster" 下的 "Support" 链接，然后向 Active IQ 注册集群即可开始。</block>
+  <block id="48359068e5c5eebfb0e74d51afe4e919" category="paragraph">下图展示了 ONTAP System Manager 9.1.1 中的 Active IQ 视图。</block>
+  <block id="f95c7f3de42a4799e3222cc8d0347a59" category="paragraph"><block ref="f95c7f3de42a4799e3222cc8d0347a59" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9dcded66fa249538ee1e9bb82e1f5d31" category="section-title">硬件可视化平台扩展</block>
+  <block id="b67136a368b3719d2cc19aff45f9f8c4" category="paragraph">硬件可视化包括平台型号，序列号，接管 / 交还状态，磁盘状态，端口信息等信息。ONTAP 9.9.1 增加了对硬件可视化的平台支持，以包括所有当前的 AFF 平台。</block>
+  <block id="dd938a0de4c61f1a171342d63213c17b" category="paragraph"><block ref="dd938a0de4c61f1a171342d63213c17b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="25062a5a927b3bf4c0079b5967ae87c0" category="paragraph">ONTAP 9.1.1 支持以下组件：</block>
+  <block id="37cb0e130b63d48fd5218a8d61907614" category="list-text">* 平台。 * C190/A220/ A250/ A300/ A400/ A700/A700s/A800/ A320/FAS500f</block>
+  <block id="1d3fe748561caad070dfaf86fba79ff3" category="list-text">* 磁盘架。 * DS4243/DS4486/DS212C/DS2246/DS224C/NS224</block>
+  <block id="d206b4c6252b568fbcad635a64365392" category="list-text">* 网络交换机。 * Cisco Nexus 3232C/Cisco Nexus 9336C-x2</block>
+  <block id="d8cfa0be2e03d9822c063cb3771a8665" category="section-title">Ansible 攻略手册工作流</block>
+  <block id="f48bd7347285b518907a34b3dcad85fd" category="inline-link">Ansible for NetApp 页面</block>
+  <block id="1c52e629e85668a1fdadf47ef9b7b9b6" category="paragraph">越来越多的企业开始使用 Ansible 等应用程序实现日常任务自动化，以提供可重复的无错误工作流。NetApp 提供了一整套 Ansible 攻略手册，您可以在中找到这些攻略手册以及更多信息<block ref="57a69e7fe3020c8338be9ff254e4842b" category="inline-link-rx"></block>。</block>
+  <block id="733ba000742537e7a4435573aca51393" category="inline-link">Ansible Galax河</block>
+  <block id="94beb42ad6bbb4643ef2a006e97b6d10" category="paragraph">System Manager 9.9.1 增加了使用 Ansible 的其他途径，只需单击一下，即可通过一种新方法生成攻略手册。要使用这些攻略手册，请从安装 Ansible 和 NetApp 资料集<block ref="2d35e48b7bcfa590b3bbccdf04948cd9" category="inline-link-rx"></block>，但您可以通过单击 System Manager 中选择存储配置任务上的 Save to Ansible Playbook 链接开始创建攻略手册。</block>
+  <block id="824a660a71c4c73239ff6b109e9f6bf9" category="paragraph"><block ref="824a660a71c4c73239ff6b109e9f6bf9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ce152a4f68b68498ff816fe5aa83005f" category="paragraph">单击该按钮将创建一个 .zip 文件，其中包含 Ansible 所需的 .yaml 文件。</block>
+  <block id="1f106ca5386ce247d568b59d1b4dad4d" category="paragraph"><block ref="1f106ca5386ce247d568b59d1b4dad4d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0cdbad3f9bc351477d03113ca9b483ab" category="section-title">文件系统分析增强功能</block>
+  <block id="23d784033bae6804ea0e1b4e8c66b2ef" category="paragraph">在高文件数环境中，要查找有关文件夹容量，数据使用期限和文件计数的信息，通常需要使用时间密集型命令或脚本通过 NAS 协议运行串行操作，例如 `ls` ， `du` ， `find` 和 `stat` 。</block>
+  <block id="3b8c862b0baaa91213862bec117e1a08" category="paragraph">ONTAP System Manager 9.8 通过为每个卷启用低影响扫描程序，为管理员提供了一种快速，轻松地查找任何 NAS 存储卷中的文件系统信息的方法。此扫描程序会在后台以低优先级作业搜索 ONTAP 文件系统，并在导航到启用了该文件系统的卷时提供大量信息。</block>
+  <block id="298e3bcfd511e40446b6cfc2d9a8b225" category="inline-link">文件系统分析</block>
+  <block id="3711d091e2832cea5b85b8a94e56a1b3" category="paragraph">启用<block ref="98d038f8a6caf7d598ed4eed1daa6373" category="inline-link-rx"></block> 与导航到要扫描的卷一样简单。转到 " 存储 "&gt;" 卷 " ，然后使用搜索功能查找所需的卷。单击卷，然后单击资源管理器选项卡。</block>
+  <block id="bd369ad3077954ada57eb55c6721afdd" category="paragraph">在此处，您将看到页面右侧的 "Enable Analytics" 链接。</block>
+  <block id="3fe68c8cd058c3f0e14b7f01fa5164cd" category="paragraph"><block ref="3fe68c8cd058c3f0e14b7f01fa5164cd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a1353d5bcd1908edbd7ac0040f5491f0" category="paragraph">单击启用后，扫描程序将启动。完成时间取决于卷中的对象数量以及系统负载。完成后，您会看到 System Manager 视图中填充了整个目录结构。此视图可在目录树下导航，并可用于访问历史记录信息，目录大小信息和文件大小。</block>
+  <block id="9e769ed7c0f5ec7b69b8418f35d33525" category="inline-link">快速删除目录</block>
+  <block id="7e3ab2d2aaf9ef606ffa25ad704024fe" category="paragraph">ONTAP 9.9.1 为该功能提供了一些额外的增强功能，例如按文件或目录名称筛选以及执行<block ref="48e813d64b9ba5bce689365e131fe8af" category="inline-link-rx"></block>。</block>
+  <block id="56e97b36b89521391d92935b46388198" category="section-title">System Manager 9.9.1 的其他增强功能</block>
+  <block id="8961cda18e6f02e6fa68f49668c75835" category="paragraph">ONTAP 9.9.1 还为 System Manager 提供了以下增强功能：</block>
+  <block id="67770d5a7f103d26c9dcc98cc53929ec" category="list-text">嵌套的 igroup</block>
+  <block id="04affd2b8f6f1528fd38fd6b37743562" category="list-text">SnapMirror 云—备份和还原（仅限 ONTAP S3 和 StorageGRID ）</block>
+  <block id="fc556c1f786eaffcbd07969bac737751" category="list-text">全 SAN 阵列扩展</block>
+  <block id="b7ed4657b10d57155a9ac24df31020f6" category="list-text">FlexCache 预填充，灾难恢复，查看节省的带宽</block>
+  <block id="ec7d9fa2402ca8f72ee73d166bcccd2b" category="list-text">适用于 FlexGroup 卷的 SVM-DR</block>
+  <block id="71a8351e9c0d8871999f74eea3aca79b" category="list-text">FlexGroup 卷的 SnapMirror 级联和扇出支持</block>
+  <block id="759614dc3448f547cc652e1214cdd432" category="list-text">FabricPool ：调整或更改最小冷却天数</block>
+  <block id="dcd2e558b7fab7dda450e780c87a2203" category="summary">本页介绍 ONTAP 9.8 的存储效率，尤其是数据压缩以及与 NetApp FabricPool 技术相关的效率。</block>
+  <block id="fba6442665875d123719f22baafc619d" category="doc">存储效率</block>
+  <block id="9821aab3dfa64afd461ac2cb6cf9c3f9" category="paragraph">存储效率包括可减少存储系统中数据占用的物理容量的任何功能。在 ONTAP 中，这些功能包括：</block>
+  <block id="7f014083882e428332264558f1c232f3" category="list-text">数据压缩</block>
+  <block id="14c3c56ff2a98d1a9c47b63a917f67a3" category="list-text">数据缩减</block>
+  <block id="f8d61013f1a3bbf1342f4ced3279c7cf" category="list-text">重复数据删除</block>
+  <block id="2e985af49c448d15c7b99987586e6b15" category="list-text">NetApp FabricPool</block>
+  <block id="1e28264f90cc398ca0e5e7c96562e075" category="paragraph">有时，这些定义可以延伸到包括：</block>
+  <block id="8d9a9b19531e4a85c6a70c90ddccfe61" category="list-text">NetApp FlexClone 技术</block>
+  <block id="d8f4911c89dadc4828bc8fa023d49b7d" category="list-text">NetApp Snapshot 副本</block>
+  <block id="b16ad19397a7509e2d37f1d75e2205fc" category="paragraph">存储效率对于通过减少需要购买的物理硬件数量来保持低存储成本至关重要。ONTAP 可以在实时系统（ AFF 系统）或后处理系统（所有系统）上执行数据精简，而对系统性能的影响微乎其微。</block>
+  <block id="5276eebcb1f9236e2f72913562cb084b" category="paragraph">在 ONTAP 9.8 中，可以通过多种增强功能提高存储效率。</block>
+  <block id="55449fd175613962d882ab450cfc5f3c" category="section-title">FabricPool</block>
+  <block id="41d860724112532d0546c0de937ea904" category="paragraph">FabricPool 是 NetApp 的数据分层技术，可将文件系统中标记为冷的块捆绑到 4 MB 对象中，并发运至云或 S3 存储分段。其理念是，冷数据最多可以使用存储系统中总容量的 80% ，因此，最好将其迁移到成本较低的存储解决方案，而不是将所有容量都保留在性能层上。</block>
+  <block id="cce281413c371623e7ec6b4825784e54" category="paragraph">所有这些操作都会通过您可以设置的分层策略在 ONTAP 中自动进行，您可以通过非活动数据报告了解您的存储系统中当前有多少冷数据。这样，您就可以评估 FabricPool 是否会真正为您节省资金。</block>
+  <block id="02b7b6d156d2f158ffd5b0a32edc332a" category="paragraph"><block ref="02b7b6d156d2f158ffd5b0a32edc332a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3f132da8b7099fd9d93d8b7b7428f570" category="paragraph">当客户端访问已分层到云的文件时，只会将请求的块（而不是整个文件）恢复到性能层以进行访问。</block>
+  <block id="a2de429ddb8e87ebd2daa3408bced42e" category="inline-link">TR-4598 ： FabricPool 最佳实践</block>
+  <block id="734b1424b5982ecfb53f9b0b1d294c57" category="inline-link">TR-4598 ：《 FabricPool 最佳实践和 Tech OnTap 播客》第 268 集：《 FabricPool 9.8 中的 NetApp ONTAP 和 S3 》</block>
+  <block id="44aa199d23924b5788f3199c05742587" category="paragraph">有关 FabricPool 的详细信息，请参见<block ref="3f85327e1f47436ed7b4e0705b45040e" category="inline-link-rx"></block> 和<block ref="fadc3b4f2a941bc15e0d458829b7ba9f" category="inline-link-rx"></block>。</block>
+  <block id="2f510f604447f3e4285956b848908486" category="paragraph">ONTAP 9.8 支持以下 FabricPool 功能：</block>
+  <block id="6dddd96ad170dadda1707698b93068a0" category="list-text">* 从 HDD 聚合分层。 * 在 ONTAP 9.8 之前， FabricPool 只能在 SSD 聚合上从 ONTAP 分层到云。现在，您可以使用 ONTAP 9.8 对 HDD 聚合中的 FabricPool 进行分层。</block>
+  <block id="4a18f317f4202c483450029270eaa6e5" category="list-text">* 分层到 ONTAP S3. * 由于 ONTAP S3 现在已普遍可用，因此现在可以使用 FabricPool 从 ONTAP 系统分层到 ONTAP S3 分段。通过这种方式，可以将老化容量存储用作 FabricPool 层，从而重新利用该存储。此外，通过分层到同一集群，您可以比遍历云网络连接更快地进行检索。</block>
+  <block id="c552324c68f1abb23752ba3f9a52a681" category="list-text">* 冷却期延长。 * 在 ONTAP 9.8 之前，数据在冷却期过后会标记为冷数据，最长为 63 天。使用 ONTAP 9.8 ，您可以将此最大值配置为最多 183 天。这对于偶尔访问的数据非常有用，例如按季度访问的数据，例如财务报告。</block>
+  <block id="ee15d877878deadb86cc094dd2d55d0c" category="list-text">* 对象标记。 * 当您分层到提供信息生命周期策略并根据对象标记管理数据的 S3 提供程序时， ONTAP 9.8 可以标记使用 FabricPool 分层的对象，以便将其纳入这些策略中。</block>
+  <block id="09e3eb368cfa63d42e3b440f79e7c842" category="list-text">* 云检索。 * 在某些情况下，您可能需要从云中提取所有分层数据。现在，您可以在 ONTAP 9.8 中运行从云中检索数据的作业，而无需访问所有数据。</block>
+  <block id="82af841589057aa8922b1ac3bb4a28a4" category="section-title">压缩</block>
+  <block id="a3d9e258f045e506f1aad334b2d6f257" category="paragraph">ONTAP 9.8 引入了一些数据压缩更改，有助于提高性能，并提高可压缩数据集的数据精简率。</block>
+  <block id="136cc83441d07e2be773a6cf5053576f" category="paragraph">数据压缩的主要变化是将数据分为冷分类和热分类。冷数据是指长时间未访问的数据，热数据是指经常访问的数据。这意味着我们希望减少对热数据的压缩，并更积极地压缩冷数据。</block>
+  <block id="b3da562450ccb05f921943c03f4bb2ce" category="paragraph">在 ONTAP 9.8 中，热数据会使用 8 K 压缩组进行实时压缩。此外，数据重复数据删除会在数据压缩之前进行，以提高数据集的效率。</block>
+  <block id="793b4e0506791c71b7e2ad3599561b24" category="paragraph">然后，使用更具竞争力的 32 K 压缩组在后台再次压缩冷数据。这些变化意味着热数据的性能更高，所有数据的数据精简率更高。</block>
+  <block id="5d7d43bb24e6adef90f770cd8e03ecd8" category="inline-link-macro">下一步：数据保护</block>
+  <block id="7f1a99e213fa2c4e5fb6a2799e07db23" category="paragraph"><block ref="7f1a99e213fa2c4e5fb6a2799e07db23" category="inline-link-macro-rx"></block></block>
+  <block id="87fd7f31d9bf69ec56403c0396257a5f" category="summary">在本文档中，数据保护既指异地复制数据的概念，也指自动站点基础架构故障转移。本节介绍 ONTAP 9.1.1 的最新数据保护增强功能。</block>
+  <block id="d2d40d9589bc0006ef3df0199edcc583" category="doc">数据保护增强功能</block>
+  <block id="398bd26e5b9faf8ca653d4ea7d28bddf" category="section-title">通过 SnapMirror 业务连续性为 SAN 实现透明的应用程序故障转移</block>
+  <block id="8b9c6dceb72395fc955e7e725734d4ec" category="paragraph">NetApp SnapMirror 是一种行业领先的复制技术，可用于各种使用情形，其中包括：</block>
+  <block id="8d86f1cb050f828b2222eb9546eb40d4" category="list-text">灾难恢复，可在中断期间快速进行站点故障转移，并快速重新同步回主站点</block>
+  <block id="9b20c54d702c422c591d8b475fc39dc6" category="list-text">同步复制，在远程站点上创建一秒内的数据副本</block>
+  <block id="5c8691739bafac4202ee25dc21b0231e" category="list-text">备份和归档使用情形（目标上的 Snapshot 副本多于源上的 Snapshot 副本）</block>
+  <block id="5d9cf4585c5e022d403aa48899c380ea" category="inline-link">ONTAP 中的 SnapMirror 业务连续性</block>
+  <block id="870c79e18f1d4c5f02e7101f3d597bf6" category="paragraph"><block ref="1392ef01e00edd1cfbe727dec5db0112" category="inline-link-rx"></block> 扩展了 SnapMirror 的功能，并为同步 SnapMirror 关系提供了快速，轻松的自动故障转移功能，从而实现应用程序级粒度数据保护。</block>
+  <block id="7a153aebca857b141710a212e88bf69a" category="paragraph">SnapMirror 业务连续性可利用调解器在站点之间保持仲裁，并避免发生站点故障时出现脑裂情况。ONTAP 调解器软件版本（ 1.2 ）现已推出，可支持多达 10 个 ONTAP 系统，并可在发生故障后 120 秒内自动在站点之间切换应用程序。</block>
+  <block id="eedcb655269dc6555cce457d1db30a98" category="paragraph"><block ref="eedcb655269dc6555cce457d1db30a98" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9606052688ba7ea8a292d061cb529730" category="section-title">基于 IP 的 MetroCluster</block>
+  <block id="1d0b7c7dd9a4071dec7b99acaa47cf96" category="paragraph"><block ref="1d0b7c7dd9a4071dec7b99acaa47cf96" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="569ae2beefd0828925fe7961bb913f10" category="paragraph">传统上， NetApp MetroCluster 是通过光纤通道后端实施的，但较新版本的 ONTAP 支持使用 IP 网络作为后端。这样不仅可以降低站点故障转移基础架构的成本和复杂性，还可以将 MetroCluster 的范围扩展到大约 700 公里（或 300 英里）。</block>
+  <block id="e708a8863be8677aea1f6d03a10fdd48" category="paragraph">ONTAP 9.9.1 为 MetroCluster 带来了以下改进。</block>
+  <block id="40b9747f17f89b030d2ad5047df22aaa" category="list-text">将每个 HA 对的卷数增加到 1600 个</block>
+  <block id="c68f7ee3f9ce0f139f18c0e327142ee1" category="list-text">共享第 3 层网络</block>
+  <block id="6ebe53927737c839d4ca3151239f019b" category="list-text">不再依赖于专用的第 2 层网络</block>
+  <block id="abc2cb9458ef994f05b76e489e0ed515" category="list-text">ONTAP 必须直接连接到路由器</block>
+  <block id="97ea0bd3c01e506b4c0f3e9e760a1265" category="list-text">不支持动态路由</block>
+  <block id="0cdfa5428e9be02aacb91dad7ca190e0" category="list-text">增加每个站点的节点数（每个站点四个，每个集群八个）</block>
+  <block id="f639a653c7f54a8f4a2552590f286055" category="section-title">何时选择 MetroCluster 与 SnapMirror 业务连续性</block>
+  <block id="7590c941592695ca1611ade1528c1ebc" category="paragraph">由于 MetroCluster 和 SnapMirror 业务连续性具有一些相同的功能集（能够利用现有 IP 网络，自动故障转移，同步复制），因此 " 何时应使用每个 " 这一问题就变得更加相关了。</block>
+  <block id="6b5b774e6525d9d11265c1075af2d432" category="paragraph">问题解答取决于以下问题。</block>
+  <block id="10f73605122734865ac8dadf4cd9001e" category="list-text">您的服务级别目标是什么？</block>
+  <block id="b0ca0d16ba614a10d060348b262496f0" category="list-text">您希望故障转移的粒度如何？</block>
+  <block id="5838f260f449b480e855b807974d7433" category="paragraph">MetroCluster 为 HA 对和物理聚合提供自动化基础架构故障转移，并支持 SAN 和 NAS 工作负载，而 SnapMirror 业务连续性仅为 SAN 工作负载提供应用程序级粒度。</block>
+  <block id="457b0075e8f0333975a8e2aaeaceb149" category="inline-link">MetroCluster IP 解决方案架构和设计</block>
+  <block id="040a2386c947e018daac6e3134103074" category="paragraph">有关基于 IP 的 MetroCluster 的详细信息，请参见<block ref="1544ee65cdfd3ec8a01277b0dadd4165" category="inline-link-rx"></block>。</block>
+  <block id="ec345c2058d5ca34cb53c767e86fbbf5" category="paragraph">有关 SnapMirror 业务连续性的详细信息，请参见<block ref="f9d06186b307654014fd14f8bc38c93d" category="inline-link-rx"></block>。</block>
+  <block id="2f43feecfef54eb24f1d9bb618192b5a" category="section-title">FlexGroup 卷数据保护</block>
+  <block id="a492cf04f8ac80b9e6d03c7aa7f971ac" category="paragraph">FlexGroup 卷是 NetApp ONTAP 横向扩展 NAS 解决方案，可在一个命名空间中提供高达 20 PB 和 4 ， 000 亿个文件，同时可对载入量最高的工作负载进行自动负载平衡并行处理，实现容量，性能和精简性的完美结合。</block>
+  <block id="26ff0c18c262bf8f77310319231ab89d" category="paragraph"><block ref="26ff0c18c262bf8f77310319231ab89d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d3cde8349496770e1691c2c18a0dcdde" category="inline-link">TR-4571 ：《 NetApp FlexGroup 卷最佳实践》</block>
+  <block id="97889ea4ec470aef3b80c9472cbe0e62" category="paragraph">有关 FlexGroup 卷的详细信息，请参见<block ref="8970f11bc28ce0dc037cd78c82083d7c" category="inline-link-rx"></block>。</block>
+  <block id="cef53123418c7a570e70ac3f93a8279e" category="paragraph">在 ONTAP 9.1.1 中， FlexGroup 卷支持多种数据保护配置。</block>
+  <block id="507bc8303555f584722906dfbabae3c1" category="section-title">级联和扇出 SnapMirror</block>
+  <block id="bc7180461bac47ab31c6d6ed2a8e9121" category="paragraph">通过 SnapMirror 级联，存储管理员可以串行复制到多个站点。例如，站点 A 可以复制到站点 B （内部或云），然后站点 B 可以将同一个卷复制到站点 C （内部或云）。</block>
+  <block id="69bcf5b57b1e14fceaad6c592cb0a698" category="paragraph"><block ref="69bcf5b57b1e14fceaad6c592cb0a698" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c0235d29b7874dc403b9c684d36d7281" category="paragraph">SnapMirror 扇出可以从一个源卷复制到多个目标卷。因此，站点 A 可以将源 FlexGroup 复制到站点 B 和 C （内部或云）。这样可以提高数据保护配置的灵活性和故障恢复能力。</block>
+  <block id="e0713364f9fce3d1ffdd97a61b99eaf8" category="paragraph"><block ref="e0713364f9fce3d1ffdd97a61b99eaf8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9946a1859c12773f5f42fd4b3deaca26" category="section-title">Storage Virtual Machine 灾难恢复（ SVM-DR ）</block>
+  <block id="2298f63ad2b4e73af819e4172b1177c2" category="paragraph">SVM-DR 是一项 ONTAP 功能，不仅可以将数据卷复制到远程站点，还可以复制 SVM 配置详细信息，例如 CIFS 共享， NFS 导出，数据 LIF 甚至 NFS 文件句柄，以避免在故障转移到灾难恢复站点时重新挂载。</block>
+  <block id="90ab45c884eaa603251e685ace514967" category="paragraph"><block ref="90ab45c884eaa603251e685ace514967" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="15f7e8efdb7ad6550617dfc895aa80cb" category="paragraph">ONTAP 9.9.1 为 FlexGroup 卷提供了对 SVM-DR 的支持，但有以下限制。</block>
+  <block id="b32727d1bc77badc4de7e6d773e158e0" category="list-text">不支持 FabricPool</block>
+  <block id="adbb1c097a5309bfe028c1d95df2cd41" category="list-text">无 FlexClone</block>
+  <block id="ca68c304dfa2b6686960cc66f2071a9b" category="list-text">无 SnapMirror 扇出</block>
+  <block id="dcb3ff08d98df86641bee34314c995d7" category="list-text">如果不重新建立基线，则无法进行 FlexVol 转换</block>
+  <block id="2cb4e608a09a8156cb7af6c37c6910f2" category="section-title">SnapLock 增强功能</block>
+  <block id="85a3c378211613ea1a1951c8fcfb1a7e" category="inline-link">NetApp SnapLock</block>
+  <block id="572b1f4fc5509ece87dbd33c56abb88d" category="paragraph"><block ref="8bcb0a64db7f547fd95821dafa9a314b" category="inline-link-rx"></block> 是 NetApp 提供的 WORM 合规性复制解决方案。它为需要遵守 HIPAA ， SEC 17a-4 （ f ）规则， FINRA 和 CFTC 等法规准则以及德语国家 / 地区（ DACH ）的国家 / 地区要求的工作负载提供集成数据保护。</block>
+  <block id="9595274e70fbbc5377f657321c6b5bb0" category="paragraph">SnapLock 有助于确保数据完整性和保留率，使电子记录既可更改又可快速访问。SnapLock 保留功能经过认证，可满足严格的记录保留要求，并可满足更多的保留要求，包括合法保留，基于事件的保留和卷附加模式。</block>
+  <block id="911c508ce382920a63b4323906f6492c" category="paragraph">ONTAP 9.9.1 对 NetApp SnapLock 进行了以下改进：</block>
+  <block id="fd18465573ec21a6218982055981f6b1" category="inline-link">存储效率</block>
+  <block id="e26b09dd310fa7c9a3ede5f09fca5830" category="list-text"><block ref="42417581c7aea6c6377cc8d85dd8ffc6" category="inline-link-rx"></block> 支持 WORM 卷。支持数据缩减，跨卷 / 聚合级重复数据删除（仅限 AFF ），连续区块清理和温度敏感型存储效率。</block>
+  <block id="54d579c3f0589be31000bdf2c3524ead" category="inline-link">使用 NetApp SnapLock 的合规 WORM 存储</block>
+  <block id="0a1cccfcd4a41666314e4d98bc663bcb" category="list-text">为包含 LUN 快照副本的 SnapLock 卷提供勒索软件保护。有关 SnapLock 的详细信息，请参见<block ref="11159f4c8dea02494c7a604be4d6264b" category="inline-link-rx"></block>。</block>
+  <block id="26b1956ec2bdaa19850533717a914fa4" category="paragraph">有关 SnapLock 的详细信息，请参见<block ref="11159f4c8dea02494c7a604be4d6264b" category="inline-link-rx"></block>。</block>
+  <block id="1f771b533947d5d021bc8913e5491108" category="summary">NetApp ONTAP 是行业领先的旗舰级数据管理软件，无论数据位于内部，边缘还是云端，均可帮助您无缝管理和保护数据。</block>
+  <block id="4bdaf2332726632f9a7f539047efbef2" category="doc">TR-4894 ：《 NetApp ONTAP 9.9.1 功能概述》</block>
+  <block id="b84294f0737ecf3f4524a06191d36d0e" category="paragraph">NetApp 公司 Justin Parisi</block>
+  <block id="2b30a7e82febcc7a217d3308eda2fa89" category="paragraph">NetApp ONTAP 在同一平台上支持以下功能：</block>
+  <block id="452054cf9799b179cb23f3f83f631c22" category="list-text">NAS 协议（ NFS 和 SMB ）</block>
+  <block id="fe0b62fd8ac2a04e5add07964fbbdc7d" category="list-text">SAN 协议（ iSCSI ， FCP 和 NVMe ）</block>
+  <block id="8d7e886c2cfed463633ccfe5bb74b410" category="list-text">S3 数据访问</block>
+  <block id="d970b6e0a04dcd2f503b802f2c249bc9" category="list-text">数据保护（ NetApp Snapshot 副本， NetApp SnapMirror 和 SnapVault 技术）</block>
+  <block id="ebb9f32915e7e984e76f37e227f4fa7f" category="list-text">存储效率（重复数据删除，数据缩减和数据压缩）</block>
+  <block id="b8b6244c89771a6e7e06e8e5215975d9" category="list-text">高可用性（ HA ）故障转移（包括采用全 SAN 阵列的第 1 层 SAN 的快速故障转移）</block>
+  <block id="f8a8c17e7d55d3ce839e179fcb381501" category="list-text">支持全闪存，旋转驱动器和混合磁盘配置</block>
+  <block id="368923abde49c3e18fd203dca0269313" category="list-text">安全功能（多因素身份验证， NetApp 卷加密和安全清除）</block>
+  <block id="71b2d9d2ec5a1f454485224e22a32876" category="paragraph">这不是一个全面的列表；如果我们包括 ONTAP 提供的所有功能，本文档将长达数百页！</block>
+  <block id="7632cad0be6f791fa14e8255022c2ec4" category="inline-link">ONTAP 9 数据管理软件产品规格</block>
+  <block id="ba280e6b078e45696fe8eb092c2b0136" category="paragraph">有关 NetApp ONTAP 的更多详细信息，请参见<block ref="9f226f00b05919fb270a59d22a5cd7f4" category="inline-link-rx"></block> 和产品文档。</block>
+  <block id="87c6b022fe4ab45d26dc6b4dd59c75c9" category="summary">本页介绍了 ONTAP 9.8 中可提高精简性的增强功能，包括 ONTAP System Manager 更新， ONTAP 升级和技术更新改进以及 REST API 增强功能。</block>
+  <block id="e803c2387444747384ee4979191b1552" category="doc">简化增强功能</block>
+  <block id="dfdc9fae785d94c8070c633b2c98298d" category="paragraph">本节介绍可提高精简性的 ONTAP 9.8 增强功能。其中包括：</block>
+  <block id="73ec3d08dc40976a738e5544f15a223e" category="list-text">ONTAP System Manager 更新</block>
+  <block id="89a10ab163b94cd00c724ca5eb65b756" category="list-text">ONTAP 升级和技术更新改进</block>
+  <block id="d54a9e269194845c2e611c0901c1466b" category="list-text">REST API 增强功能</block>
+  <block id="d50f4f7edd9ae752acd6e78deb340c4b" category="section-title">System Manager 增强功能</block>
+  <block id="b6e4644ed9c42b0433fb10a018ae63d9" category="paragraph">ONTAP 9.7 对 System Manager 图形用户界面进行了改进，旨在简化管理员管理 ONTAP 基本操作（例如存储配置和日常操作）的方式。新的 GUI 还利用了 ONTAP 9.6 中添加的 REST API 。在 ONTAP 9.8 中，已删除 System Manager 经典视图。</block>
+  <block id="0c872019dfa8b50459d533972dcc5cc8" category="paragraph">界面之间的一个主要区别是信息板，这是您首次登录到 NetApp ONTAP System Manager 时访问的第一个页面。</block>
+  <block id="f5c8db303f07f7722eff5fbec5686b14" category="paragraph">下图显示了经典版本和新版 System Manager 信息板的并排比较。</block>
+  <block id="ae6aced91281c981fda8370a90afb299" category="paragraph"><block ref="ae6aced91281c981fda8370a90afb299" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e9f7af3c85cbbf5b0c80b893bfcc92b2" category="paragraph">如果我们仔细观察，可以看到一些主要差异。</block>
+  <block id="f9636e57a53df2c589ccc7e210c7644a" category="section-title">运行状况 / 警报</block>
+  <block id="e9ab9f8899e4cf049c2f608e7a874ca5" category="paragraph">首次登录到经典 System Manager 时，左上角会列出集群和节点故障。这些内容将总结为可单击的链接。单击其中一个链接后，您将重定向到 System Manager 中的另一个页面。</block>
+  <block id="619e242820a1d16bfd5b0375090fd4e2" category="paragraph">此外，您还可以通过一个单独的区域来显示集群 HA 状态，以查看节点是否已进行故障转移。在下图中，我们会看到信息板视图以及单击其中一个链接时看到的内容―在本例中为故障磁盘。</block>
+  <block id="3d0a43a051541f6972c2f83836f9edf9" category="paragraph"><block ref="3d0a43a051541f6972c2f83836f9edf9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="76bb5e9fbf6bf2d4c8de268555fd865f" category="paragraph">要查看其他警报，您必须导航回信息板，这需要时间和额外的单击操作。新 System Manager 视图的目标之一是简化此过程。</block>
+  <block id="2ec8f9b4d43d6d24cc2a8f4cfdcbe4ca" category="paragraph">下图显示了新的 System Manager 信息板。运行状况视图和警报视图的两个主要区别是，节点 HA 状态和警报现在位于同一窗口中，而不是从主信息板中单击，而是显示在一个下拉框中。</block>
+  <block id="62c2746467ddaa6b8d23fdc2b4e6df71" category="paragraph"><block ref="62c2746467ddaa6b8d23fdc2b4e6df71" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cbff5dd287b21af8ff268f1bb47fbfe7" category="section-title">容量视图</block>
+  <block id="727ada8deb0ba4f1d90a4ca0f841e578" category="paragraph">容量视图的额外单击次数也会减少。在经典的 ONTAP System Manager 中，容量和存储效率比率可在集群概述下找到，并可通过单击选项卡来查找信息。新的 System Manager 视图将存储效率比率和容量视图整合到一个图形中。</block>
+  <block id="2cdddcaa4f9ceca370dcaf379bd32d23" category="admonition">新 UI 可利用已用逻辑空间和物理可用空间。</block>
+  <block id="a87ec30f13f683a3c61955cd1a25f4fe" category="paragraph"><block ref="a87ec30f13f683a3c61955cd1a25f4fe" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a1501ad5dab27a46df5eabe7d781df2d" category="paragraph">数据保护视图已移至其自己的信息板中的保护下。此页面提供了对集群中数据保护的更深入，更精细的了解，还提供了利用新 SnapMirror 业务连续性（ SM-BC ）的位置。</block>
+  <block id="66eb2d7e9e0397659cc87eb403e10644" category="paragraph"><block ref="66eb2d7e9e0397659cc87eb403e10644" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1134dc9299f828a3558bfd3e04c28db0" category="section-title">网络可视化</block>
+  <block id="02422eb2f6e6805139cf5192f8b15a2e" category="paragraph">此外， ONTAP System Manager 9.8 还会删除应用程序和对象视图，以便使用新的网络可视化视图显示集群的网络拓扑，并在端口关闭时删除红色 X 。</block>
+  <block id="4b755fcd2a55ec52831261477f3abe13" category="paragraph"><block ref="4b755fcd2a55ec52831261477f3abe13" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="59fcac2e65ae7b4911482bddcbef2278" category="section-title">性能视图</block>
+  <block id="858d240ccac1939a458b6ac8dee74b19" category="paragraph">现在， System Manager 中的性能数据图可保留长达 1 年的集群数据，而不是让传统 System Manager 性能数据仅在您登录时可用。在 ONTAP System Manager 9.8 中，您现在可以单击小时，天，周，月或年。此外，还可以将性能数据下载到 CSV 。</block>
+  <block id="6543cf2f1f5d15dd061e85837eccdaeb" category="paragraph"><block ref="6543cf2f1f5d15dd061e85837eccdaeb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="14dcbc4286683eb35f33d39334b0af20" category="paragraph">在高文件数环境中，要查找有关文件夹容量，数据使用期限和文件计数的信息，通常需要使用时间密集型命令或脚本通过 NAS 协议运行串行操作，例如 `ls` ， `du` ， `find` 和 `stat` 。</block>
+  <block id="8403b2e8dcf087f13f4ca578ff8ea176" category="paragraph">通过 ONTAP System Manager 9.8 ，管理员可以通过为每个卷启用低影响扫描程序，快速轻松地查找任何 NAS 存储卷中的文件系统信息。此扫描程序会在后台以低优先级作业搜索 ONTAP 文件系统，并在导航到 System Manager 9.8 或更高版本中的卷时提供大量信息。</block>
+  <block id="2ef63fc9c41364dcd205b29c164c0a52" category="paragraph">启用文件系统分析就像导航到要扫描的卷一样简单。转到 " 存储 "&gt;" 卷 " ，然后使用搜索功能查找所需的卷。单击卷，然后单击资源管理器选项卡。</block>
+  <block id="4fae4047d71a15b084f683c429a8e274" category="paragraph"><block ref="4fae4047d71a15b084f683c429a8e274" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="54b062553911c909b16f3479703325e0" category="inline-link">NetApp Tech OnTap 播客集</block>
+  <block id="e6052ed39f429e6b4bb36ed20d4cdaf9" category="paragraph">下图显示了集群中 Tech_ONTAP 卷的视图，此卷用作的归档<block ref="5336758668b3d470f4029d012c0124c0" category="inline-link-rx"></block>。</block>
+  <block id="05cd38d5c1aead4d4660f23a23558c90" category="paragraph"><block ref="05cd38d5c1aead4d4660f23a23558c90" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bf7f3982e41ee880beb67aaf409b7ef8" category="paragraph">单击某个文件夹时，页面右侧将显示一个文件列表。</block>
+  <block id="ed158ba941b65ab3163f47581eb6d5ee" category="paragraph"><block ref="ed158ba941b65ab3163f47581eb6d5ee" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="37b92f30c01a3e1245eb39e56b991c90" category="paragraph">如果选择，您可以启用显示访问时间来查看上次访问文件的时间。</block>
+  <block id="aadde7575c3cebe838569819ff644958" category="paragraph"><block ref="aadde7575c3cebe838569819ff644958" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d54f454fc35974a49ea6f4e6279cdfca" category="paragraph">在页面底部，您可以看到一年内未访问的数据量，以及该文件夹中的目录和文件计数。</block>
+  <block id="c501dec853f6d11feb94a9b5cdf93a43" category="paragraph"><block ref="c501dec853f6d11feb94a9b5cdf93a43" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6132d71a37f3f4775170917970343ea3" category="paragraph">除了能够快速查找文件大小和目录信息之外，此功能还提供了一些信息，可帮助您确定 NetApp FabricPool 技术是否能够有效地减少占用聚合空间的冷数据量。</block>
+  <block id="d9d0a50e1c7c8c6de854c8be599177c1" category="section-title">活动 NFS 客户端</block>
+  <block id="8677ea535e878cbb30dc70f86215203c" category="inline-link">TR-4067 ：《 NetApp ONTAP NFS 最佳实践和实施指南》</block>
+  <block id="b1687bb019af6a7a9d40db86aca932f2" category="paragraph">ONTAP 9.7 提供了一种查看哪些 NFS 客户端正在访问集群中的特定卷的方法，以及在 `nfs connect-clients` 命令中使用了哪些数据 LIF IP 地址。中详细介绍了此命令<block ref="1e7e6de21c5e527b7d054ec46d7ab774" category="inline-link-rx"></block>。如果您需要了解哪些客户端已连接到存储系统，例如升级，技术更新或简单报告，则此命令非常有用。</block>
+  <block id="a004e404932c99c858b1de49ae9a3bf2" category="paragraph">ONTAP System Manager 9.8 提供了一种通过 GUI 查看这些客户端的方法，以及一种将列表导出到 .csv 文件的方法。导航到主机 &gt; NFS 客户端，此时将显示过去 48 小时处于活动状态的 NFS 客户端列表。</block>
+  <block id="86cbc9b3281ca79561f6b37bbdccbe8b" category="paragraph"><block ref="86cbc9b3281ca79561f6b37bbdccbe8b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ec80d38d5d07f267bbf6df8595b79e4a" category="section-title">其他 System Manager 9.8 增强功能</block>
+  <block id="cb414bc7aa19f084481127119ba2897e" category="paragraph">ONTAP 9.8 还为 System Manager 提供了以下增强功能：</block>
+  <block id="1a68c93e4fa8ca38fca428d9dca5c0cd" category="list-text">NAS 文件安全跟踪（跟踪文件访问以排除权限故障）</block>
+  <block id="f3a16e57024c45f8f7ccddbc62e9b5b9" category="list-text">登录横幅配置（登录时显示的横幅）</block>
+  <block id="61f0d696b0d70d071bf097f830e4548d" category="list-text">MetroCluster 配置</block>
+  <block id="5d09ec2ed3f96fe75941d45448e72879" category="list-text">日志记录级别（调整在集群上完成的日志记录级别）</block>
+  <block id="a10c0c474eb381b83199c0ad6449089c" category="list-text">SAML 配置</block>
+  <block id="a32dd2ca79d8d8a0056821cb37fed7f4" category="list-text">板载密钥管理器</block>
+  <block id="407cf083aa35ee85161bbb71af813fa4" category="list-text">NVMe 子系统</block>
+  <block id="9a23cc403d79dbb80c6f335ba54fc588" category="list-text">自动聚合配置和容量扩展</block>
+  <block id="1efe0f9a3d85dc404d7cfb3ef6a7860b" category="list-text">支持使用 REST API 上传 ONTAP 映像</block>
+  <block id="00476bd34885a41b8ec5701b3e1fb88c" category="list-text">自动放置端口</block>
+  <block id="9e3ede34ac38e3ac61d504df09c631f1" category="list-text">SnapMirror 还原和反向重新同步</block>
+  <block id="b686956c3499653e01b67fcdc616eedc" category="list-text">磁盘分配</block>
+  <block id="067bf717b9af75b042646462c6cd33f6" category="list-text">FabricPool 增强功能（分层策略和对象标记）</block>
+  <block id="b5d8be72c4ad718f17c980352a646ac8" category="list-text">向集群添加节点</block>
+  <block id="5fb23d5a86e519566748f97db5a93f41" category="list-text">直接无中断升级到 n+2 ONTAP 版本（ 2 年期）</block>
+  <block id="5e674cf541d89509ec12f98fb6ef2759" category="list-text">每个协议的性能视图</block>
+  <block id="9b7c6ef7ef8453014fa9c7c3c7a508e8" category="list-text">S3 协议管理</block>
+  <block id="229b455caf027daad19b5002506344a3" category="list-text">同一卷中有多个 LUN</block>
+  <block id="cdca546f0fe68b8604cd15e3db4a7139" category="list-text">多个 LUN 移动</block>
+  <block id="990a05db6a768ae138a96973a50d1835" category="list-text">单击一下即可更新固件</block>
+  <block id="825a08d3b6d8787f8abfb50a7c538bed" category="list-text">SnapMirror 业务连续性支持</block>
+  <block id="f21a54dcaf525f97063a7b5e8669dd6c" category="list-text">存储效率策略</block>
+  <block id="591e8a05b021dbe44b8b479994002d56" category="list-text">卷管理增强功能</block>
+  <block id="838b98215131d1450be3a9fde9c6d757" category="paragraph">下图显示了 MetroCluster 和一键式固件更新。</block>
+  <block id="4e0361a8c0c8f196aae796c5f30d9481" category="paragraph"><block ref="4e0361a8c0c8f196aae796c5f30d9481" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="354e87fca6002bf0c226aabee34b513f" category="section-title">REST API 增强功能</block>
+  <block id="8bd3bf79375797df63622a59ca9a0b0c" category="paragraph">ONTAP 9.6 中增加了 REST API 支持，存储管理员可以利用其自动化脚本中对 ONTAP 存储的行业标准 API 调用，而无需与命令行界面或图形用户界面进行交互。</block>
+  <block id="f96df3b75fa98160f82b0490239093ba" category="paragraph">System Manager 提供了 REST API 文档和示例。只需从 Web 浏览器导航到集群管理界面，然后将 `dOC/API` 添加到该地址（使用 HTTPS ）即可。</block>
+  <block id="506c2c0c7f5b70af3df68c45c46f45a7" category="paragraph">例如：</block>
+  <block id="d1bded0ca5070f62c333b941388aa19c" category="paragraph">`https://cluster/docs/api`</block>
+  <block id="861d6a701c8c284e91f01f38f154b59d" category="paragraph">此页面提供了可用 REST API 的交互式术语表，以及一种生成您自己的 REST API 查询的方法。</block>
+  <block id="045843c4ba9c8e3d50c458bde397cb88" category="paragraph"><block ref="045843c4ba9c8e3d50c458bde397cb88" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4e19555756633038e51ab5733276ab3c" category="paragraph">现在，在 ONTAP 9.8 中， REST API 会使用添加的版本进行标注，这有助于在您尝试使脚本在多个 ONTAP 版本之间运行时简化使用过程。</block>
+  <block id="836ddb4b6c3c993b390bbca0f4097829" category="paragraph"><block ref="836ddb4b6c3c993b390bbca0f4097829" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="97aca351a16f8f063283dcd109cdaadd" category="paragraph">下表列出了 ONTAP 9.8 中的新 REST API 。</block>
+  <block id="61bab435e1130e4c9dee41e56d3f4a9a" category="paragraph">* 集群 * * 固件历史记录 * 集群许可—容量池 * 集群许可—许可证管理器 * 节点指标 * 软件映像上传 * MetroCluster * 调解器 * 诊断 * 管理 / 创建 * DR 组 * 互连 * 节点 * 操作 * 网络 * 以太网端口指标 * 交换机端口信息 * 交换机 信息 * FC 接口指标 * BGP 对等组 * IP 接口指标 * LIF 服务策略 * SAN* * NVMe 指标</block>
+  <block id="8247996160ef22c569e8e25a5b7d9e01" category="cell">* 安全性 * * FIPS 模式启用 / 禁用 * 数据加密启用 / 禁用 * Azure 密钥存储 * Google GCP-KMS * IP 安全 * 存储 * * 文件复制 / 移动 * NetApp FlexCache ® 修补程序 / 修改 * 监控的文件 * Snapshot 策略 * 存储效率策略 * 文件和目录管理（异步删除， QoS 和文件系统分析） * NAS* * 审核日志重定向 * CIFS 会话 * 文件访问跟踪 / 安全跟踪 * 管理 * * 事件修复 * 对象存储 /S3* S3 存储分段管理 * S3 组 * S3 策略</block>
+  <block id="d79bd7d3f213997532c80d912bfebdab" category="inline-link">Tech OnTap 播客第 266 集： NetApp ONTAP System Manager 9.8</block>
+  <block id="43652db97e64919eb98b834788974bee" category="paragraph">有关 ONTAP 9.8 中 System Manager 更新的详细信息，请参见<block ref="656f3e7eeb3494493d866ec027f9e787" category="inline-link-rx"></block>。</block>
+  <block id="93ea7fcace52704d697a55d44a5121e5" category="section-title">升级和技术更新增强功能— ONTAP 9.8</block>
+  <block id="971c9a410687b4479a92e54dd73b159b" category="paragraph">以往， ONTAP 升级必须在一个或两个主要版本中进行，才能无中断地运行。对于不经常升级的存储管理员来说，当最终升级 ONTAP 时，这将成为一个重大的头痛和后勤噩梦。谁想在维护时段多次升级和重新启动？</block>
+  <block id="95296d0391b47e0106f4764dc8ede6cb" category="paragraph">现在， ONTAP 9.8 支持在两年内升级到 ONTAP 版本。这意味着，如果要从 9.6 升级到 9.8 ，您可以直接执行此操作，而无需转到 ONTAP 9.7 。</block>
+  <block id="13518798be0350523ae2290c568ffb54" category="paragraph">下表提供了 NetApp ONTAP 版本升级的列表。</block>
+  <block id="c9fc5918d5031ae2a84dc85c1392d236" category="cell">起点</block>
+  <block id="eef7e14f6e22593f4a86cdcbcbd79d53" category="cell">直接升级到：</block>
+  <block id="7dd2a92fd3f41a5334edf46f95d77e71" category="cell">ONTAP 9.6</block>
+  <block id="540cc6ee208f4c4501c81dd60eb715d4" category="cell">ONTAP 9.7 ， ONTAP 9.8</block>
+  <block id="3447b91e516e4fc6b5dba827fcb68bee" category="cell">ONTAP 9.7</block>
+  <block id="0f294fd356c8bdf9262282a259eeeaaf" category="cell">ONTAP 9.8 ， ONTAP 9.n+2</block>
+  <block id="2abfff2974f589f7a217325f304e0ec5" category="cell">ONTAP 9.8</block>
+  <block id="547cbd3109db3ef525c301563f0d65f1" category="cell">ONTAP 9.n+1 ， ONTAP 9.n+2</block>
+  <block id="bf901878215dddabdc936ea948793ecb" category="paragraph">这一简化的升级过程还为简化机头升级提供了一种方法。在发售新硬件节点时，此节点已安装最新的 ONTAP 版本。以前，如果现有集群运行的是旧版 ONTAP ，则必须将现有节点升级到与新节点相同的 ONTAP 版本，或者将新节点降级到旧版 ONTAP 。此外，更复杂的是，如果无法降级较新的硬件，则您必须通过维护窗口升级现有集群。</block>
+  <block id="dcaf81f56b0daa7582eca70fdde4e77f" category="paragraph">借助 ONTAP 9.8 的 2 年修订期窗口，现在您可以将新节点添加到 ONTAP 版本在该范围内的集群中，而旧节点将使用无中断聚合重新定位升级过程在后台自动升级到新的 ONTAP 版本。</block>
+  <block id="d62296e71d81556e35f498bde3d79287" category="paragraph"><block ref="d62296e71d81556e35f498bde3d79287" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e3eefd878fd09006803de4818d676916" category="paragraph">此过程还会扩展到集群升级，在此升级中，您需要从集群交换整个 HA 对。借助 ONTAP 9.8 2 年修订期和无中断卷移动，现在便可实现这一点。</block>
+  <block id="98d0faccb32c3ee69ee9e16707900653" category="paragraph">基本步骤如下：</block>
+  <block id="3322839b506fc71adb8aefbadab7176d" category="list-text">将新系统连接到现有集群， ONTAP 版本将在 2 年期限内提供。</block>
+  <block id="a0e8e71bdd1b8c2f43a1f39b6e0c97c2" category="list-text">使用无中断卷移动功能清空节点。</block>
+  <block id="e9e59e8ca3d1116cc6fd0b5e4050ecc3" category="list-text">从集群中取消旧节点的加入。</block>
+  <block id="5af22f594edf92181e2c6f3d1752e93c" category="paragraph"><block ref="5af22f594edf92181e2c6f3d1752e93c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4197d448990c4693fb6975da58c58444" category="inline-link-macro">下一步：数据协议</block>
+  <block id="5d87bb0339311a783fc2f7c4536af142" category="paragraph"><block ref="5d87bb0339311a783fc2f7c4536af142" category="inline-link-macro-rx"></block></block>
+  <block id="67119cf255651ee1066dcd9c394366ae" category="doc">技术资源</block>
+  <block id="e245c544ebad370433034b2761b307e4" category="paragraph">本节介绍详细介绍本文档中所述功能的可用技术资源。</block>
+  <block id="f3fdb00a56777878fa917a490c204f99" category="section-title">技术报告</block>
+  <block id="f9a0e5a019ed35f6590e96cccd997f71" category="inline-link"><block ref="f9a0e5a019ed35f6590e96cccd997f71" category="inline-link-rx"></block></block>
+  <block id="fd1bb4b57d07892ae38470f642f69074" category="paragraph"><block ref="fd1bb4b57d07892ae38470f642f69074" category="inline-link-rx"></block></block>
+  <block id="de3745fcb05140ad0bb3e7389bac298a" category="list-text">TR-4515 ： ONTAP AFF 全 SAN 阵列系统</block>
+  <block id="5f6c7b66730777f9d5cc040c9008804b" category="inline-link"><block ref="5f6c7b66730777f9d5cc040c9008804b" category="inline-link-rx"></block></block>
+  <block id="3a669c2c64a73e8944dd0b62760542b8" category="paragraph"><block ref="3a669c2c64a73e8944dd0b62760542b8" category="inline-link-rx"></block></block>
+  <block id="c62a1ebd89969166bcea805fae6f2dca" category="list-text">TR-4526 ：使用 NetApp SnapLock 的兼容 WORM 存储</block>
+  <block id="68a5b9695a2d4a95c03c220abc11dae0" category="inline-link"><block ref="68a5b9695a2d4a95c03c220abc11dae0" category="inline-link-rx"></block></block>
+  <block id="bbdba979b4a42a588b130b2f8d813c15" category="paragraph"><block ref="bbdba979b4a42a588b130b2f8d813c15" category="inline-link-rx"></block></block>
+  <block id="63a419e94ce5e89636cfdf48da2b7298" category="inline-link"><block ref="63a419e94ce5e89636cfdf48da2b7298" category="inline-link-rx"></block></block>
+  <block id="8701d852e7832857dd816459acac648c" category="paragraph"><block ref="8701d852e7832857dd816459acac648c" category="inline-link-rx"></block></block>
+  <block id="baf8e9fa2301f45f9abf0b6e9dba3e17" category="inline-link"><block ref="baf8e9fa2301f45f9abf0b6e9dba3e17" category="inline-link-rx"></block></block>
+  <block id="f473bc55fb079f0338493530316efc6f" category="paragraph"><block ref="f473bc55fb079f0338493530316efc6f" category="inline-link-rx"></block></block>
+  <block id="394d2dc1906abb1eb0179c8c6517e7f9" category="inline-link"><block ref="394d2dc1906abb1eb0179c8c6517e7f9" category="inline-link-rx"></block></block>
+  <block id="b9afe56f6ed16c1d91815e60e7196e30" category="paragraph"><block ref="b9afe56f6ed16c1d91815e60e7196e30" category="inline-link-rx"></block></block>
+  <block id="0d4778fa4ac07861f93d0d0435b354d1" category="inline-link"><block ref="0d4778fa4ac07861f93d0d0435b354d1" category="inline-link-rx"></block></block>
+  <block id="0dc6c6284d2c41d2e2c2648e08629ebd" category="paragraph"><block ref="0dc6c6284d2c41d2e2c2648e08629ebd" category="inline-link-rx"></block></block>
+  <block id="35be54d72d495f88b67d7487f217d460" category="list-text">TR-4684 ：《使用 NVMe/FC 实施和配置现代 SAN 》</block>
+  <block id="4f29a992f6641bcc5f36d8c3a701b96d" category="inline-link"><block ref="4f29a992f6641bcc5f36d8c3a701b96d" category="inline-link-rx"></block></block>
+  <block id="d4c5d167066f1e72e6b6b1c98b66c55e" category="paragraph"><block ref="d4c5d167066f1e72e6b6b1c98b66c55e" category="inline-link-rx"></block></block>
+  <block id="fa88a29d955ad6bd4b5162276eb45725" category="list-text">TR-4678 ：数据保护和备份— FlexGroup 卷</block>
+  <block id="fb61115c1ac52f462ada88ac13e3ae12" category="inline-link"><block ref="fb61115c1ac52f462ada88ac13e3ae12" category="inline-link-rx"></block></block>
+  <block id="564daef4e624d72370dc00695f413f7f" category="paragraph"><block ref="564daef4e624d72370dc00695f413f7f" category="inline-link-rx"></block></block>
+  <block id="258e44fe8a245b2fe8cb9c4621300a10" category="inline-link"><block ref="258e44fe8a245b2fe8cb9c4621300a10" category="inline-link-rx"></block></block>
+  <block id="88b56262c5b1413e9995f4b8219eab22" category="paragraph"><block ref="88b56262c5b1413e9995f4b8219eab22" category="inline-link-rx"></block></block>
+  <block id="429c0e0f41d9bd95e1c2babc1f5dff37" category="inline-link"><block ref="429c0e0f41d9bd95e1c2babc1f5dff37" category="inline-link-rx"></block></block>
+  <block id="20487f748dd320fa3660c89ce8247be5" category="paragraph"><block ref="20487f748dd320fa3660c89ce8247be5" category="inline-link-rx"></block></block>
+  <block id="7d8308267015e1192f8f54543c1cff58" category="list-text">TR-4743 ： FlexCache in ONTAP</block>
+  <block id="e8066ccf2c8eee8447fe86574ab596f4" category="inline-link"><block ref="e8066ccf2c8eee8447fe86574ab596f4" category="inline-link-rx"></block></block>
+  <block id="f2eeec57b79a1635d780e65d8de96cfe" category="paragraph"><block ref="f2eeec57b79a1635d780e65d8de96cfe" category="inline-link-rx"></block></block>
+  <block id="69f6754f98b080f6ec8c418cbb75f7a6" category="list-text">TR-4814 ：《 ONTAP 最佳实践中的 S3 》</block>
+  <block id="57656e67f8e95a739410310dfea5cff5" category="inline-link"><block ref="57656e67f8e95a739410310dfea5cff5" category="inline-link-rx"></block></block>
+  <block id="9c7c00a4655a87484f67dd92816b6d1d" category="paragraph"><block ref="9c7c00a4655a87484f67dd92816b6d1d" category="inline-link-rx"></block></block>
+  <block id="9bf72350632fdc8eedb8dc474f164954" category="section-title">播客</block>
+  <block id="d94090d112ca04c7dfa38204326a3587" category="list-text">Tech OnTap 播客第 288 集： ONTAP System Manager 9.9.1</block>
+  <block id="7379413ab01738b3d48f132dec591c80" category="inline-link"><block ref="7379413ab01738b3d48f132dec591c80" category="inline-link-rx"></block></block>
+  <block id="e10e59ff9a39fe83b615d336f0436894" category="paragraph"><block ref="e10e59ff9a39fe83b615d336f0436894" category="inline-link-rx"></block></block>
+  <block id="bfac8391ecb69c9683802f91efbaa01d" category="summary">此页面简要介绍了 ONTAP 9.8 中的最新功能，并提供了指向更多信息的链接。</block>
+  <block id="dc045029ce50230f0888e98f16639593" category="doc">TR-4872 ：《 NetApp ONTAP 9.8 功能概述》</block>
+  <block id="946d5cdc30684f8f89c0d75cf98a1c7a" category="paragraph">NetApp ONTAP 是 NetApp 行业领先的旗舰级数据管理软件，无论数据位于内部，边缘还是云端，均可帮助您无缝管理和保护数据。</block>
+  <block id="0499d71f2d1433cbecaa4df6da9a9d07" category="paragraph">这不是一个全面的列表；如果我们包括 ONTAP 提供的所有功能，本文档将长达数百页。</block>
+  <block id="b8891129cb3bcf5e407a67d926f3bd1e" category="inline-link">产品文档</block>
+  <block id="dc97535f4baad31c5aa6a4ad34af7fa4" category="paragraph">有关 NetApp ONTAP 的更多详细信息，请参见<block ref="9f226f00b05919fb270a59d22a5cd7f4" category="inline-link-rx"></block> 和<block ref="4999d0b02640878dbb16ab53ac61b6cb" category="inline-link-rx"></block>。</block>
+  <block id="421b47ffd946ca083b65cd668c6b17e6" category="inline-link-macro">视频</block>
+  <block id="977f9af52e0c6545d37eb87a937be4ce" category="paragraph">请查看此信息 <block ref="1c11b77240028ba09b23c9cbd776f7d6" category="inline-link-macro-rx"></block> 从 NetApp Insight 2020 开始，您可以更广泛地了解 NetApp ONTAP 的显著进步。</block>
+  <block id="66dca8fa10bd71c9ca96e8b721a9e8fd" category="inline-link-macro">接下来：简化增强功能</block>
+  <block id="932b1d742729c7c02163916b420acf6b" category="paragraph"><block ref="932b1d742729c7c02163916b420acf6b" category="inline-link-macro-rx"></block></block>
+  <block id="e2730b4b16b542d570a14e165c32040a" category="summary">除了 System Manager 增强功能， SAN 增强功能和数据保护增强功能之外， ONTAP 9.1.1 还新增了一些重要功能。</block>
+  <block id="e09228da4cf9af4662ba2bd6dc9b718e" category="doc">其他主要新增功能</block>
+  <block id="ce1f253b3e8406a229e17f04a0d1384e" category="section-title">逻辑空间核算 / 强制实施— FlexGroup 卷</block>
+  <block id="aa11529fd8937f92c812532790bddd05" category="paragraph">ONTAP 9.4 中为 FlexVol 卷引入了逻辑空间核算。它使存储管理员能够屏蔽存储效率节省的空间，以避免最终用户过度分配其指定的存储配额。</block>
+  <block id="7c525ed05aaa2f43b69b292e6005b9f5" category="paragraph">例如，如果用户向 10 TB 卷写入 6 TB ，而存储效率节省 2 TB ，则逻辑空间核算可以控制用户是看到 6 TB 还是 4 TB 。</block>
+  <block id="36dc06af5a50ce891352f1279a37560f" category="paragraph"><block ref="36dc06af5a50ce891352f1279a37560f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="161ae7784e7c33f797a5d12b85041d5b" category="paragraph">ONTAP 9.5 增强了此功能，并增加了对 FlexVol 的配额强制实施支持，通过防止根据设置的逻辑空间阈值写入新数据，可以更好地控制存储管理员。但是，在 ONTAP 9.1.1 之前， FlexGroup 卷缺少此功能。</block>
+  <block id="f0dc3db8fc85f77044d03aeb89cad2ab" category="section-title">ONTAP S3 用户定义的元数据标记</block>
+  <block id="a21c21726567dbfce7d25fa6c664b623" category="paragraph">ONTAP 9.8 为基本对象存储功能引入了对 S3 协议的支持。</block>
+  <block id="36f830363ac6152539998a4b21082d64" category="paragraph">ONTAP 9.8 支持 S3 ：</block>
+  <block id="fc692306795250564dc0c1297db74cb8" category="list-text">基本的 PUT 或 GET 对象访问（不包括从同一个存储分段同时访问 S3 和 NAS ）</block>
+  <block id="55cf1a0f0fce69fd543500e5761dd26d" category="inline-link">NetApp StorageGRID</block>
+  <block id="ae1ddfca72e5fb02e38e59b114666324" category="list-text">不支持对象标记或 ILM ；对于功能丰富的全局分散 S3 ，请使用<block ref="4b3b56c63d2b9235e663818a1cac17f9" category="inline-link-rx"></block>。</block>
+  <block id="dba43d7c8afa3982c019c756dce5c3e3" category="list-text">TLS 1.2 加密</block>
+  <block id="3942fcbd11aa7dc6fba8b55cc23b08c7" category="list-text">多部分上传</block>
+  <block id="7344f6e186a2777a085989b741ac601d" category="list-text">可调整端口</block>
+  <block id="c83e216af116b63a713ab404d97b464c" category="list-text">每个卷具有多个存储分段</block>
+  <block id="e05e762dcb97ecc30903279b2951e46a" category="list-text">存储分段访问策略</block>
+  <block id="5f8ff2246856ef5509fa3a19b7b37092" category="list-text">S3 作为 NetApp FabricPool 目标</block>
+  <block id="d75dd9480c1e02c0cd0891b1bfda97d4" category="paragraph">ONTAP 9.9.1 及更高版本支持在使用 ObjectCreate 和 MultiPartUpload 调用时对对象进行元数据标记。对对象执行 head 或 get 时，用户定义的元数据和标记数将作为响应中 HTTP 标头的一部分返回。通过这些标记，您可以更好地对 ONTAP 分段中的对象进行分类，以实现更强大的数据管理，并且与需要创建元数据和标记的应用程序兼容。</block>
+  <block id="589ba26c9a47881118a70682e545eb97" category="paragraph">有关详细信息，请参见以下资源：</block>
+  <block id="77961f6571e69e01de2586a921082c7f" category="inline-link">Tech OnTap 播客：第 268 集— FabricPool 9.8 中的 NetApp ONTAP 和 S3</block>
+  <block id="e20a70920148379694793caa93187452" category="list-text"><block ref="e20a70920148379694793caa93187452" category="inline-link-rx"></block></block>
+  <block id="1716834171e243de0f898a67621b6624" category="inline-link">ONTAP S3</block>
+  <block id="47b64b54719e3145975341a2d06de20b" category="list-text"><block ref="47b64b54719e3145975341a2d06de20b" category="inline-link-rx"></block></block>
+  <block id="eb002b95c1c1f2383ac69c0a3a972b3c" category="section-title">NFSv4.2 安全标签</block>
+  <block id="f3237a8e139934aa19b02307cd7ce312" category="inline-link">RFC-7204</block>
+  <block id="5ad5f311453b9fd7e84292baf8c169a4" category="paragraph">ONTAP 9.9.1 支持称为标记 NFS 的 NFSv4.2 功能，该功能可通过 SELinux 标签和强制访问控制（ MAC ）管理粒度文件和文件夹访问。这些 MAC 标签与文件和文件夹一起存储，并与 UNIX 权限和 NFSv4.x ACL 结合使用。支持带标签的 NFS 意味着 ONTAP 现在可以识别并了解 NFS 客户端的 SELinux 标签设置。中介绍了标记的 NFS<block ref="14d3fe6356a7fc9520aaaeecd94ae1fa" category="inline-link-rx"></block>。</block>
+  <block id="a82cf5510a20197f2c1fcff035d6478e" category="paragraph">使用情形包括：</block>
+  <block id="cf47b754d6e9fe31a3e05c52c081725d" category="list-text">虚拟机映像的 MAC 标记</block>
+  <block id="d88819a259b5e3fc2256962fc6008bd5" category="list-text">公有扇区的数据安全分类（机密，顶级机密等）</block>
+  <block id="e02212e6c842f974f567020cbabb8e1b" category="list-text">安全合规性</block>
+  <block id="c0640a2bd1e8f0e53e94e1e457934ebd" category="list-text">无磁盘 Linux</block>
+  <block id="6ff76fd3b528e182bac65e45beb2d7fc" category="paragraph">在此版本中， ONTAP 支持以下强制实施模式：</block>
+  <block id="94ff7e778b515d8d586c4af063c95dd1" category="inline-link">受限服务器模式</block>
+  <block id="8cbdf26fe815adf2d85f2a53f3c8bd95" category="list-text"><block ref="183ce96ea05fb63768596a250fd81a18" category="inline-link-rx"></block>。ONTAP 无法强制实施标签，但可以存储和传输这些标签。</block>
+  <block id="2d66fa3e6dd1b10a5fa536255eb04246" category="list-text">更改 MAC 标签的功能也由客户端强制实施。</block>
+  <block id="d61d386a898fc5b9a058781ee7a52481" category="inline-link">子系统模式</block>
+  <block id="9b7f9b5189c2fed0e4bd14f44f43616f" category="list-text"><block ref="f132d61a4ca479bc19bcd1bbfa4cb0c3" category="inline-link-rx"></block>。如果客户端未标记为 NFS 感知型（ v4.1 或更低版本），则不会传输 MAC 标签。</block>
+  <block id="9393fabdafbf46e10c0fb15962155408" category="inline-link">完整模式</block>
+  <block id="44e3f518913757f513f5d30d56b36053" category="paragraph">ONTAP 当前不支持<block ref="5e9abc8e6304446e1ef9117174db5bc2" category="inline-link-rx"></block> （存储和强制实施 MAC 标签）。</block>
+  <block id="de2f0bf3ebee995674ce3c76cbd7e038" category="summary">此页面包含与 ONTAP 9.8 相关的各种技术资源的链接。</block>
+  <block id="7893283737e4b828f7f7328c574a23e9" category="inline-link"><block ref="7893283737e4b828f7f7328c574a23e9" category="inline-link-rx"></block></block>
+  <block id="9ce4965137976f7e15ce05a9432de0e8" category="paragraph"><block ref="9ce4965137976f7e15ce05a9432de0e8" category="inline-link-rx"></block></block>
+  <block id="4fe750b3298967a76ad3cae9b2a9b1f9" category="inline-link"><block ref="4fe750b3298967a76ad3cae9b2a9b1f9" category="inline-link-rx"></block></block>
+  <block id="b2af81c932fcdc2b9d072c117c630dd1" category="paragraph"><block ref="b2af81c932fcdc2b9d072c117c630dd1" category="inline-link-rx"></block></block>
+  <block id="62ad678b89640a8f51267bc2a1bfc861" category="inline-link"><block ref="62ad678b89640a8f51267bc2a1bfc861" category="inline-link-rx"></block></block>
+  <block id="eadfa31f97ee554bf720d05fdb7eb146" category="paragraph"><block ref="eadfa31f97ee554bf720d05fdb7eb146" category="inline-link-rx"></block></block>
+  <block id="295f11f14b6f3718e07d44a9a30fd37d" category="inline-link"><block ref="295f11f14b6f3718e07d44a9a30fd37d" category="inline-link-rx"></block></block>
+  <block id="3e017b5b2f028e6c43f8926c592867fd" category="paragraph"><block ref="3e017b5b2f028e6c43f8926c592867fd" category="inline-link-rx"></block></block>
+  <block id="7939367cde7461ebf23eebeb9e061adf" category="inline-link"><block ref="7939367cde7461ebf23eebeb9e061adf" category="inline-link-rx"></block></block>
+  <block id="deb52e558d6375117f733545c4203489" category="paragraph"><block ref="deb52e558d6375117f733545c4203489" category="inline-link-rx"></block></block>
+  <block id="76a7b203121b98d0eee4bfeb001709ee" category="inline-link"><block ref="76a7b203121b98d0eee4bfeb001709ee" category="inline-link-rx"></block></block>
+  <block id="cf772e897f0446394758039ef3d6255f" category="paragraph"><block ref="cf772e897f0446394758039ef3d6255f" category="inline-link-rx"></block></block>
+  <block id="7b4245db3752a93e7bc205dbeb7eacb2" category="summary">此页面介绍了允许客户端和最终用户与 ONTAP 存储系统进行交互以访问数据的数据协议。</block>
+  <block id="8d5ebef80a05591650f454a9fe902118" category="doc">数据协议</block>
+  <block id="2ce934b6b00f7a3fff62e20fc7e73272" category="paragraph">数据协议是指客户端和最终用户与 NetApp ONTAP 存储系统进行交互以访问数据的方法。NetApp ONTAP 为同一存储平台中的数据访问提供了多个官方支持的接口，其中包括：</block>
+  <block id="c07ee5debf5f3a3fef16c1ee5e8e4942" category="list-text">NAS</block>
+  <block id="62a0282d39568be094470486eaf70c4f" category="list-text">SAN</block>
+  <block id="e2ab7c65b21ed8cc1c3b642b5e36429e" category="list-text">S3</block>
+  <block id="938ae2cf64ea688b529a649875b563cf" category="paragraph">ONTAP 9.8 为 ONTAP 数据协议提供了一系列增强功能。</block>
+  <block id="6ba07695b5fb9cb31db2f85e246fdd44" category="section-title">NAS 协议增强功能</block>
+  <block id="24024f1fe0c9234b68f09750ea56d17f" category="paragraph">网络连接存储（ NAS ）协议是指基于文件的传输方法，例如 NFS 和 SMB/CIFS 。ONTAP 9.8 增加了以下增强功能，以支持 NAS 协议，以及专门适用于 NAS 的功能，例如 NetApp FlexGroup 和 FlexCache 卷。</block>
+  <block id="53d0d9899e7499ea899cf9907c444edb" category="section-title">NFS 增强功能</block>
+  <block id="1d48bb11d3c1d5d9847e75c624fb1d62" category="paragraph">ONTAP 9.8 提供了以下 NFS 增强功能：</block>
+  <block id="fa7a070650156ec63c69224be48bea30" category="list-text">* NFSv4.2* 提供基本的 NFSv4.2 协议支持，不包括标签等 NFSv4.2 功能。如果启用了 NFSv4.1 ，则会启用 NFSv4.2 。</block>
+  <block id="ecb6d3ab9c6e3b8c0e4dccb0426a9dd3" category="list-text">* qtree 服务质量（ QoS ）。 * 为存储管理员提供了一种在 ONTAP 中对 qtree 应用 QoS 最大值和最小值的方法。此功能目前仅适用于 REST API 和命令行，不包括自适应 QoS 支持，并且仅适用于 NFS 。</block>
+  <block id="c2344d9bfe3f8fc1d9c1682001347c8d" category="section-title">SMB/CIFS 增强功能</block>
+  <block id="8eab9879bbfa931d5617dd42b99b0d91" category="paragraph">ONTAP 9.8 提供了以下 SMB/CIFS 增强功能：</block>
+  <block id="ee6f21637e4c9cf6960010ad517b475d" category="list-text">* SMB3 加密的 DC 连接。 * SMB DC 连接的线缆加密。</block>
+  <block id="c84a7558936386075ec4443a42f7c8ec" category="inline-link">1153207.</block>
+  <block id="b5a13c946f131f32d9d33c47742ab1cb" category="list-text">* 将 SID 映射到集所有者上的 UID （ -map- sid-to - uid-on-set-owner ）。 * 此选项用于控制 ONTAP 在设置文件和文件夹所有权时是否将 Windows SID 映射到 UNIX UID 。添加此选项是为了改善 Active Directory 服务器负载增加的客户的数据迁移体验。默认值为 `true` 。（错误修复<block ref="7256f456f45c40d15384e8b37c069740" category="inline-link-rx"></block>）</block>
+  <block id="e1e64672094057370c798d765ba38ad5" category="inline-link">错误 820848</block>
+  <block id="fa278c0f14461c10ce31270fba0f4cf0" category="list-text">继承 NFSv4_ACL 时设置移动项（ -is-here-modeITS-with -nfsv4acl-enabled ） * 。如果在 NFSv4 ACL 已删除默认值 `owner@` ， `Group@` 和 `everyone@` ACL 或这些 ACL 未设置继承标志的目录中创建 SMB 文件，则支持多协议 NAS 交互。默认值为 `false` 。（修复<block ref="33ad2b0f244f0fab09b3017ba202f8cb" category="inline-link-rx"></block>）</block>
+  <block id="8284a5c04de289c4e5980cd88bec973b" category="section-title">FlexCache 卷增强功能</block>
+  <block id="d1d5dafc45c04e7055a685f57db5bf2a" category="paragraph">NetApp FlexCache 卷是由 NetApp FlexGroup 卷组成的稀疏虚拟缓存。这些缓存可指向原始卷，并应客户端的请求将数据填充到缓存中，以便在运行 ONTAP 的任何位置提供快速的本地化访问―无论是在云端，边缘还是在数据中心―中，均可提供真正的全局命名空间。</block>
+  <block id="02d3716df1ad76d55387201d981c9d32" category="paragraph"><block ref="02d3716df1ad76d55387201d981c9d32" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d0ad1957ce9751a1f6c4658c285da264" category="paragraph">有关 FlexCache 卷的详细信息，请参见<block ref="076477ecf83c2a174b415736cacf2cbb" category="inline-link-rx"></block>。</block>
+  <block id="455ed1cbdd66c4aad67b470e402e9c71" category="paragraph">ONTAP 9.8 提供了以下 FlexCache 卷增强功能：</block>
+  <block id="c1f698caab4ea1ffe5f457737c62661c" category="list-text">* 支持 SMB/CIFS 。 * NetApp FlexCache 现在支持对 NFSv3 和 SMB 客户端的缓存访问以及多协议 NAS 数据访问。FlexCache 可用于对读取量大的工作负载进行多站点分布式本地化文件锁定。</block>
+  <block id="38bebec2ebf0b5f53b12c1d39ed3adba" category="list-text">* 提高了 FlexCache 扇出比率。 * ONTAP 9.8 提供了 100 ： 1 的扇出比率。以前，该比率为 10 ： 1 。</block>
+  <block id="6ae9fa4926e960bdc2c84a9b1e4089c3" category="list-text">* 具有 SnapMirror 二级源的 FlexCache 卷。 * FlexCache 卷现在可以连接到 SnapMirror 二级卷，从而可以从主存储系统中卸载读取操作，并提供一个地理位置更本地化的初始卷。</block>
+  <block id="b4654185ead5f41183c09c57ec028ae7" category="list-text">* 块级缓存失效。 * 现在，只会逐出已更改的块，而不是在从缓存中逐出已更改的数据时使整个文件失效。这样可以节省容量和 WAN 流量负载。</block>
+  <block id="1f151ebd321b65abba881741a831a8be" category="list-text">* 预填充缓存。 * 如果您知道某个卷中的某个目录将经常访问，则现在可以使用该目录的内容预先填充缓存，以消除初始客户端访问的延迟。</block>
+  <block id="2b3254788d7cc3986b81dc329e429d33" category="section-title">FlexGroup 卷增强功能</block>
+  <block id="327f0903ce3969f74b60afb9a93421a2" category="paragraph"><block ref="327f0903ce3969f74b60afb9a93421a2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f4985a8c77a3bdce3afcd993e74a2b27" category="paragraph">ONTAP 9.8 提供了以下 FlexGroup 卷增强功能：</block>
+  <block id="e9d999101d610c00afd029313a511d0a" category="list-text">* 支持 1 ， 023 个 Snapshot 。 * 现在， NetApp FlexGroup 卷的每个卷最多可包含 1 ， 023 个 Snapshot 副本。通过增加 Snapshot 副本， FlexGroup 卷可以作为归档目标变得更加可行，可以频繁保留更多快照，并且现在可以支持 FlexVol 转换，而 Snapshot 副本 ID 大于 255 。</block>
+  <block id="4286bdc455e42efda8cbcf90aa2a0e9b" category="list-text">* NDMP 增强功能。 * ONTAP 9.7 增加了对 FlexGroup 卷的 NDMP 支持，但缺少以下功能选项：</block>
+  <block id="12e4e80c85e500edf31b2be21d429285" category="list-text">ONTAP 9.8 增加了对 NDMP 的支持</block>
+  <block id="4f34e973c167c2296f66c7986cb558f8" category="list-text">排除</block>
+  <block id="1dd4143d47e86f2d7449ec6f2b7a4a5d" category="list-text">可重新启动的备份扩展（ RBE ）</block>
+  <block id="c84d591b64c03eba23535bdae50d9610" category="list-text">多子树名称</block>
+  <block id="4a02475d909bd7464565a63664e4dc8b" category="list-text">性能增强</block>
+  <block id="a6c7543dfa050a56e392a7dd1324e61a" category="paragraph">有关 FlexGroup 卷和 NDMP 的详细信息，请参见<block ref="d3c9fb1f0e682f51443e0d041a0d593e" category="inline-link-rx"></block>。</block>
+  <block id="552b637a319f6d9909211c640e6c31b7" category="list-text">* 支持 FlexGroup 转换 7MTT 卷。 * 在 ONTAP 9.8 之前，无法将已从 7- 模式过渡到 FlexGroup 卷的 FlexVol 转换为 卷。ONTAP 9.8 取消了此限制。</block>
+  <block id="47f418d69c63302ac9982145204cf118" category="list-text">* 主动式调整大小。 * 主动式调整大小是一项容量管理功能，可在 FlexGroup 成员卷中保持可用空间缓冲区，以确保性能和容量分布一致。</block>
+  <block id="86592811858f36e0d2ca3441a4294257" category="list-text">* 文件克隆。 * 现在，您可以通过 VAAI 副本卸载支持使用 VMware vSphere 克隆 FlexGroup 卷中的文件。但是，目前不支持使用 REST API 或 CLI 进行文件克隆。</block>
+  <block id="97c083c1ec596fe0c37f25fd78f2c4da" category="list-text">* 支持 VMware 数据存储库。 * ONTAP 9.8 现在正式支持将 FlexGroup 卷作为可扩展的 VMware 数据存储库。这意味着：</block>
+  <block id="09f5e66f7a5816c68fee09569d4847a4" category="list-text">Virtual Storage Console 支持</block>
+  <block id="46a6cf7676550524a9fadb895f1c21a2" category="list-text">NetApp SnapCenter 备份支持</block>
+  <block id="2c8baf1a96103df2531d21cd360d0a07" category="section-title">异步删除</block>
+  <block id="fb1345b3bfe7b62f0692cd7456b26d9a" category="paragraph">通过异步删除，存储管理员可以通过从 CLI 中删除目录来绕过网络延迟。</block>
+  <block id="41fa5cdcbc83f0b42255f378e35b6552" category="paragraph">如果您曾经尝试过通过 NFS 或 SMB 删除包含许多文件的目录，您就会知道这可能是多么痛苦。每个操作都必须通过您正在使用的 NAS 协议通过网络传输，然后 ONTAP 必须处理这些请求并做出响应。根据可用网络带宽，客户端规格或存储系统，此过程可能需要很长时间。异步删除可节省大量时间，并使客户端能够更快地恢复工作。</block>
+  <block id="24b0a8fd0cb22c94f89508432c25376c" category="inline-link">TR-Windows ：《 NetApp FlexGroup 卷最佳实践》</block>
+  <block id="86d3f38aa36f990006cc246e1038b47e" category="paragraph">有关异步删除的详细信息，请参见<block ref="9e081dbdea624065103d3f814d658a51" category="inline-link-rx"></block>。</block>
+  <block id="b4077bd87ec4e992e2f43377b98ad996" category="section-title">SAN 增强功能</block>
+  <block id="2ef7f6997f5c381d6ea9a8f1b98ea214" category="paragraph">存储区域网络（ SAN ）协议是指基于块的数据传输方法，例如光纤通道上的 FCP ， iSCSI 和 NVMe 。为支持 SAN 协议， ONTAP 9.8 增加了以下增强功能。</block>
+  <block id="08000f73dcb4e96db6e1c3d459ec3a17" category="section-title">全 SAN 阵列（ ASA ）</block>
+  <block id="b7b46ce5d1a547db89c0bc615ff272a5" category="inline-link">ASA</block>
+  <block id="bdc3f9b0236b3833345320a05d446f7b" category="paragraph">ONTAP 9.7 引入了一个新的专用 SAN 平台，称为<block ref="ae8a947d75e8d758b28ac539f9f2aeb9" category="inline-link-rx"></block>，旨在通过主动 / 主动 SAN 连接方式简化第 1 层 SAN 部署，同时显著缩短 SAN 环境中的故障转移时间。</block>
+  <block id="91341952eb4d85a106a7151a09e4b35b" category="inline-link">全 SAN 阵列文档资源</block>
+  <block id="8f02ab5a9beec7a32d1ae90c89218782" category="paragraph">有关 ASA 的详细信息，请参见<block ref="bea038af710a49dcacc22a0a34fbba31" category="inline-link-rx"></block>。</block>
+  <block id="eb158141d7261a0720aea7db8d4c10b5" category="paragraph">ONTAP 9.8 为 ASA 提供了一些增强功能，包括以下功能：</block>
+  <block id="d314d0ed62777447640cdda0a36c0bd9" category="list-text">* 更大的 LUN 和 FlexVol 卷大小。 * ASA 上的 LUN 现在可以配置为 128 TB ； FlexVol 卷可以配置为 300 TB 。</block>
+  <block id="02a5798e9fd8e73d2c246481cc57cb18" category="list-text">* 基于 IP 的 MetroCluster 支持。 * ASA 现在可用于通过 IP 网络进行站点故障转移。</block>
+  <block id="7ed96461e4ce540aad503209b1a20ff8" category="list-text">* 支持 SnapMirror 业务连续性（ SM-BC ）。 * ASA 可与 SnapMirror 业务连续性结合使用。参考</block>
+  <block id="dc351b2abbd920b35cff990b6582b9d7" category="inline-link">互操作性表</block>
+  <block id="be74048bdc6c07521b1d9104477fd674" category="list-text">* 主机生态系统扩展。 * 支持 HP-UX ， Solaris 和 AIX 。请参见<block ref="77ce033dde503961e66ef4a70da4187a" category="inline-link-rx"></block> 了解详细信息。</block>
+  <block id="4aa79ff83043a84d6150b763b9923f51" category="list-text">* 支持 A800 和 A250 平台。 *</block>
+  <block id="aa763f4820056dcaa10f9455bb548821" category="list-text">* 在 System Manager 中简化配置。 *</block>
+  <block id="836cbb32fba49c5537ed5fea2d2f74a2" category="section-title">永久性端口</block>
+  <block id="2ea08603579b62946f894beb90d28827" category="paragraph">ASA 增加了一项称为永久性端口的增强功能，用于缩短故障转移时间。ONTAP 中的永久性端口可为连接到 ASA 的 SAN 主机提供更强的故障恢复能力和持续的数据访问。ASA 上的每个节点都维护影子光纤通道 LIF 。此功能对于 ONTAP 9.8 如何更好地减少 ASA 的 SAN 故障转移时间至关重要。这些 LIF 保持配对 LIF 的相同 ID ，但它们仍处于备用模式。如果发生故障转移，并且必须将 FC LIF 迁移到配对节点，则卷影 LIF 将成为新路径，而不是更改 ID （这可能会增加故障转移时间，而主机协商更改）。主机在同一路径，同一 ID 上继续 I/O ，而不会发出链路关闭通知，也不需要进行任何其他配置。</block>
+  <block id="b915bda06b0f8cae50a670b915993bd7" category="paragraph">下图提供了永久性端口的故障转移示例。</block>
+  <block id="acdafc88606e5d9dfab2fc52c02b7177" category="paragraph"><block ref="acdafc88606e5d9dfab2fc52c02b7177" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="26bcb9f1cb6f391f4b2c18e676bb458d" category="section-title">NVMe/FC</block>
+  <block id="396d68b2509d6991d0d5ec4d6b449048" category="paragraph">NVMe 是一种新的 SAN 协议，与传统 FCP 和 iSCSI 相比，它有助于提高块工作负载的延迟和性能。</block>
+  <block id="62c0367253812fce2a5351fc0d4d4e73" category="inline-link">在实施基于网络结构的 NVMe 时，网络结构确实至关重要</block>
+  <block id="4254fade971e163f399ccf98c71e7987" category="paragraph">本博客很好地介绍了这一点：<block ref="c488a71c31854abf123fa4d720fc1042" category="inline-link-rx"></block>。</block>
+  <block id="e9a7cfcb52ea149a563d3399ad36a974" category="paragraph">NetApp 在 ONTAP 9.4 中引入了对基于光纤通道的 NVMe 的支持，并在每个版本中添加了增强功能。ONTAP 9.8 增加了以下内容：</block>
+  <block id="08f28daedf210813841fea24a6df9b0b" category="list-text">* 使用 FCP 和 iSCSI 在同一 SVM 上运行 NVMe/FC 。 * 现在，您可以在与其他 SAN 协议相同的 SVM 上使用 NVMe/FC ，从而简化 SAN 环境的管理。</block>
+  <block id="42232ad864f1b4c443fa7860a434ce26" category="list-text">* 第 7 代 SAN 交换机网络结构支持。 * 此功能增加了对较新的第 7 代 SAN 交换机的支持。</block>
+  <block id="18c17719af6c3fc142958b39fb41e282" category="section-title">S3 增强功能</block>
+  <block id="1f340a52e43f9a3eeb8b8f2b5f6b4477" category="paragraph">使用 S3 协议的对象存储是 ONTAP 协议系列的最新成员。S3 作为公有预览版在 ONTAP 9.7 中添加，现在是 ONTAP 9.8 中完全支持的协议。</block>
+  <block id="4ca362666a17cdd53b7ea6acbd4b202a" category="paragraph">对 S3 的支持包括以下内容：</block>
+  <block id="d637e5c69c5bd0d3932d2fe7a13b8ee5" category="list-text">S3 作为 NetApp FabricPool 目标有关详细信息，请参见以下资源：</block>
+  <block id="2683d093ee73504d81f0a81895ae03a4" category="inline-link-macro">接下来：存储效率</block>
+  <block id="894993270da66c4f1f40a52bc9a89e53" category="paragraph"><block ref="894993270da66c4f1f40a52bc9a89e53" category="inline-link-macro-rx"></block></block>
+  <block id="7eb11865313a79b30293e6f823bc7459" category="sidebar">NetApp ONTAP 9.9.1 功能概述</block>
+  <block id="bebab3b123211d2c00c685855ec9b053" category="sidebar">NetApp ONTAP 9.8 功能概述</block>
+</blocks>

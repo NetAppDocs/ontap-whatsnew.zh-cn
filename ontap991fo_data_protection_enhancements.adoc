@@ -1,0 +1,135 @@
+---
+sidebar: sidebar 
+permalink: ontap991fo_data_protection_enhancements.html 
+keywords: replication, failover, disaster recovery, dr, synchronous, backup, archive 
+summary: 在本文档中，数据保护既指异地复制数据的概念，也指自动站点基础架构故障转移。本节介绍 ONTAP 9.1.1 的最新数据保护增强功能。 
+---
+= 数据保护增强功能
+
+
+在本文档中，数据保护既指异地复制数据的概念，也指自动站点基础架构故障转移。本节介绍 ONTAP 9.1.1 的最新数据保护增强功能。
+
+
+
+== 通过 SnapMirror 业务连续性为 SAN 实现透明的应用程序故障转移
+
+NetApp SnapMirror 是一种行业领先的复制技术，可用于各种使用情形，其中包括：
+
+* 灾难恢复，可在中断期间快速进行站点故障转移，并快速重新同步回主站点
+* 同步复制，在远程站点上创建一秒内的数据副本
+* 备份和归档使用情形（目标上的 Snapshot 副本多于源上的 Snapshot 副本）
+
+
+https://docs.netapp.com/us-en/ontap/smbc/["ONTAP 中的 SnapMirror 业务连续性"^] 扩展了 SnapMirror 的功能，并为同步 SnapMirror 关系提供了快速，轻松的自动故障转移功能，从而实现应用程序级粒度数据保护。
+
+SnapMirror 业务连续性可利用调解器在站点之间保持仲裁，并避免发生站点故障时出现脑裂情况。ONTAP 调解器软件版本（ 1.2 ）现已推出，可支持多达 10 个 ONTAP 系统，并可在发生故障后 120 秒内自动在站点之间切换应用程序。
+
+image:ontap991fo_image11.png["错误：缺少图形映像"]
+
+
+
+== 基于 IP 的 MetroCluster
+
+NetApp MetroCluster （ MC ）软件是一款解决方案，它将基于阵列的集群与同步复制相结合，以最低的成本实现持续可用性和零数据丢失。由于消除了通常与基于主机的集群相关的依赖关系和复杂性，因此管理基于阵列的集群变得更加简单。
+
+image:ontap991fo_image12.png["错误：缺少图形映像"]
+
+MetroCluster 会立即逐个事务复制所有任务关键型数据，从而可以无中断地访问应用程序和数据。与标准数据复制解决方案不同， MetroCluster 可与主机环境无缝协作，提供持续的数据可用性，同时无需创建和维护复杂的故障转移脚本。
+
+使用 MetroCluster ，您可以执行以下任务：
+
+* 通过透明切换防止出现硬件，网络或站点故障
+* 消除计划内和计划外停机和变更管理
+* 升级硬件和软件，而不会中断操作
+* 部署时无需依赖复杂的脚本，应用程序或操作系统
+* 实现 VMware ， Microsoft ， Oracle ， SAP 或任何关键应用程序的持续可用性
+
+
+传统上， NetApp MetroCluster 是通过光纤通道后端实施的，但较新版本的 ONTAP 支持使用 IP 网络作为后端。这样不仅可以降低站点故障转移基础架构的成本和复杂性，还可以将 MetroCluster 的范围扩展到大约 700 公里（或 300 英里）。
+
+ONTAP 9.9.1 为 MetroCluster 带来了以下改进。
+
+* 将每个 HA 对的卷数增加到 1600 个
+* 共享第 3 层网络
++
+** 不再依赖于专用的第 2 层网络
+** ONTAP 必须直接连接到路由器
+** 不支持动态路由
+
+
+* 增加每个站点的节点数（每个站点四个，每个集群八个）
+
+
+
+
+=== 何时选择 MetroCluster 与 SnapMirror 业务连续性
+
+由于 MetroCluster 和 SnapMirror 业务连续性具有一些相同的功能集（能够利用现有 IP 网络，自动故障转移，同步复制），因此 " 何时应使用每个 " 这一问题就变得更加相关了。
+
+问题解答取决于以下问题。
+
+* 您的服务级别目标是什么？
+* 您希望故障转移的粒度如何？
+
+
+MetroCluster 为 HA 对和物理聚合提供自动化基础架构故障转移，并支持 SAN 和 NAS 工作负载，而 SnapMirror 业务连续性仅为 SAN 工作负载提供应用程序级粒度。
+
+有关基于 IP 的 MetroCluster 的详细信息，请参见 https://www.netapp.com/pdf.html?item=/media/13481-tr4689pdf.pdf["MetroCluster IP 解决方案架构和设计"^]。
+
+有关 SnapMirror 业务连续性的详细信息，请参见 https://docs.netapp.com/us-en/ontap/smbc/["ONTAP 中的 SnapMirror 业务连续性"^]。
+
+
+
+== FlexGroup 卷数据保护
+
+FlexGroup 卷是 NetApp ONTAP 横向扩展 NAS 解决方案，可在一个命名空间中提供高达 20 PB 和 4 ， 000 亿个文件，同时可对载入量最高的工作负载进行自动负载平衡并行处理，实现容量，性能和精简性的完美结合。
+
+image:ontap991fo_image13.png["错误：缺少图形映像"]
+
+有关 FlexGroup 卷的详细信息，请参见 https://www.netapp.com/us/media/tr-4571.pdf["TR-4571 ：《 NetApp FlexGroup 卷最佳实践》"^]。
+
+在 ONTAP 9.1.1 中， FlexGroup 卷支持多种数据保护配置。
+
+
+
+=== 级联和扇出 SnapMirror
+
+通过 SnapMirror 级联，存储管理员可以串行复制到多个站点。例如，站点 A 可以复制到站点 B （内部或云），然后站点 B 可以将同一个卷复制到站点 C （内部或云）。
+
+image:ontap991fo_image14.png["错误：缺少图形映像"]
+
+SnapMirror 扇出可以从一个源卷复制到多个目标卷。因此，站点 A 可以将源 FlexGroup 复制到站点 B 和 C （内部或云）。这样可以提高数据保护配置的灵活性和故障恢复能力。
+
+image:ontap991fo_image15.png["错误：缺少图形映像"]
+
+
+
+=== Storage Virtual Machine 灾难恢复（ SVM-DR ）
+
+SVM-DR 是一项 ONTAP 功能，不仅可以将数据卷复制到远程站点，还可以复制 SVM 配置详细信息，例如 CIFS 共享， NFS 导出，数据 LIF 甚至 NFS 文件句柄，以避免在故障转移到灾难恢复站点时重新挂载。
+
+image:ontap991fo_image16.png["错误：缺少图形映像"]
+
+ONTAP 9.9.1 为 FlexGroup 卷提供了对 SVM-DR 的支持，但有以下限制。
+
+* 不支持 FabricPool
+* 无 FlexClone
+* 无 SnapMirror 扇出
+* 如果不重新建立基线，则无法进行 FlexVol 转换
+
+
+
+
+== SnapLock 增强功能
+
+https://www.netapp.com/data-protection/ontap-security/snaplock-compliance/["NetApp SnapLock"^] 是 NetApp 提供的 WORM 合规性复制解决方案。它为需要遵守 HIPAA ， SEC 17a-4 （ f ）规则， FINRA 和 CFTC 等法规准则以及德语国家 / 地区（ DACH ）的国家 / 地区要求的工作负载提供集成数据保护。
+
+SnapLock 有助于确保数据完整性和保留率，使电子记录既可更改又可快速访问。SnapLock 保留功能经过认证，可满足严格的记录保留要求，并可满足更多的保留要求，包括合法保留，基于事件的保留和卷附加模式。
+
+ONTAP 9.9.1 对 NetApp SnapLock 进行了以下改进：
+
+* https://docs.netapp.com/ontap-9/index.jsp?topic=%2Fcom.netapp.doc.dot-cm-concepts%2FGUID-8A8108CF-499A-46FC-917F-A40FAD68C8D6.html["存储效率"^] 支持 WORM 卷。支持数据缩减，跨卷 / 聚合级重复数据删除（仅限 AFF ），连续区块清理和温度敏感型存储效率。
+* 为包含 LUN 快照副本的 SnapLock 卷提供勒索软件保护。有关 SnapLock 的详细信息，请参见 https://www.netapp.com/pdf.html?item=/media/6158-tr4526pdf.pdf["使用 NetApp SnapLock 的合规 WORM 存储"^]。
+
+
+有关 SnapLock 的详细信息，请参见 https://www.netapp.com/pdf.html?item=/media/6158-tr4526pdf.pdf["使用 NetApp SnapLock 的合规 WORM 存储"^]。

@@ -1,0 +1,87 @@
+---
+sidebar: sidebar 
+permalink: ontap98fo_technical_resources.html 
+keywords:  
+summary: 此页面包含与 ONTAP 9.8 相关的各种技术资源的链接。 
+---
+= 技术资源
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+本节介绍详细介绍本文档中所述功能的可用技术资源。
+
+
+
+== 技术报告
+
+* TR-4067 ：《 NetApp ONTAP NFS 最佳实践和实施指南》
++
+https://www.netapp.com/us/media/tr-4067.pdf["https://www.netapp.com/us/media/tr-4067.pdf"^]
+
+* TR-4375 ：适用于 ONTAP 9.7 的 MetroCluster FC
++
+https://www.netapp.com/us/media/tr-4375.pdf["https://www.netapp.com/us/media/tr-4375.pdf"^]
+
+* TR-4569 ：《 ONTAP 9 安全加固指南》
++
+https://www.netapp.com/pdf.html?item=/media/10674-tr4569pdf.pdf["https://www.netapp.com/pdf.html?item=/media/10674-tr4569pdf.pdf"^]
+
+* TR-4571 ：《 NetApp FlexGroup 卷最佳实践》
++
+https://www.netapp.com/us/media/tr-4571.pdf["https://www.netapp.com/us/media/tr-4571.pdf"^]
+
+* TR-4597 ：采用 ONTAP 的 VMware vSphere
++
+https://www.netapp.com/us/media/tr-4597.pdf["https://www.netapp.com/us/media/tr-4597.pdf"^]
+
+* TR-4598 ： FabricPool 最佳实践
++
+https://www.netapp.com/us/media/tr-4598.pdf["https://www.netapp.com/us/media/tr-4598.pdf"^]
+
+* TR-4678 ：数据保护和备份— FlexGroup 卷
++
+https://www.netapp.com/us/media/tr-4678.pdf["https://www.netapp.com/us/media/tr-4678.pdf"^]
+
+* TR-4689 ：《 MetroCluster IP 解决方案架构和设计》
++
+https://www.netapp.com/us/media/tr-4689.pdf["https://www.netapp.com/us/media/tr-4689.pdf"^]
+
+* TR-4705 ：《 NetApp MetroCluster 解决方案架构和设计》
++
+https://www.netapp.com/pdf.html?item=/media/13480-tr4705pdf.pdf["https://www.netapp.com/pdf.html?item=/media/13480-tr4705pdf.pdf"^]
+
+* TR-4743 ： FlexCache in ONTAP
++
+https://www.netapp.com/pdf.html?item=/media/7336-tr4743pdf.pdf["https://www.netapp.com/pdf.html?item=/media/7336-tr4743pdf.pdf"^]
+
+
+
+
+
+== 播客
+
+* Tech OnTap 播客第 263 集：《 ONTAP 中的虚拟化— 2020 年秋季》
++
+https://soundcloud.com/techontap_podcast/episode-263-virtualization-in-ontap-fall-2020-update["https://soundcloud.com/techontap_podcast/episode-263-virtualization-in-ontap-fall-2020-update"^]
+
+* Tech OnTap 播客第 264 集： NetApp ONTAP SnapDiff
++
+https://soundcloud.com/techontap_podcast/episode-264-netapp-ontap-snapdiff["https://soundcloud.com/techontap_podcast/episode-264-netapp-ontap-snapdiff"^]
+
+* Tech OnTap 播客第 265 集：采用 ProLion 的 NetApp SnapMirror 云
++
+https://soundcloud.com/techontap_podcast/episode-265-netapp-snapmirror-cloud-featuring-prolion["https://soundcloud.com/techontap_podcast/episode-265-netapp-snapmirror-cloud-featuring-prolion"^]
+
+* Tech OnTap 播客第 266 集： NetApp ONTAP System Manager 9.8
++
+https://soundcloud.com/techontap_podcast/episode-266-netapp-system-manager-98["https://soundcloud.com/techontap_podcast/episode-266-netapp-system-manager-98"^]
+
+* Tech OnTap 播客第 267 集： SnapMirror 业务连续性
++
+https://soundcloud.com/techontap_podcast/episode-267-snapmirror-business-continuity-sm-bc-for-ontap-98["https://soundcloud.com/techontap_podcast/episode-267-snapmirror-business-continuity-sm-bc-for-ontap-98"^]
+
+
