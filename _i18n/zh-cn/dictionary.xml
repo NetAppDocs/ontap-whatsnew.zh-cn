@@ -68,7 +68,6 @@
   <block id="f1ae24804ec4b6b17a54394f58112978" category="paragraph">IPsec 是一种标准机制，用于通过线缆执行与应用程序无关的加密。使用 IPsec ，您可以对网络流量进行加密，而不管使用的协议是什么。这为简化提供了机会，尤其是 NFS ，因为在 NFS 中很难设置和使用 Kerberos 加密，同时也提供了通过线缆加密 iSCSI 流量的唯一方法。</block>
   <block id="41c2ee2e9077f794590a4aad78346465" category="paragraph">现在， ONTAP 9.8 增加了对 IPsec 的支持。ONTAP 实施的 利用与连接客户端共享的预共享密钥（ PSk ）。这些客户端包括任何采用采用具有 psk 的 IKEv2 的最新操作系统。请注意， Windows 操作系统不支持使用 PSk 的 IKEv2 。</block>
   <block id="b3573b14a0c32dbb523ce510bf7f69e4" category="section-title">可信平台模块</block>
-  <block id="13d770b48adc9f9695c92a47ba602630" category="paragraph">使用 ONTAP 9.8 中的新可信平台模块（ TPM ），板载密钥管理器（ OKM ）的加密密钥不再存储在启动设备中，而是存储在配有此类设备的系统的物理 TPM 中，从而提供更强的安全性和保护。迁移到 TPM 是一个无中断过程。</block>
   <block id="c4b8c29f448328e82ce27062b5fd9c28" category="section-title">NetApp 卷加密</block>
   <block id="7d89fb26b027943d7a25ccdf8e8d2344" category="paragraph">NetApp 卷加密（ NetApp Volume Encryption ， NVE ）是一种软件解决方案，可对任何已启用数据卷的驱动器类型上的任何数据卷进行加密，并为每个卷提供一个唯一的密钥。自 ONTAP 9.1 以来，此功能已可用。</block>
   <block id="66c2012d589bdbfcf7800051ae23f432" category="paragraph">ONTAP 9.8 为节点根卷提供了 NVE 支持，其中包含日志文件，集群配置备份，核心文件以及其他系统相关信息，您可能需要使用符合 FIPS-140-2 的加密来保护这些信息。</block>
@@ -600,4 +599,5 @@
   <block id="894993270da66c4f1f40a52bc9a89e53" category="paragraph"><block ref="894993270da66c4f1f40a52bc9a89e53" category="inline-link-macro-rx"></block></block>
   <block id="7eb11865313a79b30293e6f823bc7459" category="sidebar">NetApp ONTAP 9.9.1 功能概述</block>
   <block id="bebab3b123211d2c00c685855ec9b053" category="sidebar">NetApp ONTAP 9.8 功能概述</block>
+  <block id="a88154fe57b35fe434a4a8455227496e" category="paragraph">借助 ONTAP 9.8 中的新可信平台模块（ TPM ），板载密钥管理器（ OKM ）的加密密钥会通过物理 TPM 进行密封，从而提高安全性和保护能力。迁移到 TPM 是一个无中断过程。</block>
 </blocks>
