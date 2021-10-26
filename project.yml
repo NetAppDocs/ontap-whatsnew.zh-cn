@@ -1,5 +1,13 @@
+---
+settings:
+  name: ONTAP What's New
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: true
+    langs: zh-cn,us-en,ja-jp
 sidebar:
-  
   entries:
   - title: NetApp ONTAP 9.9.1 功能概述
     url: "/index.html"
