@@ -599,5 +599,5 @@
   <block id="894993270da66c4f1f40a52bc9a89e53" category="paragraph"><block ref="894993270da66c4f1f40a52bc9a89e53" category="inline-link-macro-rx"></block></block>
   <block id="7eb11865313a79b30293e6f823bc7459" category="sidebar">NetApp ONTAP 9.9.1 功能概述</block>
   <block id="bebab3b123211d2c00c685855ec9b053" category="sidebar">NetApp ONTAP 9.8 功能概述</block>
-  <block id="a88154fe57b35fe434a4a8455227496e" category="paragraph">借助 ONTAP 9.8 中的新可信平台模块（ TPM ），板载密钥管理器（ OKM ）的加密密钥会通过物理 TPM 进行密封，从而提高安全性和保护能力。迁移到 TPM 是一个无中断过程。</block>
+  <block id="2ca95da666ae6ef767cab8e7cc5bdb7b" category="paragraph">使用 ONTAP 9.8 中的新可信平台模块（ TPM ），板载密钥管理器（ OKM ）的加密密钥会通过物理 TPM 进行密封，从而提高安全性和保护能力。迁移到 TPM 是一个无中断过程。</block>
 </blocks>

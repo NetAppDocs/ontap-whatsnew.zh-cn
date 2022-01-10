@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: ontap98fo_data_protection.html 
-keywords: TR-4872, Data Protection, Security, Secure Purge, IPSec, NetApp Volume Encryption, NVE, SnapMirror Cloud, SnapMirror Business Continuity (SM-BC) 
+keywords: 'TR-4872, Data Protection, Security, Secure Purge, IPSec, NetApp Volume Encryption, NVE, SnapMirror Cloud, SnapMirror Business Continuity (SM-BC)' 
 summary: 本页介绍了 ONTAP 9.8 的最新数据保护增强功能，包括异地复制数据的概念，以及保护传输中和空闲数据的安全。 
 ---
 = 数据保护
@@ -48,7 +48,7 @@ IPsec 是一种标准机制，用于通过线缆执行与应用程序无关的�
 
 === 可信平台模块
 
-借助 ONTAP 9.8 中的新可信平台模块（ TPM ），板载密钥管理器（ OKM ）的加密密钥会通过物理 TPM 进行密封，从而提高安全性和保护能力。迁移到 TPM 是一个无中断过程。
+使用 ONTAP 9.8 中的新可信平台模块（ TPM ），板载密钥管理器（ OKM ）的加密密钥会通过物理 TPM 进行密封，从而提高安全性和保护能力。迁移到 TPM 是一个无中断过程。
 
 
 
