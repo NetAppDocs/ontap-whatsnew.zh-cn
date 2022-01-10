@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head class="at-element-marker">
+  <title>System Manager 增强功能</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="System Manager 增强功能" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-cn/ontap-whatsnew/ontap991fo_system_manager_enhancements.html" />
+	<meta property="og:description" content="在 ONTAP 9.1.1 中，我们收集了客户反馈，解决了有关 GUI 的一些问题，并重新添加了一些缺少的功能，同时添加了一些新增功能和改进的功能。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-cn/ontap-whatsnew/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/>
+  
+  <meta name="description" content="在 ONTAP 9.1.1 中，我们收集了客户反馈，解决了有关 GUI 的一些问题，并重新添加了一些缺少的功能，同时添加了一些新增功能和改进的功能。">
+  <meta name="keywords" content=" functionality, capacity display, enhancements, NVMe over Fibre Channel,">
+  
+  
+
+  <!-- Icons -->
+  <link rel="icon" href="/zh-cn/ontap-whatsnew/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed -->
+  
+
+  <!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Controls AsciiDoctor Admonition Blocks -->
+  <link rel="stylesheet" type="text/css" href="/zh-cn/ontap-whatsnew/css/font-awesome.min.css">
+
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/zh-cn/ontap-whatsnew/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel="stylesheet" type="text/css" href="/zh-cn/ontap-whatsnew/css/netapp.css">
+
+  <!-- WWW CSS Content -->
+  <link rel="stylesheet" type="text/css" href="/zh-cn/ontap-whatsnew/css/www-luci-dotcom.min.css">
+  <link rel="stylesheet" type="text/css" href="/zh-cn/ontap-whatsnew/css/www-netapp-dotcom.css">
+  <link rel="stylesheet" href="/zh-cn/ontap-whatsnew/css/www-netapp-library-critical.min.css" media="all" >
+  <link rel="stylesheet" href="/zh-cn/ontap-whatsnew/css/www-netapp-library-non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="/zh-cn/ontap-whatsnew/css/www-netapp-library-global-header-footer.min.css">
+
+  <!-- NetApp IE Customizations -->
+  <link rel="stylesheet" href='/zh-cn/ontap-whatsnew/css/na-utility.css' type='text/css'>
+  <link rel="stylesheet" href='/zh-cn/ontap-whatsnew/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-cn/ontap-whatsnew/css/clouddocs.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-cn/ontap-whatsnew/css/na-pagenav.css' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/zh-cn/ontap-whatsnew/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-cn/ontap-whatsnew/css/tabbed-blocks.css" type="text/css">
+  <link rel="stylesheet" href='/zh-cn/ontap-whatsnew/css/product-family.css' type="text/css">
+  
+
+  
+  <link rel='stylesheet' href='/zh-cn/ontap-whatsnew/css/na-feature.css' type='text/css'>
+  
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
+  
+    <script src='/zh-cn/ontap-whatsnew/js/na-search.js'></script>
+  
+
+  
+  <script src='/zh-cn/ontap-whatsnew/js/na-pagenav.js'></script>
+  
+
+  <link rel='stylesheet' href='/zh-cn/ontap-whatsnew/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-cn/ontap-whatsnew/css/prism-netapp.css' type='text/css'>
+
+
+  <script src='/zh-cn/ontap-whatsnew/js/na-utility.js'></script>
+  <script src='/zh-cn/ontap-whatsnew/js/clouddocs.js'></script>
+  <script>
+  if (document.location.hostname === "docs.netapp.com") {
+    var head = document.getElementsByTagName('head')[0];
+    var adobe = document.createElement("script");
+    adobe.type = "text/javascript";
+    adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
+    head.appendChild(adobe);
+  }
+  </script>
+  <script src='/zh-cn/ontap-whatsnew/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/zh-cn/ontap-whatsnew/js/toc.js'></script>
+  <script src='/zh-cn/ontap-whatsnew/js/customscripts.js'></script>
+
+  <script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-81697994-3"></script>
+  <script>
+  if (document.location.hostname === "docs.netapp.com") {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-81697994-3');
+  }
+  </script>
+  <script src='/zh-cn/ontap-whatsnew/js/version-dropdown.js'></script>
+  <script src='/zh-cn/ontap-whatsnew/js/product-family.js'></script>
+  <script src='/zh-cn/ontap-whatsnew/js/FileSaver.min.js'></script>
+  <script src='/zh-cn/ontap-whatsnew/js/jszip-utils.min.js'></script>
+  <script src='/zh-cn/ontap-whatsnew/js/jszip.min.js'></script>
+  <script src='/zh-cn/ontap-whatsnew/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">产品和解决方案</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">支持和培训</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">云中心</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">社区</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">日志</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">客户案例</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">联系人</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">联系人</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/zh-cn/ontap-whatsnew/search.html"
+          data-type="widget" 
+          data-placeholder="搜索文档" 
+          data-no-results-found="未找到与 {query} 匹配的结果。" 
+          data-did-you-mean="搜索 {suggestion}。" 
+          data-no-results-found-did-you-mean="未找到与 {query} 匹配的结果。您是否要搜索 {suggestion}?" 
+          data-results-found="找到 {hitCount} 个结果"  
+          data-sk-es-pf-indexes=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="ie-i18n" class="n-property-bar__lang-selector">
+      <div id="ie-i18n-menu">
+      <span class="ie-i18n-lang">简体中文</span>
+        <button class="ie-i18n-icon-container" type="button">
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+      <div id="n-property-navigation-bar__menu--language-selector" class="ie-i18n-results-container n-menu n-menu--v3 n-menu--is-active" style="display: none;">
+        <div class="n-language-selector-menu">
+          <ul class="n-menu__list">
+            <li class="n-menu__list-column">
+              <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-cn/ontap-whatsnew/ontap991fo_system_manager_enhancements.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/us-en/ontap-whatsnew/ontap991fo_system_manager_enhancements.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ja-jp/ontap-whatsnew/ontap991fo_system_manager_enhancements.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                </li></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" >
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/zh-cn/ontap-whatsnew/images/pdf.png" width="16" height="16"/>可用的 PDF<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        <a target="_blank" href="/zh-cn/ontap-whatsnew/pdfs/fullsite-sidebar/TR_4894____NetApp_ONTAP_9_9_1_功能概述_.pdf" >
+          <img src="/zh-cn/ontap-whatsnew/images/pdf.png" width="16" height="16"/>此文档站点的 PDF</a>
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          <a target="_blank" 
+            
+              href="/zh-cn/ontap-whatsnew/pdfs/sidebar/NetApp_ONTAP_9_9_1_功能概述.pdf" 
+            
+          >
+            <img src="/zh-cn/ontap-whatsnew/images/pdf.png" width="16" height="16"/>
+            NetApp ONTAP 9.9.1 功能概述
+          </a>
+          
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/zh-cn/ontap-whatsnew/pdfs/pages/ontap991fo_system_manager_enhancements.pdf" >
+    <img src="/zh-cn/ontap-whatsnew/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          <a target="_blank" 
+            
+              href="/zh-cn/ontap-whatsnew/pdfs/sidebar/NetApp_ONTAP_9_8_功能概述.pdf" 
+            
+          >
+            <img src="/zh-cn/ontap-whatsnew/images/pdf.png" width="16" height="16"/>
+            NetApp ONTAP 9.8 功能概述
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/zh-cn/ontap-whatsnew/images/pdf-zip.png" width="16" height="16"/>
+      <pre>收集单独的 PDF 文档<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container">
+  <ul id="mysidebar" class="nav"><li class="subfolders "><a href="/zh-cn/ontap-whatsnew/index.html">
+        <div class="na-navbar-padding"> NetApp ONTAP 9.9.1 功能概述</div>
+      </a>
+      <ul><li class="  active "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap991fo_system_manager_enhancements.html">
+        System Manager 增强功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap991fo_san_enhancements.html">
+        SAN 增强功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap991fo_data_protection_enhancements.html">
+        数据保护增强功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap991fo_other_major_additions.html">
+        其他主要新增功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap991fo_technical_resources.html">
+        技术资源
+      </a></li></ul></li><li class="subfolders "><a href="/zh-cn/ontap-whatsnew/ontap98fo_netapp_ontap.html">
+        <div class="na-navbar-padding"> NetApp ONTAP 9.8 功能概述</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap98fo_simplicity_enhancements.html">
+        简化增强功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap98fo_data_protocols.html">
+        数据协议
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap98fo_storage_efficiencies.html">
+        存储效率
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap98fo_data_protection.html">
+        数据保护
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap98fo_vmware_virtualization.html">
+        VMware 虚拟化
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-whatsnew/ontap98fo_technical_resources.html">
+        技术资源
+      </a></li></ul></li></ul>
+</div>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container -->
+    <article class="page-content">
+      <div class="ie-utility">
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://www.netapp.com">主页</a>
+        </li>
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">文档</a>
+        </li>
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/zh-cn/ontap-whatsnew/">ONTAP&nbsp;What's&nbsp;New</a>
+        </li>
+        <li class="n-breadcrumb__list-item">
+          System Manager 增强功能
+        </li>
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> 简体中文版经机器翻译而成，仅供参考。如与英语版出现任何冲突，应以英语版为准。 </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">System Manager 增强功能</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2021-07-26 21:54:18 +0000">07/26/2021</time>
+    
+  
+
+<span>提供者
+</span>
+
+
+</p>
+
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>随着 ONTAP 9.8 对 ONTAP 的 GUI 体验进行了改进，您可能已经注意到某些功能发生了移动或不再可用。在 ONTAP 9.1.1 中，我们收集了客户反馈，解决了有关 GUI 的一些问题，并重新添加了一些缺少的功能，同时添加了一些新增功能和改进的功能。下一节将介绍其中一些更改以及新增功能。您还可以在中找到有关 System Manager 的信息 <a href="https://docs.netapp.com/us-en/ontap/index.html" target="_blank" rel="noopener">"System Manager 文档"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="已还原功能-可用性增强功能">已还原功能 / 可用性增强功能</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您提出要求，我们会认真倾听。在 ONTAP 9.1.1 中， ONTAP 9.8 System Manager 中不再提供的某些功能已重新添加到该产品中。此外，还提供了新的可用性增强功能。</p>
+</div>
+<div class="sect2">
+<h3 id="在卷配置期间手动选择本地层-聚合">在卷配置期间手动选择本地层 / 聚合</h3>
+<div class="paragraph">
+<p>System Manager 9.9.1 允许您在配置新卷时手动选择要使用的物理存储层，包括在创建 FlexGroup 卷期间指定聚合的功能。您也可以选择允许 ONTAP 和 System Manager 根据平衡放置逻辑进行选择。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="容量显示增强功能">容量显示增强功能</h3>
+<div class="paragraph">
+<p>现在，您可以在 ONTAP 中按 Snapshot 副本查看已用逻辑空间，以及查看使用和不使用 Snapshot 副本时的存储效率比率。</p>
+</div>
+<div class="paragraph">
+<p>下图显示了 ONTAP System Manager 9.9.1 容量视图。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/ontap991fo_image1.jpeg" alt="错误：缺少图形映像"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="基于光纤通道的-nvme-创建-lif">基于光纤通道的 NVMe —创建 LIF</h3>
+<div class="paragraph">
+<p>现在，借助 System Manager ，您可以创建和查看通过光纤通道命名空间使用 NVMe 的 LIF ，包括端口状态，非对称端口选择以及查看每个端口创建的 LIF 数量，以帮助避免物理网络接口过载。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ems-事件查看器信息板">EMS 事件查看器—信息板</h3>
+<div class="paragraph">
+<p>为了更快速地查看 ONTAP 集群中可能存在的问题， System Manager 9.9.1 会在您首次登录时在信息板上添加 EMS 事件。这包括过去 24 小时发生的错误，例如磁盘损坏，网络链路断开，许可证问题以及磁盘架或节点错误。</p>
+</div>
+<div class="paragraph">
+<p>此外，您还会收到过去 24 小时的警告，包括发生故障的卷移动和运行状况监控器警报。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="snapshot-大小和-snapmirror-标签">Snapshot 大小和 SnapMirror 标签</h3>
+<div class="paragraph">
+<p>在 System Manager 的快照视图中，您可以在 SnapMirror 快照副本上查看快照大小和标签（例如每日，每周等）。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/ontap991fo_image2.png" alt="错误：缺少图形映像"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="将数据-lif-重新归位">将数据 LIF 重新归位</h3>
+<div class="paragraph">
+<p>在故障转移期间或网络中断得到解决后，数据 LIF 通常会保留在故障转移端口上，这可能会引起性能和故障恢复能力方面的潜在问题。如果您需要一种简单的方法将这些数据 LIF 发送回家， System Manager 9.9.1 现在提供了一种单击式方法，可以将所有数据 LIF 发送回其预期的主端口。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="要显示-隐藏的新卷字段">要显示 / 隐藏的新卷字段</h3>
+<div class="paragraph">
+<p>您可以通过显示 / 隐藏按钮在 System Manager 9.9.1 中查看卷信息，其中包括本地层和可用 / 已用信息。</p>
+</div>
+<div class="paragraph">
+<p>下图显示了 ONTAP System Manager 9.9 中的新卷视图。1.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/ontap991fo_image3.png" alt="错误：缺少图形映像"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="批量操作">批量操作</h3>
+<div class="paragraph">
+<p>如果您需要执行多个卷移动或删除，将多个 LUN 映射到一个启动程序组或将多个卷添加到云层，则现在可以选择多个对象并执行任务。卷删除还可以在一个窗口中卸载，脱机并确认删除。</p>
+</div>
+<div class="paragraph">
+<p>下图展示了 ONTAP System Manager 9.1.1 中简化的卷删除操作。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/ontap991fo_image4.png" alt="错误：缺少图形映像"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="active-iq-集成">Active IQ 集成</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>为了使 ONTAP 用户可以通过一个访问点访问多个信息源， System Manager 9.9.1 可与 NetApp Active IQ 解决方案集成。这样可以提供固件建议以及直接从 NetApp 支持站点下载映像的方法，并可轻松访问支持案例视图，以便在您希望查看集群发生的情况时查看。只需导航到左侧菜单中 "Cluster" 下的 "Support" 链接，然后向 Active IQ 注册集群即可开始。</p>
+</div>
+<div class="paragraph">
+<p>下图展示了 ONTAP System Manager 9.1.1 中的 Active IQ 视图。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/ontap991fo_image5.png" alt="错误：缺少图形映像"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="硬件可视化平台扩展">硬件可视化平台扩展</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>硬件可视化包括平台型号，序列号，接管 / 交还状态，磁盘状态，端口信息等信息。ONTAP 9.9.1 增加了对硬件可视化的平台支持，以包括所有当前的 AFF 平台。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/ontap991fo_image6.png" alt="错误：缺少图形映像"></span></p>
+</div>
+<div class="paragraph">
+<p>ONTAP 9.1.1 支持以下组件：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>* 平台。 * C190/A220/ A250/ A300/ A400/ A700/A700s/A800/ A320/FAS500f</p>
+</li>
+<li>
+<p>* 磁盘架。 * DS4243/DS4486/DS212C/DS2246/DS224C/NS224</p>
+</li>
+<li>
+<p>* 网络交换机。 * Cisco Nexus 3232C/Cisco Nexus 9336C-x2</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ansible-攻略手册工作流">Ansible 攻略手册工作流</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>越来越多的企业开始使用 Ansible 等应用程序实现日常任务自动化，以提供可重复的无错误工作流。NetApp 提供了一整套 Ansible 攻略手册，您可以在中找到这些攻略手册以及更多信息 <a href="https://www.netapp.com/devops-solutions/ansible/" target="_blank" rel="noopener">"Ansible for NetApp 页面"</a>。</p>
+</div>
+<div class="paragraph">
+<p>System Manager 9.9.1 增加了使用 Ansible 的其他途径，只需单击一下，即可通过一种新方法生成攻略手册。要使用这些攻略手册，请从安装 Ansible 和 NetApp 资料集 <a href="https://galaxy.ansible.com/netapp/ontap" target="_blank" rel="noopener">"Ansible Galax河"</a>，但您可以通过单击 System Manager 中选择存储配置任务上的 Save to Ansible Playbook 链接开始创建攻略手册。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/ontap991fo_image7.png" alt="错误：缺少图形映像"></span></p>
+</div>
+<div class="paragraph">
+<p>单击该按钮将创建一个 .zip 文件，其中包含 Ansible 所需的 .yaml 文件。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/ontap991fo_image8.png" alt="错误：缺少图形映像"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="文件系统分析增强功能">文件系统分析增强功能</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在高文件数环境中，要查找有关文件夹容量，数据使用期限和文件计数的信息，通常需要使用时间密集型命令或脚本通过 NAS 协议运行串行操作，例如 <code>ls</code> ， <code>du</code> ， <code>find</code> 和 <code>stat</code> 。</p>
+</div>
+<div class="paragraph">
+<p>ONTAP System Manager 9.8 通过为每个卷启用低影响扫描程序，为管理员提供了一种快速，轻松地查找任何 NAS 存储卷中的文件系统信息的方法。此扫描程序会在后台以低优先级作业搜索 ONTAP 文件系统，并在导航到启用了该文件系统的卷时提供大量信息。</p>
+</div>
+<div class="paragraph">
+<p>启用 <a href="https://docs.netapp.com/us-en/ontap/concept_nas_file_system_analytics_overview.html" target="_blank" rel="noopener">"文件系统分析"</a> 与导航到要扫描的卷一样简单。转到 " 存储 "&gt;" 卷 " ，然后使用搜索功能查找所需的卷。单击卷，然后单击资源管理器选项卡。</p>
+</div>
+<div class="paragraph">
+<p>在此处，您将看到页面右侧的 "Enable Analytics" 链接。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/ontap991fo_image9.png" alt="错误：缺少图形映像"></span></p>
+</div>
+<div class="paragraph">
+<p>单击启用后，扫描程序将启动。完成时间取决于卷中的对象数量以及系统负载。完成后，您会看到 System Manager 视图中填充了整个目录结构。此视图可在目录树下导航，并可用于访问历史记录信息，目录大小信息和文件大小。</p>
+</div>
+<div class="paragraph">
+<p>ONTAP 9.9.1 为该功能提供了一些额外的增强功能，例如按文件或目录名称筛选以及执行 <a href="https://docs.netapp.com/us-en/ontap/task_nas_file_system_analytics_take_corrective_action.html" target="_blank" rel="noopener">"快速删除目录"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="system-manager-9-9-1-的其他增强功能">System Manager 9.9.1 的其他增强功能</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ONTAP 9.9.1 还为 System Manager 提供了以下增强功能：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>嵌套的 igroup</p>
+</li>
+<li>
+<p>SnapMirror 云—备份和还原（仅限 ONTAP S3 和 StorageGRID ）</p>
+</li>
+<li>
+<p>全 SAN 阵列扩展</p>
+</li>
+<li>
+<p>FlexCache 预填充，灾难恢复，查看节省的带宽</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>适用于 FlexGroup 卷的 SVM-DR</p>
+</li>
+<li>
+<p>FlexGroup 卷的 SnapMirror 级联和扇出支持</p>
+</li>
+<li>
+<p>FabricPool ：调整或更改最小冷却天数</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+  <div class="page-nav-toolbar">
+    <div id="version-dropdown"></div>
+    <div class="page-nav-contribute"  >
+      <a target="_blank" href="https://github.com/NetAppDocs/ontap-whatsnew/issues/new?body=Page%3A%20[System Manager 增强功能](https://docs.netapp.com/zh-cn/ontap-whatsnew/ontap991fo_system_manager_enhancements.html)" class="page-nav-contribute-link" role="button"><img src="/zh-cn/ontap-whatsnew/images/discuss-sm.svg" class="github-icon" />请求文档变更</a>
+      <a target="_blank" href="https://github.com/NetAppDocs/ontap-whatsnew/blob/main/ontap991fo_system_manager_enhancements.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-cn/ontap-whatsnew/images/edit-sm.svg" class="github-icon" />在 GitHub 上编辑</a>
+      <a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-cn/ontap-whatsnew/images/article-sm.svg" class="github-icon" />提供者指南</a>
+    </div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">在此页面上</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  <div style="clear: both"></div><!-- Main needs to have height -->
+</div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+            <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+
+</ul>
+</div>
+<div class="n-footer__social-links">
+<ul class="n-footer__social-link-list">
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com" target="_blank" title="blog" alt="blog">
+<span class="n-footer__social-link-text">blog</span>
+<svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+  <title>blog@</title>
+  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#blog"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/" target="_blank" title="community" alt="community">
+<span class="n-footer__social-link-text">community</span>
+<svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+<title>community@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#comments"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp" target="_blank" title="twitter" alt="twitter">
+<span class="n-footer__social-link-text">twitter</span>
+<svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+<title>twitter@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#twitter"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp" target="_blank" title="facebook" alt="facebook">
+<span class="n-footer__social-link-text">facebook</span>
+<svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+<title>facebook@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#facebook"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-linkedin" href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+<span class="n-footer__social-link-text">linkedin</span>
+<svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+<title>linkedin@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#linkedin"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-youtube" href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+<span class="n-footer__social-link-text">youtube</span>
+<svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+<title>youtube@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#youtube"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-slideshare" href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+<span class="n-footer__social-link-text">slideshare</span>
+<svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+<title>slideshare@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/ontap-whatsnew/common/svg/sprite.svg#slideshare"></use>
+</svg>
+
+</a>
+</li>
+</ul>
+</div>
+
+</div>
+<div class="n-footer__bottom-right">
+  <p class="n-footer__fine-print">想就我们的网站提供反馈?<a target="_self" href="javascript:netapp_mailto()" class="n-footer__copyright">请告诉我们</a>
+  <a href="https://docs.netapp.com/zh-cn/announcements/" class="n-footer__copyright">通知</a>
+  </p>
+</div>
+</div>
+</div>
+</footer>
+
+      </div>
+
+      <!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-cn/ontap-whatsnew/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-cn/ontap-whatsnew/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-cn/ontap-whatsnew/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-cn/ontap-whatsnew/js/www-ntap.js'></script>
+    <script src='/zh-cn/ontap-whatsnew/js/tabbed-blocks.js'></script>
+  </body>
+
+  
+</html>
