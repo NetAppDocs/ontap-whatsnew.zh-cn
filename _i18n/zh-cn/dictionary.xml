@@ -400,7 +400,6 @@
   <block id="2abfff2974f589f7a217325f304e0ec5" category="cell">ONTAP 9.8</block>
   <block id="547cbd3109db3ef525c301563f0d65f1" category="cell">ONTAP 9.n+1 ， ONTAP 9.n+2</block>
   <block id="bf901878215dddabdc936ea948793ecb" category="paragraph">这一简化的升级过程还为简化机头升级提供了一种方法。在发售新硬件节点时，此节点已安装最新的 ONTAP 版本。以前，如果现有集群运行的是旧版 ONTAP ，则必须将现有节点升级到与新节点相同的 ONTAP 版本，或者将新节点降级到旧版 ONTAP 。此外，更复杂的是，如果无法降级较新的硬件，则您必须通过维护窗口升级现有集群。</block>
-  <block id="dcaf81f56b0daa7582eca70fdde4e77f" category="paragraph">借助 ONTAP 9.8 的 2 年修订期窗口，现在您可以将新节点添加到 ONTAP 版本在该范围内的集群中，而旧节点将使用无中断聚合重新定位升级过程在后台自动升级到新的 ONTAP 版本。</block>
   <block id="d62296e71d81556e35f498bde3d79287" category="paragraph"><block ref="d62296e71d81556e35f498bde3d79287" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e3eefd878fd09006803de4818d676916" category="paragraph">此过程还会扩展到集群升级，在此升级中，您需要从集群交换整个 HA 对。借助 ONTAP 9.8 2 年修订期和无中断卷移动，现在便可实现这一点。</block>
   <block id="98d0faccb32c3ee69ee9e16707900653" category="paragraph">基本步骤如下：</block>
@@ -600,4 +599,6 @@
   <block id="7eb11865313a79b30293e6f823bc7459" category="sidebar">NetApp ONTAP 9.9.1 功能概述</block>
   <block id="bebab3b123211d2c00c685855ec9b053" category="sidebar">NetApp ONTAP 9.8 功能概述</block>
   <block id="2ca95da666ae6ef767cab8e7cc5bdb7b" category="paragraph">使用 ONTAP 9.8 中的新可信平台模块（ TPM ），板载密钥管理器（ OKM ）的加密密钥会通过物理 TPM 进行密封，从而提高安全性和保护能力。迁移到 TPM 是一个无中断过程。</block>
+  <block id="2f8e938c8b82fff608b2a7cc62ef5bbc" category="paragraph">借助 ONTAP 9.8 的 2 年混合版本窗口，您现在可以将运行较新 ONTAP 版本的新节点添加到集群中，以便通过将卷从运行 9.8 的节点移动到更高版本的 ONTAP 来刷新控制器。此外，通过无中断聚合重新定位升级过程，可以将必须运行 ONTAP 9.8 的系统（例如， 8000 系列系统）的控制器升级到更高版本的 ONTAP 中引入的新型号。</block>
+  <block id="66c739b0fe981bce9986a4fc69525ce7" category="paragraph">建议您限制 ONTAP 集群在混合版本状态下运行的时间。</block>
 </blocks>
