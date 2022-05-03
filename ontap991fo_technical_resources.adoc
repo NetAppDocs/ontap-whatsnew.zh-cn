@@ -6,6 +6,7 @@ summary:
 ---
 = 技术资源
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

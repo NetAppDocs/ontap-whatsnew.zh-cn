@@ -6,6 +6,7 @@ summary: 此页面包含与 ONTAP 9.8 相关的各种技术资源的链接。
 ---
 = 技术资源
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

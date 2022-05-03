@@ -6,6 +6,7 @@ summary: 此页面介绍了允许客户端和最终用户与 ONTAP 存储系统�
 ---
 = 数据协议
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: ONTAP 9.9.1 提供了一些与 SAN 相关的重要增强功能。本节
 ---
 = SAN 增强功能
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

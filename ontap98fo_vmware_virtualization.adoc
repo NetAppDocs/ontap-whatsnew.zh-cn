@@ -6,6 +6,7 @@ summary: 本页介绍了 ONTAP 9.8 中为 VMware 虚拟化提供的新集成和�
 ---
 = VMware 虚拟化
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

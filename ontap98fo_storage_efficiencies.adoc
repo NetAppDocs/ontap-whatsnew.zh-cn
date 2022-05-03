@@ -6,6 +6,7 @@ summary: 本页介绍 ONTAP 9.8 的存储效率，尤其是数据压缩以及与
 ---
 = 存储效率
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -42,7 +43,7 @@ image:ontap98fo_image22.png["错误：缺少图形映像"]
 
 当客户端访问已分层到云的文件时，只会将请求的块（而不是整个文件）恢复到性能层以进行访问。
 
-有关 FabricPool 的详细信息，请参见 https://www.netapp.com/pdf.html?item=/media/17239-tr4598pdf.pdf["TR-4598 ： FabricPool 最佳实践"] 和。
+有关 FabricPool 的详细信息，请参见 https://www.netapp.com/pdf.html?item=/media/17239-tr4598pdf.pdf["TR-4598 ： FabricPool 最佳实践"] 和 https://soundcloud.com/techontap_podcast/episode-268-netapp-fabricpool-and-s3-in-ontap-98["TR-4598 ：《 FabricPool 最佳实践和 Tech OnTap 播客》第 268 集：《 FabricPool 9.8 中的 NetApp ONTAP 和 S3 》"^]。
 
 ONTAP 9.8 支持以下 FabricPool 功能：
 

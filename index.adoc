@@ -5,6 +5,7 @@ keywords: TR-4894, Introduction, NAS, SAN, S3, Snapshot, SnapMirror, SnapVault, 
 summary: NetApp ONTAP 是行业领先的旗舰级数据管理软件，无论数据位于内部，边缘还是云端，均可帮助您无缝管理和保护数据。 
 ---
 = TR-4894 ：《 NetApp ONTAP 9.9.1 功能概述》
+:allow-uri-read: 
 
 
 NetApp 公司 Justin Parisi

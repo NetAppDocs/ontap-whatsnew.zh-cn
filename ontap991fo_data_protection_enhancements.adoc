@@ -5,6 +5,7 @@ keywords: replication, failover, disaster recovery, dr, synchronous, backup, arc
 summary: 在本文档中，数据保护既指异地复制数据的概念，也指自动站点基础架构故障转移。本节介绍 ONTAP 9.1.1 的最新数据保护增强功能。 
 ---
 = 数据保护增强功能
+:allow-uri-read: 
 
 
 在本文档中，数据保护既指异地复制数据的概念，也指自动站点基础架构故障转移。本节介绍 ONTAP 9.1.1 的最新数据保护增强功能。

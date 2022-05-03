@@ -6,6 +6,7 @@ summary: 除了 System Manager 增强功能， SAN 增强功能和数据保护�
 ---
 = 其他主要新增功能
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

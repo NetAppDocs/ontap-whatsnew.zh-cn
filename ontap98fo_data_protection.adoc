@@ -6,6 +6,7 @@ summary: 本页介绍了 ONTAP 9.8 的最新数据保护增强功能，包括异
 ---
 = 数据保护
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

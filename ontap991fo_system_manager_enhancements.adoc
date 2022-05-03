@@ -6,6 +6,7 @@ summary: 在 ONTAP 9.1.1 中，我们收集了客户反馈，解决了有关 GUI
 ---
 = System Manager 增强功能
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
