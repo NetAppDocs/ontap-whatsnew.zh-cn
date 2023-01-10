@@ -29,5 +29,5 @@ ONTAP 9.8 中的 VMware 集成和支持得到了提升，包括 FlexGroup 数据
 * 支持 https://tanzu.vmware.com/tanzu["VMware Tanzu"^] 存储
 * 改进了对 VVOL 的支持，包括增强的 SAN VVOL 重新平衡命令以及存储功能配置文件的增强功能。有关最新 VMware 虚拟化支持的详细信息，请参见以下资源：
 * https://soundcloud.com/techontap_podcast/episode-263-virtualization-in-ontap-fall-2020-update["Tech OnTap 播客第 263 集：《 ONTAP 中的虚拟化— 2020 年秋季》"^]
-* https://www.netapp.com/us/media/tr-4597.pdf["TR-4597 ：采用 ONTAP 的 VMware vSphere"^]
+* https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 ：适用于 ONTAP 的 VMware vSphere"^]
 

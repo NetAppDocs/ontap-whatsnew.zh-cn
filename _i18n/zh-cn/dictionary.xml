@@ -50,7 +50,6 @@
   <block id="da5bc71c64b621b3b18568cfd93032f4" category="inline-link">Tech OnTap 播客第 263 集：《 ONTAP 中的虚拟化— 2020 年秋季》</block>
   <block id="e4c4075a8c06d40ae4b59e37bb084cef" category="list-text"><block ref="e4c4075a8c06d40ae4b59e37bb084cef" category="inline-link-rx"></block></block>
   <block id="75f86438e5e6bca3e9341dd22299f5bb" category="inline-link">TR-4597 ：采用 ONTAP 的 VMware vSphere</block>
-  <block id="ef5bb91ba96e022044cd2c0d3c47544b" category="list-text"><block ref="ef5bb91ba96e022044cd2c0d3c47544b" category="inline-link-rx"></block></block>
   <block id="6ed3add45740f0f671b6b3fc0e3397df" category="summary">本页介绍了 ONTAP 9.8 的最新数据保护增强功能，包括异地复制数据的概念，以及保护传输中和空闲数据的安全。</block>
   <block id="21a1e68164f738b8be1dae11d5a694b3" category="doc">数据保护</block>
   <block id="7efaeeb290018cf3aea10327b7bbfcc5" category="paragraph">在本文档中，数据保护既指异地复制数据的概念，也指确保数据在传输中和空闲时的安全。本节介绍 ONTAP 9.8 的最新数据保护增强功能。</block>
@@ -601,4 +600,6 @@
   <block id="2ca95da666ae6ef767cab8e7cc5bdb7b" category="paragraph">使用 ONTAP 9.8 中的新可信平台模块（ TPM ），板载密钥管理器（ OKM ）的加密密钥会通过物理 TPM 进行密封，从而提高安全性和保护能力。迁移到 TPM 是一个无中断过程。</block>
   <block id="2f8e938c8b82fff608b2a7cc62ef5bbc" category="paragraph">借助 ONTAP 9.8 的 2 年混合版本窗口，您现在可以将运行较新 ONTAP 版本的新节点添加到集群中，以便通过将卷从运行 9.8 的节点移动到更高版本的 ONTAP 来刷新控制器。此外，通过无中断聚合重新定位升级过程，可以将必须运行 ONTAP 9.8 的系统（例如， 8000 系列系统）的控制器升级到更高版本的 ONTAP 中引入的新型号。</block>
   <block id="66c739b0fe981bce9986a4fc69525ce7" category="paragraph">建议您限制 ONTAP 集群在混合版本状态下运行的时间。</block>
+  <block id="952fd691754e388c7b7ba473cf410aff" category="inline-link">TR-4597 ：适用于 ONTAP 的 VMware vSphere</block>
+  <block id="541370c778951fff2e4cbe905d65b0ec" category="list-text"><block ref="541370c778951fff2e4cbe905d65b0ec" category="inline-link-rx"></block></block>
 </blocks>
