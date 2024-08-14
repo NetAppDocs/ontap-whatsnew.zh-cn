@@ -33,6 +33,4 @@ NetApp ONTAP 在同一平台上支持以下功能：
 
 有关 NetApp ONTAP 的更多详细信息，请参见 https://www.netapp.com/pdf.html?item=/media/7413-ds-3231.pdf["ONTAP 9 数据管理软件产品规格"^] 和 https://docs.netapp.com/ontap-9/index.jsp["产品文档"^]。
 
-请查看此信息 link:https://tv.netapp.com/detail/video/6211778986001["视频"] 从 NetApp Insight 2020 开始，您可以更广泛地了解 NetApp ONTAP 的显著进步。
-
 link:ontap98fo_simplicity_enhancements.html["接下来：简化增强功能"]
